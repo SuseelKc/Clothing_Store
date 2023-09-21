@@ -15,6 +15,20 @@
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
+
+        <!-- Address -->
+        <div class="mt-4">
+            <x-input-label for="address" :value="__('Address')" />
+            <x-text-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')"  />
+            <x-input-error :messages="$errors->get('address')" class="mt-2" />
+        </div>
+
+        <!-- Contact -->
+        <div class="mt-4">
+            <x-input-label for="contact" :value="__('Contact')" />
+            <x-text-input id="contact" class="block mt-1 w-full" type="number" name="contact" :value="old('contact')"  />
+            <x-input-error :messages="$errors->get('contact')" class="mt-2" />
+        </div>
         
 
         <!-- Password -->
