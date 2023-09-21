@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('address')->nullable();
             $table->string('contact')->nullable();
-            $table->string('usertype')->default(0);
+            $table->string('usertype')->default(0)->comment('0=user,1=admin');
         });
     }
 
