@@ -22,8 +22,10 @@
     <body>
 
         <div class="container-scroller">
-            @include('layouts.inc.admin.navbar')
+            <!-- @include('layouts.inc.admin.navbar') -->
+            
             <div class="container-fluid page-body-wrapper">
+                
                 @include('layouts.inc.admin.sidebar')
 
                 <div class="main-panel">
@@ -48,7 +50,7 @@
       <!-- Custom js for this page-->
     <script src="{{asset('admin/js/dashboard.js')}}"></script>
     <script src="{{asset('admin/js/data-table.js')}}"></script>
-    <script src="{{asset('admin/js/jquery.dataTables.js"')}}""></script>
+    <script src="{{asset('admin/js/jquery.dataTables.js')}}"></script>
     <script src="{{asset('admin/js/dataTables.bootstrap4.js')}}"></script>
     <!-- End custom js for this page-->
 
