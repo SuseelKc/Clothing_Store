@@ -1,1 +1,6 @@
-<h1>Welcome Admin!</h1>
+@extends('layouts.admin')
+
+@section('content')
+    <h1>Welcome Admin!</h1>
+@endsection
+   
