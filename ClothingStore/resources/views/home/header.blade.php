@@ -28,13 +28,19 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="header__right">
+                        
+                        @auth
                         <div class="header__right__auth">
-                            <a href="#">Login</a>
-                            <a href="#">Register</a>
-                            <!-- <a href="{{ route('logout') }}">logout</a> -->
+                            
                             <x-app-layout>
                             </x-app-layout>
                         </div>
+                        @else
+                        <div class="header__right__auth">
+                            <a href="{{route('login')}}">Login</a>
+                            <a href="{{route('register')}}">Register</a>
+                        </div>
+                        @endauth
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>
                             <li><a href="#"><span class="icon_heart_alt"></span>

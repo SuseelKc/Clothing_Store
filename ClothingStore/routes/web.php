@@ -19,7 +19,8 @@ use App\Http\Controllers\DashboardController;
 // Auth::routes();
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return view('home.userpage');
 });
 
 Route::get('/dashboard', function () {
