@@ -1,8 +1,12 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1>Welcome Admin!</h1>
-    {{-- <x-app-layout>
-    </x-app-layout> --}}
+    
+<div>
+    @if(session('message'))
+        <h2 class="alert alert-success">{{session('message')}}</h2>    
+    @endif
+</div>
+    {{-- <h1>Welcome Admin!</h1> --}}
 @endsection
    

@@ -33,10 +33,10 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if(Auth::user()->usertype =='1'){
-                 return redirect('admin/dashboard')->with('status','Welcome to Dashboard!');
+                 return redirect('admin/dashboard')->with('message','Welcome to Dashboard!');
             }
         else{
-            return redirect('/dashboard')->with('status','Logged in sucessfully!');
+            return redirect('/dashboard')->with('message','Logged in sucessfully!');
         }        
 
 

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +40,9 @@ require __DIR__.'/auth.php';
 // added 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::get('/dashboard',[DashboardController::class, 'index']);
+
+    // CATGEORY
+    Route::get('category',[CategoryController::class,'index'])->name('category');
+    Route::get('category/create',[CategoryController::class,'create'])->name('category.create');
+    Route::post('category/store',[CategoryController::class,'store'])->name('category.store');
 });
