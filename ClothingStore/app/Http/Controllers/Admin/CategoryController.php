@@ -38,5 +38,7 @@ class CategoryController extends Controller
         }
         $category->status=$request->status == true ? '1' :'0';
         $category->save();
+
+        return view('admin.category.index')->with('message','Category Saved sucessfully!');
     }
 }

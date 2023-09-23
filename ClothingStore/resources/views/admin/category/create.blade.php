@@ -43,15 +43,14 @@
                         </div>
 
                         <div class="col-md mb-3">
-                            <label>Image
-                            </label>
+                            <label>Image</label>
                             <input type="file" name="image" class="form-control"/>
                         </div>
                     </div>    
 
                         <div class="col-md-6 mb-3">
                             <label>Status(Active/Inactive)</label><br/> 
-                           <input type="checkbox" name="name" />    
+                           <input type="checkbox" name="status"  />    
                         </div>
 
                         <div class="col-md-12 mb-3">

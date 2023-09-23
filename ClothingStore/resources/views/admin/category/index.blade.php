@@ -3,6 +3,12 @@
 @section('content')
 
     <div class="row">
+        <div>
+            @if(session('message'))
+                <h2 class="alert alert-success">{{session('message')}}</h2>    
+            @endif
+        </div>
+
         <div class="col-md-12 ">
             <div class="card-header">
                 <h4>Category
