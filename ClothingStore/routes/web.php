@@ -41,8 +41,11 @@ require __DIR__.'/auth.php';
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::get('/dashboard',[DashboardController::class, 'index']);
 
-    // CATGEORY
+    // category
     Route::get('category',[CategoryController::class,'index'])->name('category');
     Route::get('category/create',[CategoryController::class,'create'])->name('category.create');
     Route::post('category/store',[CategoryController::class,'store'])->name('category.store');
+    Route::get('category/{id}/edit',[CategoryController::class,'edit'])->name('category.edit');
+    Route::post('category/{id}/update',[CategoryController::class,'update'])->name('category.update');
+    Route::get('/category/{id}/delete',[CategoryController::class,'delete'])->name('category.delete');
 });
