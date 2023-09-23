@@ -19,11 +19,12 @@ use App\Http\Controllers\DashboardController;
 // Auth::routes();
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return view('home.userpage');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('home.userpage');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
