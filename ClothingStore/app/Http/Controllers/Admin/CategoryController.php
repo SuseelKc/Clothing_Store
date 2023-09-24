@@ -27,6 +27,7 @@ class CategoryController extends Controller
         $category->name=$validatedData['name'];
         $category->slug=$validatedData['slug'];
         $category->description=$validatedData['description'];
+        $category->status=$request->status == true ? '1' :'0';
 
         if($request->hasFile('image')){
             $file = $request->file('image');
@@ -37,7 +38,7 @@ class CategoryController extends Controller
             $category->image= $filename;
             
         }
-        $category->status=$request->status == true ? '1' :'0';
+     
         $category->save();
 
         return redirect('admin/category')->with('message','Category Saved sucessfully!');
@@ -51,8 +52,11 @@ class CategoryController extends Controller
         $category->name=$validatedData['name'];
         $category->slug=$validatedData['slug'];
         $category->description=$validatedData['description'];
+        
 
-        if($request->hasFile('image')){
+         if ($request->hasFile('image')) {
+            dd('Here');
+
             $file = $request->file('image');
             $ext=$file->getClientOriginalExtension();
             $filename=time().'.'.$ext;
