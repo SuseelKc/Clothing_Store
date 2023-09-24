@@ -24,8 +24,9 @@ class CategoryFormRequest extends FormRequest
         return [
             'name'=>['required','string'],
             'slug'=>['required','string'],
-            'description'=>['required',],
-            'image'=>['nullable','mimes:jpg,jpef,png'],
+            'description'=>['required'],
+            'image' => ['nullable', 'mimes:jpg,jpeg,png'],
+
         ];
     }
 }

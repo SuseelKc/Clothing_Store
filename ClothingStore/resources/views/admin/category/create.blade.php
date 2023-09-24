@@ -19,7 +19,7 @@
                 }
             </style>
             <div class="card-body">
-                    <form action="{{route('category.store')}}"  method="POST" enctype="multiple/form-data"> 
+                    <form action="{{route('category.store')}}"  method="POST" enctype="multipart/form-data"> 
                     @csrf
                         <div class="row">
                         <div class="col-md mb-3">
@@ -53,7 +53,8 @@
 
                         <div class="col-md-6 mb-3">
                             <label>Image</label>
-                           <input type="file" name="image" class="form-control"/>
+                            <input type="file" name="image" class="form-control"/>
+
                                
                        </div>
                     </div>    
