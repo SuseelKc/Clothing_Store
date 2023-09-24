@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,4 +49,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::get('category/{id}/edit',[CategoryController::class,'edit'])->name('category.edit');
     Route::post('category/{id}/update',[CategoryController::class,'update'])->name('category.update');
     Route::get('/category/{id}/delete',[CategoryController::class,'delete'])->name('category.delete');
+
+    //products
+    Route::get('product',[ProductController::class,'index'])->name('product');
+    Route::get('product/create',[ProductController::class,'create'])->name('product.create');
 });
