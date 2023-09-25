@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
+use Yajra\DataTables\Facades\DataTables;
+use Yajra\DataTables\DataTablesServiceProvider;
 
 return [
 
@@ -184,7 +186,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
-        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'DataTables' => DataTables::class,
     ])->toArray(),
 
 ];

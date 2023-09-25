@@ -21,7 +21,7 @@
             <div class="card-body">
                     <form 
                     action="{{url('admin/category/'.$category->id.'/update')}}"  
-                    method="post" enctype="multiple/form-data"> 
+                    method="post" enctype="multipart/form-data"> 
                     @csrf
                         <div class="row">
                         <div class="col-md mb-3">

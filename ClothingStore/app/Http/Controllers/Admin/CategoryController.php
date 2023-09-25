@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use App\Http\Requests\CategoryFormRequest;
 
 class CategoryController extends Controller
@@ -55,8 +56,12 @@ class CategoryController extends Controller
         
 
          if ($request->hasFile('image')) {
-            dd('Here');
 
+            $path='uploads/category/'.$category->image;
+            if(File::exists($path)){
+                File::delete($path);
+            }
+          
             $file = $request->file('image');
             $ext=$file->getClientOriginalExtension();
             $filename=time().'.'.$ext;
@@ -81,6 +86,11 @@ class CategoryController extends Controller
 
     public function delete($id){
         $category=Category::findOrFail($id);
+
+        $path='uploads/category/'.$category->image;
+        if(File::exists($path)){
+            File::delete($path);
+        }
         $category->delete();
         return redirect('admin/category')->with('message','Category Deleted sucessfully!');
     }
