@@ -42,10 +42,10 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md mb-3">
+                        <div class="col-md mb-3" >
                             <label>Description
                             </label>
-                            <textarea name="description" class="form-control"></textarea>
+                            <textarea style="height:90px; width:543px" name="description" class="form-control"></textarea>
                             @error('slug') 
                             <small class="text-danger">{{$message}}</small>
                             @enderror

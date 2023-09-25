@@ -96,7 +96,7 @@
                     <div class="col-md mb-3">
                         <label>Description
                         </label>
-                        <textarea name="description" class="form-control"></textarea>
+                        <textarea style="height:90px; width:543px" name="description" class="form-control"></textarea>
                         {{-- @error('description') 
                         <small class="text-danger">{{$message}}</small>
                         @enderror --}}

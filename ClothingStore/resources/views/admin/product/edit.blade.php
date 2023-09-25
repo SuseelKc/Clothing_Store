@@ -99,7 +99,7 @@
                     <div class="col-md mb-3">
                         <label>Description
                         </label>
-                        <textarea   style="height:90px; width:770px" 
+                        <textarea  style="height:90px; width:543px"
                         name="description" class="form-control">{{$product->description}}</textarea>
                         {{-- @error('description') 
                         <small class="text-danger">{{$message}}</small>
@@ -108,7 +108,7 @@
 
                     <div class="col-md-6 mb-3">
                         <label>Image</label>
-                        <input type="file" name="image" class="form-control"/>
+                        <input type="file" name="image" class="form-control"/><br>
                         <img src="{{asset('uploads/products/'.$product->image)}}"  style="height:90px; width:90px"
                         alt="No images"/>
 
