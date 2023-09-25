@@ -12,8 +12,8 @@ class ProductController extends Controller
 {
     //
     public function index(){
-        $product=Products::all();
-        return view('admin.product.index',compact('product'));
+        $products=Products::all();
+        return view('admin.product.index',compact('products'));
     }
 
 
@@ -49,7 +49,7 @@ class ProductController extends Controller
         }
         $product->save();
 
-       return view('admin.product.index');
+        return redirect('admin/product')->with('message','Product created sucessfully!');
     }
     
 }

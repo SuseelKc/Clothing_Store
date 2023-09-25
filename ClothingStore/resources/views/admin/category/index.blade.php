@@ -130,9 +130,13 @@
                                             <td>{{$category->name}}</td>
                                             <td>{{$category->status == '1'? 'Active' :'Inactive'}}</td>
                                             <td>
+                                                @if($category->image)
                                                 <img 
                                                 src="{{asset('/uploads/category/'.$category->image)}}"
                                                  style="width: 80px; height:80px;" alt="No image"/>
+                                                 @else
+                                                 <h5>No Image</h5>
+                                                @endif 
                                             </td>
                                             <td>
                                                 <a href="{{url('admin/category/'.$category->id.'/edit')}}" class="btn btn-success btn-sm text-white">Edit</a>
