@@ -21,12 +21,16 @@ class ProductFormRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            // 'name'=>['required','string'],
-            // 'slug'=>['required','string'],
-            // 'description'=>['required'],
-            // 'image' => ['nullable', 'mimes:jpg,jpeg,png'],
 
+        return [
+            'name' => ['required', 'string'],
+            'quantity' => ['required', 'numeric'],
+            'description' => ['required', 'string'],
+            'price' => ['required', 'numeric'],
+            'dis_price' => ['nullable', 'numeric'],
+            'color' => ['nullable', 'string'],
+            'image' => ['nullable', 'mimes:jpg,jpeg,png'],
+            'category' => ['required', 'numeric'], // Change 'category_id' to 'category'
         ];
     }
 }
