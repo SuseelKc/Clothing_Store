@@ -117,6 +117,7 @@
                                             <th>ID</th>
                                             <th>Name</th>
                                             <th>Status</th>
+                                            <th>Picture</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -128,6 +129,11 @@
                                             <td>{{$category->id}}</td>
                                             <td>{{$category->name}}</td>
                                             <td>{{$category->status == '1'? 'Active' :'Inactive'}}</td>
+                                            <td>
+                                                <img 
+                                                src="{{asset('/uploads/category/'.$category->image)}}"
+                                                 style="width: 80px; height:80px;" alt="No image"/>
+                                            </td>
                                             <td>
                                                 <a href="{{url('admin/category/'.$category->id.'/edit')}}" class="btn btn-success btn-sm text-white">Edit</a>
                                             &nbsp;
