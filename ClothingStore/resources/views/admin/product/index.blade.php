@@ -83,7 +83,7 @@
                             </td>
                             <td>{{$product->category->name}}</td>
                             <td>
-                                <a href="{{url('admin/category/'.$product->id.'/edit')}}" class="btn btn-success text-white">Edit</a>
+                                <a href="{{url('admin/product/'.$product->id.'/edit')}}" class="btn btn-success text-white">Edit</a>
                                 <a 
                                 {{-- href="{{url('admin/category/'.$category->id.'/edit')}}"  --}}
                                     class="btn btn-danger text-white">Delete</a>

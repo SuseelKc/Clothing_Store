@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 use App\Http\Requests\ProductFormRequest;
 
 class ProductController extends Controller
@@ -50,6 +51,54 @@ class ProductController extends Controller
         $product->save();
 
         return redirect('admin/product')->with('message','Product created sucessfully!');
+    }
+
+    public function edit($id){
+
+        // dd($id);
+
+        $product= Products::findOrFail($id);
+        $category=Category::all();
+        return view('admin.product.edit',compact('product','category'));
+       
+    }
+
+    public function update(ProductFormRequest $request,$id){
+
+        $validatedData= $request->validated();
+
+        $product = Products::findOrFail($id);
+        $product->name=$validatedData['name'];
+        $product->quantity=$validatedData['quantity'];
+        $product->price=$validatedData['price'];
+        $product->discounted_price=$validatedData['dis_price'];  
+        $product->description=$validatedData['description'];
+        $product->color=$validatedData['color'];
+        $product->category_id=$request->category;
+        
+        if($request->hasFile('image')){
+
+            $path='uploads/products/'.$product->image;
+            if(File::exists($path)){
+                File::delete($path);
+            }
+            
+            $file = $request->file('image');
+            $ext=$file->getClientOriginalExtension();
+            $filename=time().'.'.$ext;
+
+            $file->move('uploads/products/',$filename);
+            $product->image= $filename;
+            
+        }
+        $product->update();
+
+        return redirect('admin/product')->with('message','Product Updated sucessfully!');
+        
+    
+
+
+
     }
     
 }
