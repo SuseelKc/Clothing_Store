@@ -39,6 +39,7 @@
                     </div>
 
                     <div class="row">
+
                         <div class="col-md-6 mb-3">
                             <label>Description
                             </label>
@@ -48,8 +49,12 @@
                         <div class="col-md-6 mb-3">
                             <label>Image</label>
                             <input type="file" name="image" class="form-control"/>
-                            {{-- <img src="{{asset('/uploads/category',$category->image)}}"/> --}}
+                            <img 
+                            {{-- src="{{asset($category->image)}}" --}}
+                            src="{{asset('/uploads/category/'.$category->image)}}"
+                             style="width: 80px; height:80px;"/>
                         </div>
+
                     </div>    
 
                         <div class="col-md-6 mb-3">
