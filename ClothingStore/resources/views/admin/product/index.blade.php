@@ -45,9 +45,12 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Description</th>
+                            <th>Quantity</th>
                             <th>Price</th>
+                            <th>Discounted Price</th>
                             <th>Color</th>
                             <th>Picture</th>
+                            <th>Category</th>
                             <th>Action</th>
                         </tr>   
                     </thead>
@@ -59,7 +62,9 @@
                             <td>{{$product->id}}</td>
                             <td>{{$product->name}}</td>
                             <td>{{$product->description}}</td>
+                            <td>{{$product->quantity}}</td>
                             <td>{{$product->price}}</td>
+                            <td>{{$product->discounted_price}}</td>
                             <td>
                                 @if($product->color)
                                 {{$product->color}}
@@ -76,7 +81,7 @@
                                     <h5>No Image</h5>
                                 @endif
                             </td>
-                            
+                            <td>{{$product->category->name}}</td>
                             <td>
                                 <a href="{{url('admin/category/'.$product->id.'/edit')}}" class="btn btn-success text-white">Edit</a>
                                 <a 
