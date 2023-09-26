@@ -95,10 +95,15 @@ class ProductController extends Controller
 
         return redirect('admin/product')->with('message','Product Updated sucessfully!');
         
-    
-
-
 
     }
+
+    // public function delete($id){
+
+    //     dd($id);
+       
+    // }
+
+    
     
 }
