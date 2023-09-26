@@ -43,15 +43,13 @@
                         <div class="col-md-6 mb-3">
                             <label>Description
                             </label>
-                            <textarea name="description" class="form-control">{{$category->description}}</textarea>
+                            <textarea style="height:90px; width:543px" name="description" class="form-control">{{$category->description}}</textarea>
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label>Image</label>
-                            <input type="file" name="image" class="form-control"/>
-                            <img 
-                            {{-- src="{{asset($category->image)}}" --}}
-                            src="{{asset('/uploads/category/'.$category->image)}}"
+                            <input type="file" name="image" class="form-control"/><br>
+                            <img src="{{asset('/uploads/category/'.$category->image)}}"
                              style="width: 80px; height:80px;"/>
                         </div>
 

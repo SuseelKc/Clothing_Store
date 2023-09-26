@@ -94,6 +94,7 @@ class ProductController extends Controller
         $product->update();
 
         return redirect('admin/product')->with('message','Product Updated sucessfully!');
+<<<<<<< HEAD
         
 
     }
@@ -106,4 +107,17 @@ class ProductController extends Controller
 
     
     
+=======
+    }
+    public function delete($id){
+        $product=Products::findOrFail($id);
+
+        $path='uploads/products/'.$product->image;
+        if(File::exists($path)){
+            File::delete($path);
+        }
+        $product->delete();
+        return redirect('admin/product')->with('message','Product Deleted sucessfully!');
+    }
+>>>>>>> 0539bc55640aff8401442649f30f670f86651697
 }
