@@ -17,10 +17,16 @@
                 </ul>
             </div>
         </div>
+        
         <div class="row property__gallery">
+            @foreach($product as $product)   
             <div class="col-lg-3 col-md-4 col-sm-6 mix women">
                 <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="img/product/product-1.jpg">
+             
+                    <div class="product__item__pic set-bg" data-setbg="uploads/products/{{$product->image}}">
+                        <!-- <div class="img-box">
+                            <img src="uploads/products/{{$product->image}}" alt="">
+                        </div> -->
                         <div class="label new">New</div>
                         <ul class="product__hover">
                             <li><a href="img/product/product-1.jpg" class="image-popup"><span class="arrow_expand"></span></a></li>
@@ -29,7 +35,7 @@
                         </ul>
                     </div>
                     <div class="product__item__text">
-                        <h6><a href="#">Buttons tweed blazer</a></h6>
+                        <h6><a href="#">{{$product->name}}</a></h6>
                         <div class="rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -37,11 +43,12 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <div class="product__price">$ 59.0</div>
+                        <div class="product__price">Rs. {{$product->price}}</div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mix men">
+            @endforeach
+            <!-- <div class="col-lg-3 col-md-4 col-sm-6 mix men">
                 <div class="product__item">
                     <div class="product__item__pic set-bg" data-setbg="img/product/product-2.jpg">
                         <ul class="product__hover">
@@ -197,7 +204,10 @@
                         <div class="product__price">$ 49.0 <span>$ 59.0</span></div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+           
         </div>
+        
     </div>
+    
 </section>

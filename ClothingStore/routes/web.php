@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +20,11 @@ use App\Http\Controllers\Admin\ProductController;
 */
 
 // Auth::routes();
-
-Route::get('/', function () {
-    // return view('welcome');
-    return view('home.userpage');
-});
+Route::get('/',[HomeController::class,'index']);
+// Route::get('/', function () {
+   
+//     return view('home.userpage');
+// });
 
 Route::get('/dashboard', function () {
     return view('home.userpage');
