@@ -26,9 +26,12 @@ Route::get('/',[HomeController::class,'index']);
 //     return view('home.userpage');
 // });
 
-Route::get('/dashboard', function () {
-    return view('home.userpage');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('home.userpage');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [HomeController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
