@@ -11,7 +11,6 @@ use App\Http\Requests\ProductFormRequest;
 
 class ProductController extends Controller
 {
-    //
     public function index(){
         $products=Products::all();
         return view('admin.product.index',compact('products'));
@@ -94,10 +93,11 @@ class ProductController extends Controller
         $product->update();
 
         return redirect('admin/product')->with('message','Product Updated sucessfully!');
-        
-
     }
-
+    public function product_details($id){
+        $product = Products::find($id);
+        return view('home.details',compact('product'));
+    }
    
     
   

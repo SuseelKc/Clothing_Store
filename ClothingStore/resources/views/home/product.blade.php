@@ -64,7 +64,8 @@
                             <li><a href="#"><span class="icon_bag_alt"></span></a></li>
                         </ul>
                         <!-- Details button (hidden by default) -->
-                        <div class="details-button">Details</div>
+                        <a href="{{route('product_details',$product->id)}}" class="details-button">Details</a>
+                        <!-- <div class="details-button">Details</div> -->
                     </div>
                     <div class="product__item__text">
                         <h6><a href="#">{{$product->name}}</a></h6>
