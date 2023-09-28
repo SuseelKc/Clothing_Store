@@ -49,7 +49,10 @@ class ProductController extends Controller
         }
         $product->save();
 
-        return redirect('admin/product')->with('message','Product created sucessfully!');
+        toast('Product created sucessfully!','success');
+
+        return redirect('admin/product');
+        // ->with('message','Product created sucessfully!');
     }
 
     public function edit($id){
@@ -91,8 +94,10 @@ class ProductController extends Controller
             
         }
         $product->update();
-
-        return redirect('admin/product')->with('message','Product Updated sucessfully!');
+ 
+        toast('Product updated sucessfully!','success');
+        return redirect('admin/product');
+        // ->with('message','Product Updated sucessfully!');
     }
     public function product_details($id){
         $product = Products::find($id);

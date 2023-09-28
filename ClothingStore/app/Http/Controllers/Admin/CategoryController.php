@@ -42,7 +42,9 @@ class CategoryController extends Controller
      
         $category->save();
 
-        return redirect('admin/category')->with('message','Category Saved sucessfully!');
+        toast('Category Saved sucessfully!','success');
+        return redirect('admin/category');
+        // ->with('message','Category Saved sucessfully!');
     }
 
     public function update(CategoryFormRequest $request,$id){
@@ -73,7 +75,10 @@ class CategoryController extends Controller
         $category->status=$request->status == true ? '1' :'0';
         $category->update();
 
-        return redirect('admin/category')->with('message','Category updated sucessfully!');
+        toast('Category Updated sucessfully!','success');
+
+        return redirect('admin/category');
+        // ->with('message','Category updated sucessfully!');
 
     }
      

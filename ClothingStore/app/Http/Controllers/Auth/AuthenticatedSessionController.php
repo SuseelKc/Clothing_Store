@@ -9,6 +9,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class AuthenticatedSessionController extends Controller
 {
@@ -33,7 +35,11 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if(Auth::user()->usertype =='1'){
-                 return redirect('admin/dashboard')->with('message','Welcome to Dashboard!');
+            
+               toast('Welcome to Dashboard!','success');
+
+                 return redirect('admin/dashboard');
+                //  ->with('message','Welcome to Dashboard!');
             }
         else{
             return redirect('/dashboard')->with('message','Logged in sucessfully!');
