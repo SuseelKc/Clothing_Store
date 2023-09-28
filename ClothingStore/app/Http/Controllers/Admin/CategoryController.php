@@ -80,7 +80,7 @@ class CategoryController extends Controller
         return redirect('admin/category');
         // ->with('message','Category updated sucessfully!');
 
-    }
+    } 
      
     public function edit($id){
 

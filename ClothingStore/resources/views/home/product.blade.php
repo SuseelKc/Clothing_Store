@@ -60,6 +60,7 @@
                         <div class="label new">New</div>
                         <ul class="product__hover">
                             <li><a href="uploads/products/{{$product->image}}" class="image-popup"><span class="arrow_expand"></span></a></li>
+                            
                             <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                             <li><a href="#"><span class="icon_bag_alt"></span></a></li>
                         </ul>
@@ -68,7 +69,7 @@
                         <!-- <div class="details-button">Details</div> -->
                     </div>
                     <div class="product__item__text">
-                        <h6><a href="#">{{$product->name}}</a></h6>
+                        <h6><a href="{{route('product_details',$product->id)}}">{{$product->name}}</a></h6>
                         <div class="rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
