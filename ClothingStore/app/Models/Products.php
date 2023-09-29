@@ -19,6 +19,7 @@ class Products extends Model
         'price',
         'discounted_price',
         'color',
+        'tags',
         'image',
         'category_id',
     ];

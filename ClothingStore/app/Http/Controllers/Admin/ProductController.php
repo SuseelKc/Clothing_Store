@@ -35,6 +35,7 @@ class ProductController extends Controller
         $product->discounted_price=$validatedData['dis_price'];  
         $product->description=$validatedData['description'];
         $product->color=$validatedData['color'];
+        $product->tags=$validatedData['tags'];
 
         $product->category_id=$request->category;
 
@@ -76,6 +77,7 @@ class ProductController extends Controller
         $product->discounted_price=$validatedData['dis_price'];  
         $product->description=$validatedData['description'];
         $product->color=$validatedData['color'];
+        $product->tags=$validatedData['tags'];
         $product->category_id=$request->category;
         
         if($request->hasFile('image')){

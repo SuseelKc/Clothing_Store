@@ -105,7 +105,19 @@
                         <small class="text-danger">{{$message}}</small>
                         @enderror --}}
                     </div>
+                    
+                    <div class="col-md mb-3">
+                        <label>Tag
+                        </label>
+                        <input type="text" name="tags" class="form-control" value="{{$product->tags}}"/>
+                        {{-- @error('tags') 
+                        <small class="text-danger">{{$message}}</small>
+                        @enderror --}}
+                    </div>
 
+                    
+                </div> 
+                
                     <div class="col-md-6 mb-3">
                         <label>Image</label>
                         <input type="file" name="image" class="form-control"/><br>
@@ -114,7 +126,8 @@
 
                            
                     </div>
-                </div> 
+           
+                
 
                         <!-- <div class="col-md-6 mb-3">
                             <label>Status(Active/Inactive)</label><br/> 
