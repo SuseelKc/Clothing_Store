@@ -182,10 +182,8 @@
         </div>
     </div>
 
-
-
 <!-- Footer Section Begin -->
-<!-- @include('home.footer') -->
+@include('home.footer')
 <!-- Footer Section End -->
 
 <!-- Search Begin -->

@@ -91,16 +91,17 @@
                         @enderror --}}
                     </div>
                 </div>
-
+                
                 <div class="row">
                     <div class="col-md mb-3">
-                        <label>Description
+                        <label>Tag
                         </label>
-                        <textarea style="height:90px; width:543px" name="description" class="form-control"></textarea>
-                        {{-- @error('description') 
+                        <input type="text" name="tags" class="form-control" placeholder="eg. men,women,kid"/>
+                        {{-- @error('tags') 
                         <small class="text-danger">{{$message}}</small>
                         @enderror --}}
                     </div>
+                    
 
                     <div class="col-md-6 mb-3">
                         <label>Image</label>
@@ -109,6 +110,14 @@
                            
                     </div>
                 </div> 
+                <div class="col-md mb-3">
+                    <label>Description
+                    </label>
+                    <textarea style="height:90px; width:543px" name="description" class="form-control"></textarea>
+                    {{-- @error('description') 
+                    <small class="text-danger">{{$message}}</small>
+                    @enderror --}}
+                </div>
 
                         <!-- <div class="col-md-6 mb-3">
                             <label>Status(Active/Inactive)</label><br/> 

@@ -29,6 +29,7 @@ class ProductFormRequest extends FormRequest
             'price' => ['required', 'numeric'],
             'dis_price' => ['nullable', 'numeric'],
             'color' => ['nullable', 'string'],
+            'tags' => ['nullable', 'string'],
             'image' => ['nullable', 'mimes:jpg,jpeg,png'],
             'category' => ['required', 'numeric'], // Change 'category_id' to 'category'
         ];

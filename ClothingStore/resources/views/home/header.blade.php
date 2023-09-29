@@ -12,7 +12,7 @@
                             <li class="active"><a href="{{url('/')}}">Home</a></li>
                             <!-- <li><a href="#">Women’s</a></li>
                             <li><a href="#">Men’s</a></li> -->
-                            <li><a href="./shop.html">Products</a></li>
+                            <li><a href="{{route('view_product')}}">Products</a></li>
                             <li><a href="#">Category</a>
                                 <ul class="dropdown">
                                     <li><a href="./product-details.html">Women’s</a></li>
