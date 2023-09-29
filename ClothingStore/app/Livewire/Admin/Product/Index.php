@@ -32,8 +32,9 @@ class Index extends Component
                 File::delete($path);
             }
         $product->delete();
-        
-        return redirect('admin/product')->with('message','Product deleted successfully!');
+        toast('Product Deleted!','info');
+        return redirect('admin/product');
+        // ->with('message','Product deleted successfully!');
 
 
     }
