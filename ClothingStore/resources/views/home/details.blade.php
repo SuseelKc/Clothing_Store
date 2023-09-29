@@ -1,6 +1,3 @@
-Backup blade
-
-
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -102,44 +99,82 @@ Backup blade
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-lg-4 mx-auto">
                     <div class="product-details">
-                        <div class="product-image">
-                            <img src="/uploads/products/{{$product->image}}" alt="Product Image">
-                        </div>
-                        <div class="product-title">
-                            {{$product->name}}
-                        </div>
-                        <div class="product-price">
-                            @if($product->discounted_price != null)
-                                Discounted Price: Rs. {{$product->discounted_price}}
-                            @else
-                                Price: Rs. {{$product->price}}
-                            @endif
-                        </div>
-                        @if($product->discounted_price != null)
-                            <div class="original-price">
-                                Original Price: Rs. {{$product->price}}
-                            </div>
-                        @endif
-                        <div class="product-category">
-                            Category: {{$product->category->name}}
-                        </div>
-                        <div class="product-description">
-                            Description: {{$product->description}}
-                        </div>
-                        <div class="product-quantity">
-                            Available Quantity: {{$product->quantity}}
-                        </div>
-                        <form  method="POST">
-                
+                        <form 
+                        {{-- action="{{url('admin/product/'.$product->id.'/cart')}}" --}}
+                             method="POST" enctype="multipart/form-data">
                             @csrf
-                            <div class="row">
-                                <div class="col-md-4">
-                                <input type="number" name="Quantity" value="1" min="1" style="width: 100px;">
+
+                            {{-- user --}}
+                            <input name="user_id" value="{{auth()->user()->id}}" style="display: none;"/>
+
+                               {{--  Image--}}
+                                <div class="product-image">
+                                    {{--  --}}
+                                    <input type="file" name="image" class="form-control"  style="display: none;"/>
+                                    {{--  --}}
+                                    <img src="/uploads/products/{{$product->image}}" alt="Product Image">
                                 </div>
-                                <div class="col-md-4">
-                                <input type="submit" class="btn btn-danger" style="background-color:red;" value="Add To Cart">
+
+                                {{-- product title --}}
+                                <div class="product-title">
+                                    <input type="text" name="name" class="form-control" value="{{$product->name}}" style="display: none;"/>
+                                    {{$product->name}}
                                 </div>
-                            </div> 
+
+                                {{-- product id --}}
+                                <div class="product_id">
+                                    <input type="" name="product_id" value="{{$product->id}}" style="display: none;" />
+                                </div>
+                                {{--  --}}
+
+                                {{--  --}}
+                                <div class="product-price">
+                                    @if($product->discounted_price != null)
+                                    {{--  --}}
+                                    <input type="number" name="dis_price" class="form-control" value="{{$product->discounted_price}}" style="display: none;"/>
+                                    {{--  --}}
+                                    Discounted Price: Rs. {{$product->discounted_price}}
+                                    @else
+                                    {{--  --}}
+                                    <input type="number" name="price" class="form-control" value="{{$product->price}}" style="display: none;"/>
+                                    {{--  --}}
+                                        Price: Rs. {{$product->price}}
+                                    @endif
+                                </div>
+
+                                @if($product->discounted_price != null)
+                                    <div class="original-price">
+                                        Original Price: Rs. {{$product->price}}
+                                    </div>
+                                @endif
+                                <div class="product-category">
+                                    Category: {{$product->category->name}}
+                                    {{-- <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>
+                                        {{$product->category->name}}
+                                    </option> --}}
+                                </div>
+                                <div class="product-description">
+                                    Description: {{$product->description}}
+                                    {{--  --}}
+                                    <input type="text" name="description" class="form-control" value="{{$product->description}}" style="display: none;"/>
+                                    {{--  --}}
+                                </div>
+                                <div class="product-quantity">
+                                    Available Quantity: {{$product->quantity}}
+                                </div>
+                            
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                        <input type="number" name="quantity" value="1" min="1" style="width: 100px;">
+                                        </div>
+                                        <div class="col-md-4">
+                                        <input type="submit" class="btn btn-danger" style="background-color:red;" value="Add To Cart">
+                                        </div>
+                                        {{-- <div class="col-md-4">
+                                            <button  type="submit" class="btn btn-danger" style="background-color:red;" >Add To Cart</button>    
+                                    </div> --}}
+
+                                    </div> 
                         </form>
                     </div>
                 </div>
