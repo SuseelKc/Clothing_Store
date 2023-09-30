@@ -30,6 +30,7 @@ Route::get('/',[HomeController::class,'index']);
 // Route::get('/dashboard', function () {
 //     return view('home.userpage');
 // })->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('/dashboard', [HomeController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
@@ -60,14 +61,12 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::get('product/create',[ProductController::class,'create'])->name('product.create');
     Route::post('product/store',[ProductController::class,'store'])->name('product.store');
     Route::get('/product/{id}/edit',[ProductController::class,'edit'])->name('product.edit');
-    Route::post('/product/{id}/update',[ProductController::class,'update'])->name('product.update');
-
-  
+    Route::post('/product/{id}/update',[ProductController::class,'update'])->name('product.update'); 
  
 });
 
  // cart
-Route::get('admin/product/{id}/cart',[CartController::class,'addtocart'])->name('addtocart');
+Route::get('admin/product/{id}/cart',[CartController::class,'addtocart'])->name('addtocart')->middleware(['auth', 'verified']);
 
 Route::get('/product/{id}/details',[ProductController::class,'product_details'])->name('product_details');
 Route::get('/products',[ProductController::class,'view_product'])->name('view_product');

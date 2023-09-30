@@ -11,7 +11,7 @@
     <title>Ashion | Template</title>
 
     <!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet">
 
@@ -111,7 +111,7 @@
                                {{--  Image--}}
                                 <div class="product-image">
                                     {{--  --}}
-                                    <input type="file" name="image" class="form-control"  style="display: none;"/>
+                                    <input type="file" name="image" class="form-control" value="{{$product->image}}"  style="display: none;"/>
                                     {{--  --}}
                                     <img src="/uploads/products/{{$product->image}}" alt="Product Image">
                                 </div>
@@ -124,7 +124,7 @@
 
                                 {{-- product id --}}
                                 <div class="product_id">
-                                    <input type="" name="product_id" value="{{$product->id}}" style="display: none;" />
+                                    <input type="number" name="product_id" value="{{$product->id}}" style="display: none;" />
                                 </div>
                                 {{--  --}}
 

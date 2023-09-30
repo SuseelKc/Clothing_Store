@@ -23,7 +23,9 @@ class CartController extends Controller
 
         $cart->price=($cart->rate)*($cart->quantity);
 
+        
         if($request->hasFile('image')){
+            dd("Here");
             $file = $request->file('image');
             $ext=$file->getClientOriginalExtension();
             $filename=time().'.'.$ext;
@@ -35,6 +37,9 @@ class CartController extends Controller
 
         $cart->save();
 
+        toast('Product added to cart!','success');
+
+        return redirect('/products');
 
         
     }
