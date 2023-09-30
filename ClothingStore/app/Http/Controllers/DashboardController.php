@@ -10,4 +10,7 @@ class DashboardController extends Controller
     public function index(){
         return view('admin.dashboard');
     }
+    public function aboutus(){
+        return view('home.aboutus');
+    }
 }

@@ -92,7 +92,7 @@
 
     <!-- Header Section Begin -->
     @include('home.header')
-    <!-- Header Section End -->
+    <!-- Header Section End --> 
 
     <div class="hero_area">
         <div class="container">

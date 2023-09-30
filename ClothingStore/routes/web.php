@@ -69,3 +69,5 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
 
 Route::get('/product/{id}/details',[ProductController::class,'product_details'])->name('product_details');
 Route::get('/products',[ProductController::class,'view_product'])->name('view_product');
+
+Route::get('/aboutus',[DashboardController::class,'aboutus'])->name('aboutus');
