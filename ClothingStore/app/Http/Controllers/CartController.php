@@ -36,16 +36,25 @@ class CartController extends Controller
         }
 
         $cart->save();
-
+ 
         toast('Product added to cart!','success');
 
         return redirect('/cart');
         
     }
+
     public function showCart(){
         $cart=Cart::all();
         return view('home.cart.index',compact('cart'));
     }
 
+    public function delete($id){
+
+        $cart=Cart::findOrFail($id);
+        $cart->delete();
+
+        return redirect('/cart');
+
+    }
 
 }
