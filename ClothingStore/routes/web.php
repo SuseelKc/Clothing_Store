@@ -62,12 +62,13 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::get('/product/{id}/edit',[ProductController::class,'edit'])->name('product.edit');
     Route::post('/product/{id}/update',[ProductController::class,'update'])->name('product.update');
 
-    // cart
-    Route::get('/product/{id}/cart',[CartController::class,'addtocart'])->name('addtocart');
+  
  
 });
 
+ // cart
+Route::get('admin/product/{id}/cart',[CartController::class,'addtocart'])->name('addtocart');
+
 Route::get('/product/{id}/details',[ProductController::class,'product_details'])->name('product_details');
 Route::get('/products',[ProductController::class,'view_product'])->name('view_product');
-
 Route::get('/aboutus',[DashboardController::class,'aboutus'])->name('aboutus');
