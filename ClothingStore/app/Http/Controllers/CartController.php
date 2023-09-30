@@ -43,8 +43,8 @@ class CartController extends Controller
         
     }
     public function showCart(){
-
-        return view('home.cart.index');
+        $cart=Cart::all();
+        return view('home.cart.index',compact('cart'));
     }
 
 
