@@ -9,9 +9,16 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
     //
-    public function addtocart($id){
-        $category=new Cart;
+    public function addtocart(Request $request,$id){
+        $product=Products::findOrFail($id);
+       
+        // $category=new Cart;
         // $cart->
+
+        $catgeory= new Category;
+        $catgeory->name=$request->input('name');
+        $catgeory->
+
 
     }
 }

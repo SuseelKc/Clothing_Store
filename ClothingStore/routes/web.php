@@ -63,7 +63,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::post('/product/{id}/update',[ProductController::class,'update'])->name('product.update');
 
     // cart
-    Route::post('/product/{id}/cart',[CartController::class,'addtocart'])->name('addtocart');
+    Route::get('/product/{id}/cart',[CartController::class,'addtocart'])->name('addtocart');
  
 });
 

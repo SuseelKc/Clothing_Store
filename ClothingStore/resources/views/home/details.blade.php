@@ -100,8 +100,8 @@
                 <div class="col-sm-6 col-md-4 col-lg-4 mx-auto">
                     <div class="product-details">
                         <form 
-                        {{-- action="{{url('admin/product/'.$product->id.'/cart')}}" --}}
-                             method="POST" enctype="multipart/form-data">
+                            action="{{url('admin/product/'.$product->id.'/cart')}}"
+                             method="get" enctype="multipart/form-data">
                             @csrf
 
                             {{-- user --}}
@@ -172,7 +172,7 @@
                                         </div>
                                         {{-- <div class="col-md-4">
                                             <button  type="submit" class="btn btn-danger" style="background-color:red;" >Add To Cart</button>    
-                                    </div> --}}
+                                        </div> --}}
 
                                     </div> 
                         </form>
