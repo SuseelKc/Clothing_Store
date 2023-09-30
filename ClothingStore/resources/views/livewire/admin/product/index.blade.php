@@ -70,7 +70,6 @@
                                     @else
                                     <h6>Color Unavailable</h6>
                                     @endif
-
                                 </td>
                                 <td>
                                     @if($product->image)
