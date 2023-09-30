@@ -15,21 +15,25 @@ class CartController extends Controller
         // $category=new Cart;
         // $cart->
 
-        $catgeory= new Category;
-        $catgeory->product_id=$request->input('product_id');
-        $catgeory->rate=$request->input('price');
-        $catgeory->user_id=$request->input('user_id');
-        
+        $cart= new Cart;
+        $cart->product_id=$request->input('product_id');
+        $cart->rate=$request->input('price');
+        $cart->user_id=$request->input('user_id');
+        $cart->quantity=$request->input('quantity');
+
+        $cart->price=($cart->rate)*($cart->quantity);
 
         if($request->hasFile('image')){
             $file = $request->file('image');
             $ext=$file->getClientOriginalExtension();
             $filename=time().'.'.$ext;
 
-            $file->move('uploads/products/',$filename);
-            $product->image= $filename;
+            $file->move('uploads/carts/',$filename);
+            $cart->image= $filename;
             
         }
+
+        $cart->save();
 
 
         

@@ -105,8 +105,9 @@
                             @csrf
 
                             {{-- user --}}
+                            @auth
                             <input name="user_id" value="{{auth()->user()->id}}" style="display: none;"/>
-
+                            @endauth
                                {{--  Image--}}
                                 <div class="product-image">
                                     {{--  --}}
@@ -131,7 +132,7 @@
                                 <div class="product-price">
                                     @if($product->discounted_price != null)
                                     {{--  --}}
-                                    <input type="number" name="dis_price" class="form-control" value="{{$product->discounted_price}}" style="display: none;"/>
+                                    <input type="number" name="price" class="form-control" value="{{$product->discounted_price}}" style="display: none;"/>
                                     {{--  --}}
                                     Discounted Price: Rs. {{$product->discounted_price}}
                                     @else
@@ -163,10 +164,12 @@
                                     Available Quantity: {{$product->quantity}}
                                 </div>
                             
+                                &nbsp;
                                     <div class="row">
                                         <div class="col-md-4">
-                                        <input type="number" name="quantity" value="1" min="1" style="width: 100px;">
+                                        <input type="number" name="quantity" value="1" min="1" value="{{$product->quantity}}"  style="width: 100px;">
                                         </div>
+                                        &nbsp;
                                         <div class="col-md-4">
                                         <input type="submit" class="btn btn-danger" style="background-color:red;" value="Add To Cart">
                                         </div>

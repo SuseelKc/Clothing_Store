@@ -15,6 +15,8 @@ class Cart extends Model
         'rate',
         'color',
         'price',
-        'image'
+        'image',
+        'quantity',
+        'user_id'
     ];
 }
