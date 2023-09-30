@@ -100,13 +100,14 @@
                 <div class="col-sm-6 col-md-4 col-lg-4 mx-auto">
                     <div class="product-details">
                         <form 
-                        {{-- action="{{url('admin/product/'.$product->id.'/cart')}}" --}}
+                       action="{{url('admin/product/'.$product->id.'/cart')}}"
                              method="POST" enctype="multipart/form-data">
                             @csrf
 
                             {{-- user --}}
+                            @auth
                             <input name="user_id" value="{{auth()->user()->id}}" style="display: none;"/>
-
+                            @endauth
                                {{--  Image--}}
                                 <div class="product-image">
                                     {{--  --}}

@@ -10,8 +10,11 @@ class CartController extends Controller
 {
     //
     public function addtocart($id){
-        $category=new Cart;
+        if (Auth::check()) {
+            $category=new Cart;
         // $cart->
-
+        } else {
+            return redirect()->route('login');
+        }
     }
 }
