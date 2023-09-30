@@ -100,7 +100,7 @@
                 <div class="col-sm-6 col-md-4 col-lg-4 mx-auto">
                     <div class="product-details">
                         <form 
-                            action="{{url('admin/product/'.$product->id.'/cart')}}"
+                            action="{{url('product/'.$product->id.'/cart')}}"
                              method="get" enctype="multipart/form-data">
                             @csrf
 

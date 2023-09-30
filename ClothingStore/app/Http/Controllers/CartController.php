@@ -39,8 +39,13 @@ class CartController extends Controller
 
         toast('Product added to cart!','success');
 
-        return redirect('/products');
-
+        return redirect('/cart');
         
     }
+    public function showCart(){
+
+        return view('home.cart.index');
+    }
+
+
 }

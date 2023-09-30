@@ -1,12 +1,41 @@
-    <header class="header">
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ashion Template">
+    <meta name="keywords" content="Ashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Amity Collection </title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="home/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="home/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="home/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="home/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="home/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="home/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="home/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="home/css/style.css" type="text/css">
+</head>
+
+<body>
+<header class="header">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xl-3 col-lg-2">
                     <div class="header__logo">
-                        <a href="{{url('/')}}"><img src="img/logo.png" alt=""></a>
+                        <a href="{{url('/')}}">
+                            <img src="img/logo2.png" alt=""></a>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-7">
+                <div class="col-xl-6 col-lg-7" style="display: flex; justify-content: center; align-items: center;">
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="{{url('/')}}">Home</a></li>

@@ -66,7 +66,11 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
 });
 
  // cart
-Route::get('admin/product/{id}/cart',[CartController::class,'addtocart'])->name('addtocart')->middleware(['auth', 'verified']);
+Route::get('/product/{id}/cart',[CartController::class,'addtocart'])->name('addtocart')->middleware(['auth', 'verified']);
+Route::get('/cart',[CartController::class,'showCart'])->name('showCart')->middleware(['auth', 'verified']);
+
+
+
 
 Route::get('/product/{id}/details',[ProductController::class,'product_details'])->name('product_details');
 Route::get('/products',[ProductController::class,'view_product'])->name('view_product');
