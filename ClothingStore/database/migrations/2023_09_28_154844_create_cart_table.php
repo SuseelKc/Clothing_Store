@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('cart', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained('products', 'id');
-            $table->decimal('rate', 10, 2);
+            $table->foreignId('product_id')->constrained('products', 'id'); //
+            $table->decimal('rate', 10, 2); //
             $table->string('color')->nullable();;
             $table->decimal('price', 10, 2);
-            $table->string('image')->nullable();
-            $table->foreignId('user_id')->constrained('users', 'id')->nullable();
+            $table->string('image')->nullable();//
+            $table->foreignId('user_id')->constrained('users', 'id')->nullable(); //
             $table->timestamps();
         });
     }
