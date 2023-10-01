@@ -73,8 +73,6 @@ Route::get('/cart',[CartController::class,'showCart'])->name('showCart')->middle
 Route::get('/cart/{id}/delete',[CartController::class,'delete'])->name('deleteCart')->middleware(['auth', 'verified']);
 
 
-
-
 Route::get('/product/{id}/details',[ProductController::class,'product_details'])->name('product_details');
 Route::get('/products',[ProductController::class,'view_product'])->name('view_product');
 Route::get('/aboutus',[DashboardController::class,'aboutus'])->name('aboutus');

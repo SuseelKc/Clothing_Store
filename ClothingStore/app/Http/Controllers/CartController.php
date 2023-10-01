@@ -11,9 +11,12 @@ class CartController extends Controller
 {
     //
     public function addtocart(Request $request,$id){
+
         $product=Products::findOrFail($id);
         $user_id = Auth::user()->id;
+        
         $product_exist_id = Cart::where('product_id','=',$id)->where('user_id','=',$user_id)->get('id')->first();
+        
         if($product_exist_id)
         {
             $cart = Cart::find($product_exist_id)->first();

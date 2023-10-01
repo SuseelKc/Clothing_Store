@@ -38,18 +38,16 @@
                 <div class="col-xl-6 col-lg-7" style="display: flex; justify-content: center; align-items: center;">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="{{url('/')}}">Home</a></li>
-                            <!-- <li><a href="#">Women’s</a></li>
-                            <li><a href="#">Men’s</a></li> -->
-                            <li><a href="{{route('view_product')}}">Products</a></li>
-                            <li><a href="#">Category</a>
+                            <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{url('/')}}">Home</a></li>
+                            <li class="{{ Request::is('products*') ? 'active' : '' }}" ><a   href="{{route('view_product')}}">Products</a></li>
+                            <li><a href="#">Category</a> 
                                 <ul class="dropdown">
                                     <li><a href="./product-details.html">Women’s</a></li>
                                     <li><a href="./shop-cart.html">Men’s</a></li>
                                 </ul>
                             </li>
                             <li><a href="">Contact</a></li>
-                            <li><a href="{{route('aboutus')}}">About Us</a></li>
+                            <li class="{{ Request::is('aboutus*') ? 'active' : '' }}"><a href="{{route('aboutus')}}">About Us</a></li>
                             
                         </ul>
                     </nav>
