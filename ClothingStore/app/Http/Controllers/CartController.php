@@ -5,41 +5,43 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
     //
     public function addtocart(Request $request,$id){
         $product=Products::findOrFail($id);
-       
-        // $category=new Cart;
-        // $cart->
+        $user_id = Auth::user()->id;
+        $product_exist_id = Cart::where('product_id','=',$id)->where('user_id','=',$user_id)->get('id')->first();
+        if($product_exist_id)
+        {
+            $cart = Cart::find($product_exist_id)->first();
+            $quantity = $cart->quantity;
+            $cart->quantity = $quantity + $request->quantity;
+            $cart->price=($cart->rate)*($cart->quantity);
+            $cart->save();
+            toast('Product added to cart!','success');
 
-        $cart= new Cart;
-        $cart->product_id=$request->input('product_id');
-        $cart->rate=$request->input('price');
-        $cart->user_id=$request->input('user_id');
-        $cart->quantity=$request->input('quantity');
-
-        $cart->price=($cart->rate)*($cart->quantity);
-
-        
-        if($request->hasFile('image')){
-            dd("Here");
-            $file = $request->file('image');
-            $ext=$file->getClientOriginalExtension();
-            $filename=time().'.'.$ext;
-
-            $file->move('uploads/carts/',$filename);
-            $cart->image= $filename;
-            
+            return redirect('/cart');
         }
+        else
+        {
+            $cart= new Cart;
+            $cart->product_id=$request->input('product_id');
+            $cart->rate=$request->input('price');
+            $cart->user_id=$request->input('user_id');
+            $cart->quantity=$request->input('quantity');
 
-        $cart->save();
- 
-        toast('Product added to cart!','success');
+            $cart->price=($cart->rate)*($cart->quantity);
 
-        return redirect('/cart');
+            $cart->save();
+    
+            toast('Product added to cart!','success');
+
+            return redirect('/cart');
+
+        }
         
     }
 

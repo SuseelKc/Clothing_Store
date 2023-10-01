@@ -173,10 +173,6 @@
                                         <div class="col-md-4">
                                         <input type="submit" class="btn btn-danger" style="background-color:red;" value="Add To Cart">
                                         </div>
-                                        {{-- <div class="col-md-4">
-                                            <button  type="submit" class="btn btn-danger" style="background-color:red;" >Add To Cart</button>    
-                                        </div> --}}
-
                                     </div> 
                         </form>
                     </div>
