@@ -35,22 +35,24 @@ h6.bold-and-big {
             <div class="col-12">
                 <div class="card">
                     
+                    
                     <div class="card-body table-responsive p-2">
                         <table class="datatable table">
-                            <thead>
-                                <tr>
-                                    <th>S.No</th>
-                                    <th>Image</th>
-                                    <th>Product</th>
-                                    <th>Rate</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Image</th>
+                                        <th>Product</th>
+                                        <th>Rate</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
                             <tbody>
                                 @php
                                 $counter = 1;
+                                $totalAmount = 0; // Initialize total amount
                                 @endphp
                                 @foreach($cart as $cart)
                                 @if((auth()->user()->id) == ($cart->user_id))
@@ -72,6 +74,7 @@ h6.bold-and-big {
                                 </tr>
                                 @php
                                 $counter++;
+                                $totalAmount += $cart->price; // Add the item's price to the total amount
                                 @endphp
                                 @else
                                 {{-- <h1>No Product Added</h1> --}}
@@ -85,12 +88,15 @@ h6.bold-and-big {
                                         <a href="{{url('/products')}}" class="hover-button">
                                             Shop Items
                                         </a>                                      
+                                        @else
+                                        <div class="text-right" style="padding-right:250px;">
+                                            <strong>Total Amount:</strong> Rs. {{$totalAmount}} 
+                                        </div>
                                         @endif
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        
                     </div>
                 </div>
             </div>
