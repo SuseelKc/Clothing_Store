@@ -36,6 +36,7 @@
     <!-- Header Section End -->
 
     <!-- Categories Section Begin -->
+    {{-- @include('home.category') --}}
     
 <!-- Categories Section End -->
 
@@ -70,6 +71,11 @@
 <!-- Services Section Begin -->
 
 <!-- Services Section End -->
+
+ <!-- Categories Section Begin -->
+ @include('home.category')
+    
+ <!-- Categories Section End -->
 
 <!-- Instagram Begin -->
 @include('home.instagram')
