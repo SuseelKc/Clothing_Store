@@ -80,7 +80,6 @@
 <!-- Instagram Begin -->
 @include('home.instagram')
 <!-- Instagram End -->
-
 <!-- Footer Section Begin -->
 @include('home.footer')
 <!-- Footer Section End -->
