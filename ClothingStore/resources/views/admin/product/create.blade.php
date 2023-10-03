@@ -26,18 +26,18 @@
                             <label>Name
                             </label>
                             <input type="text" name="name" class="form-control"/>
-                            {{-- @error('name') 
+                            @error('name') 
                             <small class="text-danger">{{$message}}</small>
-                            @enderror --}}
+                            @enderror
                         </div>
 
                         <div class="col-md mb-3">
                             <label>Quantity
                             </label>
                             <input type="number" name="quantity" class="form-control"/>
-                            {{-- @error('quantity') 
+                            @error('quantity') 
                             <small class="text-danger">{{$message}}</small>
-                            @enderror --}}
+                            @enderror
                         </div>
                     </div>
 
@@ -47,18 +47,18 @@
                             <label>Price
                             </label>
                             <input type="number" name="price" class="form-control"/>
-                            {{-- @error('price') 
+                            @error('price') 
                             <small class="text-danger">{{$message}}</small>
-                            @enderror --}}
+                            @enderror
                         </div>
 
                         <div class="col-md mb-3">
                             <label>Discounted Price
                             </label>
                             <input type="number" name="dis_price" class="form-control"/>
-                            {{-- @error('dis_price') 
+                            @error('dis_price') 
                             <small class="text-danger">{{$message}}</small>
-                            @enderror --}}
+                            @enderror
                         </div>
                     </div>
 
@@ -86,9 +86,9 @@
                         <label>Color
                         </label>
                         <input type="text" name="color" class="form-control"/>
-                        {{-- @error('name') 
+                        @error('color') 
                         <small class="text-danger">{{$message}}</small>
-                        @enderror --}}
+                        @enderror
                     </div>
                 </div>
                 
@@ -97,17 +97,18 @@
                         <label>Tag
                         </label>
                         <input type="text" name="tags" class="form-control" placeholder="eg. men,women,kid"/>
-                        {{-- @error('tags') 
+                        @error('tags') 
                         <small class="text-danger">{{$message}}</small>
-                        @enderror --}}
+                        @enderror
                     </div>
                     
 
                     <div class="col-md-6 mb-3">
                         <label>Image</label>
                         <input type="file" name="image" class="form-control"/>
-
-                           
+                        @error('image') 
+                        <small class="text-danger">{{$message}}</small>
+                        @enderror
                     </div>
                 </div> 
                 <div class="row">
@@ -115,9 +116,9 @@
                         <label>Description
                         </label>
                         <textarea style="height:90px; width:543px" name="description" class="form-control"></textarea>
-                        {{-- @error('description') 
+                        @error('description') 
                         <small class="text-danger">{{$message}}</small>
-                        @enderror --}}
+                        @enderror
                     </div>
                 </div>
 

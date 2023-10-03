@@ -26,18 +26,18 @@
                             <label>Name
                             </label>
                             <input type="text" name="name" class="form-control" value="{{$product->name}}"/>
-                            {{-- @error('name') 
+                            @error('name') 
                             <small class="text-danger">{{$message}}</small>
-                            @enderror --}}
+                            @enderror
                         </div>
 
                         <div class="col-md mb-3">
                             <label>Quantity
                             </label>
                             <input type="number" name="quantity" class="form-control" value="{{$product->quantity}}"/>
-                            {{-- @error('quantity') 
+                            @error('quantity') 
                             <small class="text-danger">{{$message}}</small>
-                            @enderror --}}
+                            @enderror
                         </div>
                     </div>
 
@@ -47,18 +47,18 @@
                             <label>Price
                             </label>
                             <input type="number" name="price" class="form-control" value="{{$product->price}}"/>
-                            {{-- @error('price') 
+                            @error('price') 
                             <small class="text-danger">{{$message}}</small>
-                            @enderror --}}
+                            @enderror
                         </div>
 
                         <div class="col-md mb-3">
                             <label>Discounted Price
                             </label>
                             <input type="number" name="dis_price" class="form-control" value="{{$product->discounted_price}}"/>
-                            {{-- @error('dis_price') 
+                            @error('dis_price') 
                             <small class="text-danger">{{$message}}</small>
-                            @enderror --}}
+                            @enderror
                         </div>
                     </div>
 
@@ -89,9 +89,9 @@
                         <label>Color
                         </label>
                         <input type="text" name="color" class="form-control" value="{{$product->color}}"/>
-                        {{-- @error('name') 
+                        @error('color') 
                         <small class="text-danger">{{$message}}</small>
-                        @enderror --}}
+                        @enderror
                     </div>
                 </div>
 
@@ -101,18 +101,18 @@
                         </label>
                         <textarea  style="height:90px; width:543px"
                         name="description" class="form-control">{{$product->description}}</textarea>
-                        {{-- @error('description') 
+                        @error('description') 
                         <small class="text-danger">{{$message}}</small>
-                        @enderror --}}
+                        @enderror
                     </div>
                     
                     <div class="col-md mb-3">
                         <label>Tag
                         </label>
                         <input type="text" name="tags" class="form-control" value="{{$product->tags}}"/>
-                        {{-- @error('tags') 
+                        @error('tags') 
                         <small class="text-danger">{{$message}}</small>
-                        @enderror --}}
+                        @enderror
                     </div>
 
                     
@@ -122,6 +122,9 @@
                     <input type="file" name="image" class="form-control" /><br>
                     <img src="{{asset('uploads/products/'.$product->image)}}"  style="height:90px; width:90px"
                     alt="No images"/> 
+                    @error('image') 
+                    <small class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>         
                 
 
