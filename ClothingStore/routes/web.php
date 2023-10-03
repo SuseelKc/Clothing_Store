@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,3 +77,5 @@ Route::get('/cart/{id}/delete',[CartController::class,'delete'])->name('deleteCa
 Route::get('/product/{id}/details',[ProductController::class,'product_details'])->name('product_details');
 Route::get('/products',[ProductController::class,'view_product'])->name('view_product');
 Route::get('/aboutus',[DashboardController::class,'aboutus'])->name('aboutus');
+
+Route::get('/cash_order',[OrderController::class,'cash_order'])->name('cash_order');
