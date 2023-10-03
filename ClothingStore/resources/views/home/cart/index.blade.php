@@ -99,6 +99,10 @@ h6.bold-and-big {
                         </table>
                     </div>
                 </div>
+                <div class="text-left mt-4">
+                <h6 class="bold-and-big">Proceed To Order</h6>
+                    <a href="" class="btn btn-primary">Cash on Delivery</a>
+                </div>
             </div>
         </div>
     </div>
