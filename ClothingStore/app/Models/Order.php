@@ -19,4 +19,8 @@ class Order extends Model
         'amount',
         'image'
     ];
+    public function orderMaster()
+    {
+        return $this->belongsTo(OrderMaster::class, 'order_master_id');
+    }
 }
