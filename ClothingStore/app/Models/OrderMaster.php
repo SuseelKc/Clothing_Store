@@ -17,4 +17,8 @@ class OrderMaster extends Model
         'delivery_status',
         'payment_type'
     ];
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'order_master_id');
+    }
 }

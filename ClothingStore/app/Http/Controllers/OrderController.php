@@ -69,12 +69,20 @@ class OrderController extends Controller
         $purchase_code = session('purchase_code'); 
         return view('home.thankyou',compact('purchase_code'));
     }
+    // public function showOrders()
+    // {
+    //     $user_id = auth()->user()->id;
+    //     $order = OrderMaster::where('user_id', $user_id)->get();
+
+    //     return view('home.vieworders', compact('order'));
+    // }
     public function showOrders()
     {
         $user_id = auth()->user()->id;
-        $order = OrderMaster::where('user_id', $user_id)->get();
+        $orderMasters = OrderMaster::where('user_id', $user_id)->with('orders')->get();
 
-        return view('home.vieworders', compact('order'));
+        return view('home.vieworders', compact('orderMasters'));
     }
+
 
 }
