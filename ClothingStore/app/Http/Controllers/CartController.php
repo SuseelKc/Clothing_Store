@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Products;
+use App\Models\OrderMaster;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,7 +51,8 @@ class CartController extends Controller
 
     public function showCart(){
         $cart=Cart::all();
-        return view('home.cart.index',compact('cart'));
+        $countcart = Cart::where('user_id', auth()->id())->count();
+        return view('home.cart.index',compact('cart','countcart'));
     }
 
     public function delete($id){

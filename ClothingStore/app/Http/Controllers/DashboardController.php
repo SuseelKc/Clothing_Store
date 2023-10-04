@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\OrderMaster;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -11,6 +13,7 @@ class DashboardController extends Controller
         return view('admin.dashboard');
     }
     public function aboutus(){
-        return view('home.aboutus');
+        $countcart = Cart::where('user_id', auth()->id())->count();
+        return view('home.aboutus',compact('countcart'));
     }
 }

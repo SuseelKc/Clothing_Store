@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Products;
+use App\Models\OrderMaster;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
@@ -103,12 +105,14 @@ class ProductController extends Controller
     }
     public function product_details($id){
         $product = Products::find($id);
-        return view('home.details',compact('product'));
+        $countcart = Cart::where('user_id', auth()->id())->count();
+        return view('home.details',compact('product','countcart'));
     }
     
     public function view_product(){
-        $product=Products::paginate(8);;
-        return view('home.product_page',compact('product'));
+        $product=Products::paginate(8);
+        $countcart = Cart::where('user_id', auth()->id())->count();
+        return view('home.product_page',compact('product','countcart'));
     }
     
   

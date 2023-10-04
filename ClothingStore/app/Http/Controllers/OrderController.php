@@ -80,8 +80,9 @@ class OrderController extends Controller
     {
         $user_id = auth()->user()->id;
         $orderMasters = OrderMaster::where('user_id', $user_id)->with('orders')->get();
+        $countcart = Cart::where('user_id', auth()->id())->count();
 
-        return view('home.vieworders', compact('orderMasters'));
+        return view('home.vieworders', compact('orderMasters','countcart'));
     }
 
 

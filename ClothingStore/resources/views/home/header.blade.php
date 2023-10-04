@@ -73,7 +73,11 @@
                                 <div class="tip">2</div>
                             </a></li>
                             <li><a href="{{url('/cart')}}"><span class="icon_bag_alt"></span>
-                                <div class="tip">2</div>
+                                @auth
+                                    <div class="tip">{{$countcart}}</div>
+                                @else
+                                    
+                                @endauth    
                             </a></li>
                         </ul>
                     </div>
