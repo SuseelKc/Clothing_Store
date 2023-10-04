@@ -8,6 +8,7 @@ use App\Models\Products;
 use App\Models\Order;
 use App\Models\OrderMaster;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use App\Enums\PaymentType;
 
 class OrderController extends Controller
@@ -21,6 +22,9 @@ class OrderController extends Controller
         $order_master->user_id = $user_id;
         //for purchase code
         $order_master->purchasecode = $this->PurchaseCode(); 
+        // storing purchase code in a variable to show in welcome blade
+        $purchase_code = $this->PurchaseCode(); 
+        session(['purchase_code' => $purchase_code]);
 
         $order_master->payment_type = PaymentType::CashOnDelivery;
         $order_master->totalamount = $request->input('totalAmount');
@@ -44,7 +48,7 @@ class OrderController extends Controller
             $cart->delete();
         }
         
-        return view('home.thankyou');
+        return Redirect::route('ordered');
     }
     private function PurchaseCode()
     {
@@ -60,4 +64,17 @@ class OrderController extends Controller
         }
         return $newCode;
     }
+    public function ordered()
+    {
+        $purchase_code = session('purchase_code'); 
+        return view('home.thankyou',compact('purchase_code'));
+    }
+    public function showOrders()
+    {
+        $user_id = auth()->user()->id;
+        $order = OrderMaster::where('user_id', $user_id)->get();
+
+        return view('home.vieworders', compact('order'));
+    }
+
 }

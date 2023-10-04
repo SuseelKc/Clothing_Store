@@ -46,7 +46,7 @@
                                     <li><a href="./shop-cart.html">Men’s</a></li>
                                 </ul>
                             </li>
-                            <li><a href="">Contact</a></li>
+                            <li class="{{ Request::is('orders*') ? 'active' : '' }}"><a href="{{route('orders')}}">Orders</a></li>
                             <li class="{{ Request::is('aboutus*') ? 'active' : '' }}"><a href="{{route('aboutus')}}">About Us</a></li>
                             
                         </ul>
