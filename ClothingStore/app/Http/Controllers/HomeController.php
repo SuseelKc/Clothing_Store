@@ -8,7 +8,7 @@ use App\Models\Products;
 class HomeController extends Controller
 {
     public function index(){
-        $product = Products::all();
+        $product = Products::paginate(10);
         return view('home.userpage',compact('product'));
     }
 }

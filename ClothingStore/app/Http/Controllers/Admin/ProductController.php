@@ -107,7 +107,7 @@ class ProductController extends Controller
     }
     
     public function view_product(){
-        $product=Products::all();
+        $product=Products::paginate(8);;
         return view('home.product_page',compact('product'));
     }
     

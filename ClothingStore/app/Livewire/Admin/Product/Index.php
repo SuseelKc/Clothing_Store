@@ -13,7 +13,7 @@ class Index extends Component
 
     public function render()
     {
-        $products=Products::all();
+        $products=Products::simplePaginate(5);
         return view('livewire.admin.product.index',compact('products'));
     }
     public function  deleteProduct($id){

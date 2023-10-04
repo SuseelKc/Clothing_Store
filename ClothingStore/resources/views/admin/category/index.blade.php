@@ -108,9 +108,9 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            
-                            <div class="card-body table-responsive p-2">
+                        <div class="card-body">
+                            <div class="card-body table-responsive p-2">    
+            
                                 <table class="datatable table">
                                     <thead>
                                         <tr>
@@ -148,9 +148,16 @@
                                         </tr>
                                         @endforeach
                                     </tbody>
-                                </table>
+                                </table>    
+
                             </div>
+                            <br>
+                            <div class="pagination" style="float: right;">{{$categories->links()}}</div>
+
+                          
+                            
                         </div>
+                        
                     </div>
                 </div>
             </div>

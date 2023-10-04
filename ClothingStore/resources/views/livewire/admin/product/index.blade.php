@@ -93,16 +93,26 @@
                                 </td>
                             </tr>
                             @endforeach
+                            
+                               
+
                         </tbody>
+                       
 
 
                     </table>
 
+                  
                 </div>
-                    
-                </div>
+                <br>
+                <div class="pagination float-right"
+        >{{$products->links()}}</div>
+              
+  
 
         </div>
+
+        
     </div>
 
 </div>
