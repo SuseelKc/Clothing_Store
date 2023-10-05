@@ -83,3 +83,4 @@ Route::get('/aboutus',[DashboardController::class,'aboutus'])->name('aboutus');
 
 Route::get('/cash_order',[OrderController::class,'cash_order'])->name('cash_order')->middleware(['auth', 'verified']);
 Route::get('/ordered',[OrderController::class,'ordered'])->name('ordered')->middleware(['auth', 'verified']);
+Route::get('/cancelorder/{id}',[OrderController::class,'cancel_order'])->name('cancel_order')->middleware(['auth', 'verified']);

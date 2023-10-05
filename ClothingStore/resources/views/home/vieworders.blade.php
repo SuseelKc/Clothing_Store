@@ -95,7 +95,7 @@
         Shop Items
     </a>
     @else
-    <h1 class="orders-title">Your Orders</h1>
+    <h1 class="orders-title" style="padding-top:20px;">Your Orders</h1>
     @foreach($orderMasters as $key => $orderMaster)
     <div class="order-details">
         <div class="order-header">
@@ -113,7 +113,9 @@
                 </table>
             </div>
             <div>
-                <a href="#" class="cancel-button">Cancel Order</a>
+                @if ($orderMaster->delivery_status !== \App\Enums\DeliveryStatus::Cancelled && $orderMaster->delivery_status !== \App\Enums\DeliveryStatus::Delivered)
+                    <a href="{{ route('cancel_order', $orderMaster->id) }}" class="cancel-button">Cancel Order</a>
+                @endif
             </div>
         </div>
 
