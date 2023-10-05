@@ -68,7 +68,8 @@ class OrderController extends Controller
     {
         $purchase_code = session('purchase_code'); 
         $countcart = Cart::where('user_id', auth()->id())->count();
-        return view('home.thankyou',compact('purchase_code','countcart'));
+        $countorder = OrderMaster::where('user_id', auth()->id())->count();
+        return view('home.thankyou',compact('purchase_code','countcart','countorder'));
     }
     // public function showOrders()
     // {
@@ -82,8 +83,9 @@ class OrderController extends Controller
         $user_id = auth()->user()->id;
         $orderMasters = OrderMaster::where('user_id', $user_id)->with('orders')->get();
         $countcart = Cart::where('user_id', auth()->id())->count();
+        $countorder = OrderMaster::where('user_id', auth()->id())->count();
 
-        return view('home.vieworders', compact('orderMasters','countcart'));
+        return view('home.vieworders', compact('orderMasters','countcart','countorder'));
     }
 
 

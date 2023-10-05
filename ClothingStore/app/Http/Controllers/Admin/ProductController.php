@@ -106,13 +106,15 @@ class ProductController extends Controller
     public function product_details($id){
         $product = Products::find($id);
         $countcart = Cart::where('user_id', auth()->id())->count();
-        return view('home.details',compact('product','countcart'));
+        $countorder = OrderMaster::where('user_id', auth()->id())->count();
+        return view('home.details',compact('product','countcart','countorder'));
     }
     
     public function view_product(){
         $product=Products::paginate(8);
         $countcart = Cart::where('user_id', auth()->id())->count();
-        return view('home.product_page',compact('product','countcart'));
+        $countorder = OrderMaster::where('user_id', auth()->id())->count();
+        return view('home.product_page',compact('product','countcart','countorder'));
     }
     
   

@@ -38,16 +38,16 @@
                 <div class="col-xl-6 col-lg-7" style="display: flex; justify-content: center; align-items: center;">
                     <nav class="header__menu">
                         <ul>
-                            <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{url('/')}}">Home</a></li>
-                            <li class="{{ Request::is('products*') ? 'active' : '' }}" ><a   href="{{route('view_product')}}">Products</a></li>
-                            <li><a href="#">Category</a> 
+                            <li class="{{ Request::is('/') ? 'active' : '' }}"><a  style="font-size: 20px;" href="{{url('/')}}">Home</a></li>
+                            <li class="{{ Request::is('products*') ? 'active' : '' }}" ><a style="font-size: 20px;"  href="{{route('view_product')}}">Products</a></li>
+                            <li><a style="font-size: 20px;" href="#">Category</a> 
                                 <ul class="dropdown">
                                     <li><a href="./product-details.html">Women’s</a></li>
                                     <li><a href="./shop-cart.html">Men’s</a></li>
                                 </ul>
                             </li>
-                            <li class="{{ Request::is('orders*') ? 'active' : '' }}"><a href="{{route('orders')}}">Orders</a></li>
-                            <li class="{{ Request::is('aboutus*') ? 'active' : '' }}"><a href="{{route('aboutus')}}">About Us</a></li>
+                            <li class="{{ Request::is('orders*') ? 'active' : '' }}"><a style="font-size: 20px;" href="{{route('orders')}}">Orders</a></li>
+                            <li class="{{ Request::is('aboutus*') ? 'active' : '' }}"><a  style="font-size: 20px;" href="{{route('aboutus')}}">About Us</a></li>
                             
                         </ul>
                     </nav>
@@ -68,17 +68,25 @@
                         </div>
                         @endauth
                         <ul class="header__right__widget">
-                            <li><span class="icon_search search-switch"></span></li>
-                            <li><a href="#"><span class="icon_heart_alt"></span>
+                            <li><span class="icon_search search-switch" style="font-size: 25px;"></span></li>
+                            <li><a href="#"><span class="icon_heart_alt" style="font-size: 25px;" ></span>
                                 <div class="tip">2</div>
                             </a></li>
-                            <li><a href="{{url('/cart')}}"><span class="icon_bag_alt"></span>
+                            
+                            <li><a href="{{url('/cart')}}"><span class="icon_cart_alt" style="font-size: 25px;"></span>
                                 @auth
                                     <div class="tip">{{$countcart}}</div>
                                 @else
                                     
                                 @endauth    
                             </a></li>
+
+                            {{--  --}}
+                            <li><a href="{{url('/orders')}}"><span class="icon_bag_alt" style="font-size: 25px;" ></span>
+                                <div class="tip">{{$countorder}}</div>
+                            </a></li>
+                            {{--  --}}
+                            
                         </ul>
                     </div>
                 </div>

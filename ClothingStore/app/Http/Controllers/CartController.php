@@ -52,7 +52,8 @@ class CartController extends Controller
     public function showCart(){
         $cart=Cart::all();
         $countcart = Cart::where('user_id', auth()->id())->count();
-        return view('home.cart.index',compact('cart','countcart'));
+        $countorder = OrderMaster::where('user_id', auth()->id())->count();
+        return view('home.cart.index',compact('cart','countcart','countorder'));
     }
 
     public function delete($id){
