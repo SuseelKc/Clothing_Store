@@ -62,7 +62,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::get('product/create',[ProductController::class,'create'])->name('product.create');
     Route::post('product/store',[ProductController::class,'store'])->name('product.store');
     Route::get('/product/{id}/edit',[ProductController::class,'edit'])->name('product.edit');
-    Route::post('/product/{id}/update',[ProductController::class,'update'])->name('product.update'); 
+    Route::post('/product/{id}/update',[ProductController::class,'update'])->name('product.update');
+    
+    // orders
+    Route::get('/order',[OrderController::class,'index'])->name('order.index');
  
 });
 
@@ -74,8 +77,6 @@ Route::get('/cart',[CartController::class,'showCart'])->name('showCart')->middle
 Route::get('/cart/{id}/delete',[CartController::class,'delete'])->name('deleteCart')->middleware(['auth', 'verified']);
 
 Route::get('/orders',[OrderController::class,'showOrders'])->name('orders')->middleware(['auth', 'verified']);
-
-
 Route::get('/product/{id}/details',[ProductController::class,'product_details'])->name('product_details');
 Route::get('/products',[ProductController::class,'view_product'])->name('view_product');
 Route::get('/aboutus',[DashboardController::class,'aboutus'])->name('aboutus');

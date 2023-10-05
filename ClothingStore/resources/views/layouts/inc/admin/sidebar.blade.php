@@ -35,7 +35,7 @@
 
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#product" aria-expanded="false" aria-controls="ui-basic">
-          <i class="mdi mdi-view-list menu-icon"></i>
+          <i class="mdi mdi-package-variant-closed menu-icon"></i>
           <span class="menu-title">Product</span>
           <i class="menu-arrow"></i>
         </a>
@@ -50,9 +50,9 @@
       
     
       <li class="nav-item">
-        <a class="nav-link" href="pages/tables/basic-table.html">
-          <i class="mdi mdi-grid-large menu-icon"></i>
-          <span class="menu-title">Tables</span>
+        <a class="nav-link" href="{{route('order.index')}}">
+          <i class="mdi mdi-shopping menu-icon"></i>
+          <span class="menu-title">Orders</span>
         </a>
       </li>
       <li class="nav-item">
