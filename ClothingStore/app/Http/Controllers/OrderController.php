@@ -10,6 +10,7 @@ use App\Models\OrderMaster;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\Enums\PaymentType;
+use App\Enums\DeliveryStatus;
 
 class OrderController extends Controller
 {
@@ -87,6 +88,12 @@ class OrderController extends Controller
 
         return view('home.vieworders', compact('orderMasters','countcart','countorder'));
     }
-
+    public function cancel_order($id)
+    {
+        $order=OrderMaster::findOrFail($id);
+        $order->delivery_status = DeliveryStatus::Cancelled;
+        $order->save();
+        return redirect()->back();
+    }
 
 }
