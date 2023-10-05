@@ -23,4 +23,9 @@ class Order extends Model
     {
         return $this->belongsTo(OrderMaster::class, 'order_master_id');
     }
+    public function product()
+    {
+        return $this->belongsTo(Products::class, 'product_id');
+    }
+    
 }

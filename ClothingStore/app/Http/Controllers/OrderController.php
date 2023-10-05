@@ -67,7 +67,8 @@ class OrderController extends Controller
     public function ordered()
     {
         $purchase_code = session('purchase_code'); 
-        return view('home.thankyou',compact('purchase_code'));
+        $countcart = Cart::where('user_id', auth()->id())->count();
+        return view('home.thankyou',compact('purchase_code','countcart'));
     }
     // public function showOrders()
     // {
