@@ -81,7 +81,7 @@ class OrderController extends Controller
     public function showOrders()
     {
         $user_id = auth()->user()->id;
-        $orderMasters = OrderMaster::where('user_id', $user_id)->with('orders')->get();
+        $orderMasters = OrderMaster::where('user_id', $user_id)->with('orders')->orderBy('created_at', 'desc')->get();
         $countcart = Cart::where('user_id', auth()->id())->count();
         $countorder = OrderMaster::where('user_id', auth()->id())->count();
 
