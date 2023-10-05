@@ -83,7 +83,11 @@
 
                             {{--  --}}
                             <li><a href="{{url('/orders')}}"><span class="icon_bag_alt" style="font-size: 25px;" ></span>
+                                @auth
                                 <div class="tip">{{$countorder}}</div>
+                                @else
+                                    
+                                @endauth 
                             </a></li>
                             {{--  --}}
                             
