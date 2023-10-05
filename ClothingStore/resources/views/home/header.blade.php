@@ -46,7 +46,7 @@
                                     <li><a href="./shop-cart.html">Men’s</a></li>
                                 </ul>
                             </li>
-                            <li class="{{ Request::is('orders*') ? 'active' : '' }}"><a style="font-size: 20px;" href="{{route('orders')}}">Orders</a></li>
+                            <!-- <li class="{{ Request::is('orders*') ? 'active' : '' }}"><a style="font-size: 20px;" href="{{route('orders')}}">Orders</a></li> -->
                             <li class="{{ Request::is('aboutus*') ? 'active' : '' }}"><a  style="font-size: 20px;" href="{{route('aboutus')}}">About Us</a></li>
                             
                         </ul>
@@ -68,10 +68,10 @@
                         </div>
                         @endauth
                         <ul class="header__right__widget">
-                            <li><span class="icon_search search-switch" style="font-size: 25px;"></span></li>
+                            <!-- <li><span class="icon_search search-switch" style="font-size: 25px;"></span></li>
                             <li><a href="#"><span class="icon_heart_alt" style="font-size: 25px;" ></span>
                                 <div class="tip">2</div>
-                            </a></li>
+                            </a></li> -->
                             
                             <li><a href="{{url('/cart')}}"><span class="icon_cart_alt" style="font-size: 25px;"></span>
                                 @auth

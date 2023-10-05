@@ -80,5 +80,5 @@ Route::get('/product/{id}/details',[ProductController::class,'product_details'])
 Route::get('/products',[ProductController::class,'view_product'])->name('view_product');
 Route::get('/aboutus',[DashboardController::class,'aboutus'])->name('aboutus');
 
-Route::get('/cash_order',[OrderController::class,'cash_order'])->name('cash_order');
-Route::get('/ordered',[OrderController::class,'ordered'])->name('ordered');
+Route::get('/cash_order',[OrderController::class,'cash_order'])->name('cash_order')->middleware(['auth', 'verified']);
+Route::get('/ordered',[OrderController::class,'ordered'])->name('ordered')->middleware(['auth', 'verified']);

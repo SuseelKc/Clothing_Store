@@ -107,6 +107,7 @@
                             <td>Delivery Status: {{ \App\Enums\DeliveryStatus::getDescription($orderMaster->delivery_status) }}</td>
                             <td>Payment Type: {{ \App\Enums\PaymentType::getDescription($orderMaster->payment_type) }}</td>
                             <td>Total Amount: Rs. {{ $orderMaster->totalamount }}</td>
+                            <td>Placed order in: {{ $orderMaster->created_at }}</td>
                         </tr>
                     </tbody>
                 </table>
