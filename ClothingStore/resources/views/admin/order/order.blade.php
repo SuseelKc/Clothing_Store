@@ -34,7 +34,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h3> Orders
+                <h3> Order
                     {{-- <a 
                     href="{{route('product.create')}}" 
                     class="btn btn-primary btn-sm text-white float-right">Add Product</a> --}}
@@ -47,29 +47,25 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>OrderNo.</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Rate</th>
                                 <th>Total Amount</th>
-                                <th>Status</th>
-                                <th>Payment Type</th>
-                                <th>Action</th>
+                                
                               
                             </tr>   
                         </thead>
                         <tbody>
-                            @foreach($orders as $order)
+                            @foreach($products as $order)
 
                             
                             <tr>
                                 <td>{{$order->id}}</td>
-                                <td>{{$order->purchasecode}}</td>
-                                <td>{{$order->totalamount}}</td>
-                                <td>{{\App\Enums\DeliveryStatus::getDescription($order->delivery_status) }}</td>
-                                <td>{{\App\Enums\PaymentType::getDescription($order->payment_type)}}</td>
-                                <td>
-                                    <a href="{{url('admin/order/'.$order->id.'/view')}}" class="btn btn-primary btn-sm text-white">Details</a>
-                                    <a class="btn btn-success btn-sm text-white">Delivered</a>
-                                    <a class="btn btn-danger btn-sm text-white">Cancel Order</a>
-                                </td>
+                                <td>{{$order->product->name}}</td>
+                                <td>{{$order->quantity}}</td>
+                                <td>{{$order->rate}}</td>
+                                <td>{{$order->amount}}</td>
+                                
                             </tr>
                             @endforeach
                             
