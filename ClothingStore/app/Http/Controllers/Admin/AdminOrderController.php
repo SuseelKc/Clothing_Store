@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Order;
 use App\Models\OrderMaster;
 use Illuminate\Http\Request;
+use App\Enums\DeliveryStatus;
 use App\Http\Controllers\Controller;
 
 class AdminOrderController extends Controller
@@ -23,9 +24,13 @@ class AdminOrderController extends Controller
     }
 
     public function orderDelivered($id){
-        $order=OrderMaster::findOrFail($id);
-        dd($order);
 
+        $order=OrderMaster::findOrFail($id); 
+        $order->delivery_status = DeliveryStatus::Delivered; 
+        $order->save();
+        
+        toast('Order Delivered!','success');
+        return redirect('admin/order');
     }
 
     public function orderCancelled($id){
