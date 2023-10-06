@@ -35,7 +35,13 @@ class AdminOrderController extends Controller
 
     public function orderCancelled($id){
         $order=OrderMaster::findOrFail($id);
-        dd($order);
+      
+        $order->delivery_status= DeliveryStatus::Cancelled; 
+
+        $order->save();
+        
+        toast('Order cancelled!','success');
+        return redirect('admin/order');
     }
 
 }
