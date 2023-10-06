@@ -20,7 +20,6 @@ class ProductController extends Controller
 
 
     public function create(){
-        // dd('Hre');
         $category=Category::all();
         return view('admin.product.create',compact('category'));
     }
@@ -104,17 +103,19 @@ class ProductController extends Controller
         // ->with('message','Product Updated sucessfully!');
     }
     public function product_details($id){
+        $categories = Category::all();
         $product = Products::find($id);
         $countcart = Cart::where('user_id', auth()->id())->count();
         $countorder = OrderMaster::where('user_id', auth()->id())->count();
-        return view('home.details',compact('product','countcart','countorder'));
+        return view('home.details',compact('product','countcart','countorder','categories'));
     }
     
     public function view_product(){
+        $categories = Category::all();
         $product=Products::paginate(8);
         $countcart = Cart::where('user_id', auth()->id())->count();
         $countorder = OrderMaster::where('user_id', auth()->id())->count();
-        return view('home.product_page',compact('product','countcart','countorder'));
+        return view('home.product_page',compact('product','countcart','countorder','categories'));
     }
     
   

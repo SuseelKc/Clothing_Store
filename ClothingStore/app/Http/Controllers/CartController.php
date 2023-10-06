@@ -7,12 +7,13 @@ use App\Models\Products;
 use App\Models\OrderMaster;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Category;
 
 class CartController extends Controller
 {
     //
     public function addtocart(Request $request,$id){
-
+        
         $product=Products::findOrFail($id);
         $user_id = Auth::user()->id;
         
@@ -50,10 +51,11 @@ class CartController extends Controller
     }
 
     public function showCart(){
+        $categories = Category::all();
         $cart=Cart::all();
         $countcart = Cart::where('user_id', auth()->id())->count();
         $countorder = OrderMaster::where('user_id', auth()->id())->count();
-        return view('home.cart.index',compact('cart','countcart','countorder'));
+        return view('home.cart.index',compact('cart','countcart','countorder','categories'));
     }
 
     public function delete($id){

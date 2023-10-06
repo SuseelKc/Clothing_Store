@@ -42,14 +42,9 @@
                             <li class="{{ Request::is('products*') ? 'active' : '' }}" ><a style="font-size: 20px;"  href="{{route('view_product')}}">Products</a></li>
                             <li><a style="font-size: 20px;" href="#">Category</a> 
                                 <ul class="dropdown">
-                                    <li><a href="./product-details.html">Jacket</a></li>
-                                    <li><a href="./shop-cart.html">Trouser</a></li>
-                                    <li><a href="./shop-cart.html">Tentop</a></li>
-                                    <li><a href="./shop-cart.html">T-Shirt</a></li>
-                                    <li><a href="./shop-cart.html">Bags</a></li>
-                                    <li><a href="./shop-cart.html">Tops</a></li>
-                                    <li><a href="./shop-cart.html">Skirts</a></li>
-                                    <li><a href="./shop-cart.html">Hoodies</a></li>
+                                    @foreach($categories as $category)
+                                        <li><a href="">{{$category->name}}</a></li>
+                                    @endforeach
                                 </ul>
                             </li>
                             <!-- <li class="{{ Request::is('orders*') ? 'active' : '' }}"><a style="font-size: 20px;" href="{{route('orders')}}">Orders</a></li> -->
