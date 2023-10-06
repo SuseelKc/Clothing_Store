@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\Product;
 use Livewire\Component;
 use App\Models\Products;
 use Illuminate\Support\Facades\File;
+use Illuminate\Database\QueryException;
 
 class Index extends Component
 {
@@ -23,16 +24,18 @@ class Index extends Component
     }
 
     public function destroyProduct(){
+        try{
+            $product=Products::findOrFail($this->prod_id);
+            $path='uploads/products/'.$product->image;
+                if(File::exists($path)){
+                    File::delete($path);
+                }
+            $product->delete();
+            toast('Product Deleted!','info');
+        }catch (QueryException $e){
+            toast('cannot delete it is used in order!','error');
+        }
 
-        $product=Products::findOrFail($this->prod_id);
-
-
-        $path='uploads/products/'.$product->image;
-            if(File::exists($path)){
-                File::delete($path);
-            }
-        $product->delete();
-        toast('Product Deleted!','info');
         return redirect('admin/product');
         // ->with('message','Product deleted successfully!');
 

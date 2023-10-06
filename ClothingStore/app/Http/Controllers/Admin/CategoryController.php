@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\CategoryFormRequest;
+use Illuminate\Database\QueryException; 
 
 class CategoryController extends Controller
 {
@@ -90,14 +91,19 @@ class CategoryController extends Controller
 
 
     public function delete($id){
-        $category=Category::findOrFail($id);
+        try{
+            $category=Category::findOrFail($id);
 
-        $path='uploads/category/'.$category->image;
-        if(File::exists($path)){
-            File::delete($path);
+            $path='uploads/category/'.$category->image;
+            if(File::exists($path)){
+                File::delete($path);
+            }
+            $category->delete();
+            toast('Category Deleted!','info');
+        }catch(QueryException $e){
+            toast('Cannot delete the category, it is used by products.', 'error');
         }
-        $category->delete();
-        toast('Category Deleted!','info');
+        
         return redirect('admin/category');
         // ->with('message','Category Deleted sucessfully!');
     }
