@@ -32,12 +32,12 @@
     </style>
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-4">
+            <!-- <div class="col-lg-4 col-md-4">
                 <div class="section-title">
                     <h4>All products</h4>
                 </div>
-            </div>
-            <div class="col-lg-8 col-md-8">
+            </div> -->
+            <!-- <div class="col-lg-8 col-md-8">
                 <ul class="filter__controls">
                     <li class="active" data-filter="*">All</li>
                     <li data-filter=".T-Shirt">T-Shirts</li>
@@ -45,6 +45,14 @@
                     <li data-filter=".Bags">Bags</li>
                     <li data-filter=".Headbands">Headbands</li>
                     <li data-filter=".Hats">Hats</li>
+                </ul>
+            </div> -->
+            <div class="col-lg-8 col-md-8">
+                <ul class="filter__controls">
+                    <li class="active" data-filter="*">All</li>
+                    @foreach($categories as $category)
+                        <li data-filter=".{{ $category->name }}">{{ $category->name }}</li>
+                    @endforeach
                 </ul>
             </div>
         </div>
