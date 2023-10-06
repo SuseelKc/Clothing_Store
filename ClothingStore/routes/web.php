@@ -4,11 +4,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Admin\AdminOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,8 +66,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::post('/product/{id}/update',[ProductController::class,'update'])->name('product.update');
     
     // orders
-    Route::get('/order',[OrderController::class,'index'])->name('order.index');
- 
+    Route::get('/order',[AdminOrderController::class,'index'])->name('order.index');
+    Route::get('/order/{id}/view',[AdminOrderController::class,'viewProducts']);
 });
 
  // cart

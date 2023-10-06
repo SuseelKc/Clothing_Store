@@ -89,10 +89,7 @@ class OrderController extends Controller
         return view('home.vieworders', compact('orderMasters','countcart','countorder'));
     }
 
-    public function index(){
-        $orders=OrderMaster::all();
-        return view('admin.order.index',compact('orders'));
-    }
+   
     public function cancel_order($id)
     {
         $order=OrderMaster::findOrFail($id);
