@@ -40,24 +40,24 @@
             <div class="col-lg-8 col-md-8">
                 <ul class="filter__controls">
                     <li class="active" data-filter="*">All</li>
-                    <li data-filter=".women">T-Shirts</li>
-                    <li data-filter=".men">Tentop</li>
-                    <li data-filter=".kid">Bags</li>
-                    <li data-filter=".accessories">Headbands</li>
-                    <li data-filter=".cosmetic">Hats</li>
+                    <li data-filter=".T-Shirt">T-Shirts</li>
+                    <li data-filter=".Tentop">Tentop</li>
+                    <li data-filter=".Bags">Bags</li>
+                    <li data-filter=".Headbands">Headbands</li>
+                    <li data-filter=".Hats">Hats</li>
                 </ul>
             </div>
         </div>
         
         <div class="row property__gallery">
             @foreach($product as $products)   
-            <div class="col-lg-3 col-md-4 col-sm-6 mix women">
+            <div class="col-lg-3 col-md-4 col-sm-6 mix {{ $products->category->name }}">
                 <div class="product__item">
              
                     <div class="product__item__pic set-bg" data-setbg="uploads/products/{{$products->image}}">
                         <!-- <div class="label stockout">out of stock</div> -->
                         <!-- <div class="label">Sale</div> -->
-                        <div class="label new">New</div>
+                        <!-- <div class="label new">New</div> -->
                         <ul class="product__hover">
                             <li><a href="uploads/products/{{$products->image}}" class="image-popup"><span class="arrow_expand"></span></a></li>
                             
@@ -83,15 +83,11 @@
                 </div>
             </div>
             @endforeach
-
-            
-           
-           
         </div>
         <div  class="pagination" style="float: right;">
             {{$product->links()}}
         </div>
         
     </div>
-    
+
 </section>
