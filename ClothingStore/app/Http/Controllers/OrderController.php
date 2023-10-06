@@ -68,10 +68,11 @@ class OrderController extends Controller
     }
     public function ordered()
     {
+        $categories = Category::all();
         $purchase_code = session('purchase_code'); 
         $countcart = Cart::where('user_id', auth()->id())->count();
         $countorder = OrderMaster::where('user_id', auth()->id())->count();
-        return view('home.thankyou',compact('purchase_code','countcart','countorder'));
+        return view('home.thankyou',compact('purchase_code','countcart','countorder','categories'));
     }
     // public function showOrders()
     // {
