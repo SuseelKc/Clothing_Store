@@ -29,7 +29,6 @@ class HomeController extends Controller
         if ($selectedCategory === 'All') {
             $product = Products::paginate(12);
         } else {
-            $category = Category::where('slug', $selectedCategory)->firstOrFail();
             $product = Products::where('category_id', $category->id)->paginate(12);
         }
 
