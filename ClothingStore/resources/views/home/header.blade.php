@@ -43,7 +43,7 @@
                             <li><a style="font-size: 20px;" href="#">Category</a> 
                                 <ul class="dropdown">
                                     @foreach($categories as $category)
-                                    <li><a href="">{{$category->name}}</a></li>
+                                        <li><a href="">{{$category->name}}</a></li>
                                     @endforeach
                                 </ul>
                             </li>

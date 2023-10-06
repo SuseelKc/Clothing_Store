@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\Enums\PaymentType;
 use App\Enums\DeliveryStatus;
+use App\Models\Category;
 
 class OrderController extends Controller
 {
@@ -81,12 +82,13 @@ class OrderController extends Controller
     // }
     public function showOrders()
     {
+        $categories = Category::all();
         $user_id = auth()->user()->id;
         $orderMasters = OrderMaster::where('user_id', $user_id)->with('orders')->orderBy('created_at', 'desc')->get();
         $countcart = Cart::where('user_id', auth()->id())->count();
         $countorder = OrderMaster::where('user_id', auth()->id())->count();
 
-        return view('home.vieworders', compact('orderMasters','countcart','countorder'));
+        return view('home.vieworders', compact('orderMasters','countcart','countorder','categories'));
     }
 
    

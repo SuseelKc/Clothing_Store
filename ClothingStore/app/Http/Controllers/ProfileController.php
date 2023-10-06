@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Category;
 
 class ProfileController extends Controller
 {
@@ -18,12 +19,12 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-
+        $categories = Category::all();
         $countorder = OrderMaster::where('user_id', auth()->id())->count();
         $countcart = Cart::where('user_id', auth()->id())->count();
         return view('profile.edit', [
             'user' => $request->user(),
-        ],compact('countorder','countcart'));
+        ],compact('countorder','countcart','categories'));
     }
 
     /**

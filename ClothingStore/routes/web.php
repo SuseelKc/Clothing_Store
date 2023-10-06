@@ -71,17 +71,17 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
 });
 
  // cart
-Route::get('/product/{id}/cart',[CartController::class,'addtocart'])->name('addtocart')->middleware(['auth', 'verified']);
+ Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/product/{id}/cart', [CartController::class, 'addtocart'])->name('addtocart');
+    Route::get('/cart', [CartController::class, 'showCart'])->name('showCart');
+    Route::get('/cart/{id}/delete', [CartController::class, 'delete'])->name('deleteCart');
+    Route::get('/orders', [OrderController::class, 'showOrders'])->name('orders');
+    Route::get('/cash_order',[OrderController::class,'cash_order'])->name('cash_order');
+    Route::get('/ordered',[OrderController::class,'ordered'])->name('ordered');
+    Route::get('/cancelorder/{id}',[OrderController::class,'cancel_order'])->name('cancel_order');
+});
 
-Route::get('/cart',[CartController::class,'showCart'])->name('showCart')->middleware(['auth', 'verified']);
-
-Route::get('/cart/{id}/delete',[CartController::class,'delete'])->name('deleteCart')->middleware(['auth', 'verified']);
-
-Route::get('/orders',[OrderController::class,'showOrders'])->name('orders')->middleware(['auth', 'verified']);
 Route::get('/product/{id}/details',[ProductController::class,'product_details'])->name('product_details');
 Route::get('/products',[ProductController::class,'view_product'])->name('view_product');
 Route::get('/aboutus',[DashboardController::class,'aboutus'])->name('aboutus');
 
-Route::get('/cash_order',[OrderController::class,'cash_order'])->name('cash_order')->middleware(['auth', 'verified']);
-Route::get('/ordered',[OrderController::class,'ordered'])->name('ordered')->middleware(['auth', 'verified']);
-Route::get('/cancelorder/{id}',[OrderController::class,'cancel_order'])->name('cancel_order')->middleware(['auth', 'verified']);
