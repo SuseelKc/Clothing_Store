@@ -21,4 +21,16 @@ class AdminOrderController extends Controller
 
         return view('admin.order.order',compact('products'));
     }
+
+    public function orderDelivered($id){
+        $order=OrderMaster::findOrFail($id);
+        dd($order);
+
+    }
+
+    public function orderCancelled($id){
+        $order=OrderMaster::findOrFail($id);
+        dd($order);
+    }
+
 }

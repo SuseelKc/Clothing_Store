@@ -68,6 +68,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     // orders
     Route::get('/order',[AdminOrderController::class,'index'])->name('order.index');
     Route::get('/order/{id}/view',[AdminOrderController::class,'viewProducts']);
+    Route::post('/order/{id}/deliver',[AdminOrderController::class,'orderDelivered']);
+    Route::get('/order/{id}/cancel',[AdminOrderController::class,'orderCancelled']);
 });
 
  // cart

@@ -66,9 +66,22 @@
                                 <td>{{\App\Enums\DeliveryStatus::getDescription($order->delivery_status) }}</td>
                                 <td>{{\App\Enums\PaymentType::getDescription($order->payment_type)}}</td>
                                 <td>
-                                    <a href="{{url('admin/order/'.$order->id.'/view')}}" class="btn btn-primary btn-sm text-white">Details</a>
-                                    <a class="btn btn-success btn-sm text-white">Delivered</a>
-                                    <a class="btn btn-danger btn-sm text-white">Cancel Order</a>
+                                    <a href="{{url('admin/order/'.$order->id.'/view')}}" class="btn btn-primary btn-sm text-white" >Details</a>
+                                    <a 
+                                    href="{{url('admin/order/'.$order->id.'/deliver')}}" 
+                                    class="btn btn-success btn-sm text-white open-deliver-modal"
+                                    data-toggle="modal" 
+                                    data-target="#deliverModal"
+                                    data-order-id="{{$order->id}}"
+                                    >Delivered</a>
+                                    
+                                    <a 
+                                    href="{{url('admin/order/'.$order->id.'/cancel')}}"
+                                    class="btn btn-danger btn-sm text-white open-cancel-modal"
+                                    data-toggle="modal" 
+                                    data-target="#cancelModal"
+                                    data-cancel-id="{{$order->id}}"
+                                    >Cancel Order</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -96,5 +109,86 @@
 
     </div>
 </div>
+{{-- All modal --}}
+
+<!-- Delivered Modal -->
+<div class="modal fade" id="deliverModal" tabindex="-1" role="dialog" aria-labelledby="deliverModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="deliverModalLabel">Order Delivered</h1>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+            </div>
+            <form action="#" method="POST" id="deliverForm"> <!-- Give your form an ID -->
+            @csrf    
+                <div class="modal-body">
+                    <h6>Order No. <span id="orderNumber"></span> delivered?</h6>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Delivered</button>
+                </div>
+            </form>           
+        </div>
+    </div>
+</div>
+
+{{-- cancel modal --}}
+<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="cancelModalLabel">Cancel Order</h1>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+            </div>
+            <form action="#" method="GET" id="cancelForm"> <!-- Give your form an ID -->
+            @csrf    
+                <div class="modal-body">
+                    <h6> Cancel Id No. <span id="cancelNumber"></span>?</h6>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Cancel</button>
+                </div>
+            </form>           
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{{-- Delivered model js --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".open-deliver-modal").on("click", function (event) {
+            event.preventDefault();
+            var orderId = $(this).data("order-id");
+            $("#orderNumber").text(orderId); // Set order ID in the modal
+            $("#deliverForm").attr("action", "/admin/order/" + orderId + "/deliver"); // Set form action
+            $("#deliverModal").modal("show");
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $(".open-cancel-modal").on("click", function (event) {
+            event.preventDefault();
+            var orderId = $(this).data("cancel-id");
+            $("#cancelNumber").text(orderId); // Set order ID in the modal
+            $("#cancelForm").attr("action", "/admin/order/" + orderId + "/cancel"); // Set form action
+            $("#cancelModal").modal("show");
+        });
+    });
+</script>
 
 @endsection

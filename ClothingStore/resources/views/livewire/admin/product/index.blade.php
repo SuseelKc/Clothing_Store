@@ -132,7 +132,7 @@
                 <form wire:submit.prevent="destroyProduct">
 
                             <div class="modal-body">
-                            <h6>Are you Sure?</h6>
+                            <h6>Are you Sure? {{$product->id}} </h6>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

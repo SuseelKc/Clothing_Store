@@ -68,6 +68,7 @@
                         <a href="{{route('product_details',$products->id)}}" class="details-button">Details</a>
                         <!-- <div class="details-button">Details</div> -->
                     </div>
+                    
                     <div class="product__item__text">
                         <h6><a href="{{route('product_details',$products->id)}}">{{$products->name}}</a></h6>
                         <div class="rating">

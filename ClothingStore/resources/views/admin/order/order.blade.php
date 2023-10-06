@@ -35,14 +35,27 @@
         <div class="card">
             <div class="card-header">
                 <h3> Order
-                    {{-- <a 
-                    href="{{route('product.create')}}" 
-                    class="btn btn-primary btn-sm text-white float-right">Add Product</a> --}}
+                    
+                    <a 
+                    href="{{route('order.index')}}" 
+                    class="btn btn-primary btn-sm text-white float-right">Back</a>
+                 
                 </h3>
             </div>
                 <div class="card-body">
+                    <div class="row float-right">
+                        <a 
+                        {{-- href="{{route('product.create')}}"  --}}
+                        class="btn btn-success btn-sm text-white float-right">Delivered</a>
+                        &nbsp;&nbsp;&nbsp;
+                        <a 
+                        {{-- href="{{route('product.create')}}"  --}}
+                        class="btn btn-danger btn-sm text-white float-right">Delete Order</a>
+                    </div> 
+                        <br>
+                    
                 <div class="card-body table-responsive p-2">    
-
+                    
                     <table class="datatable table">
                         <thead>
                             <tr>
