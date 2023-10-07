@@ -44,12 +44,14 @@
             </div>
                 <div class="card-body">
                     <div class="row float-right">
-                        <a 
-                        {{-- href="{{route('product.create')}}"  --}}
-                        class="btn btn-success btn-sm text-white float-right">Delivered</a>
+                        
+                        <form action="{{ url('admin/order/'.$orders->id.'/deliver') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-success btn-sm text-white float-right">Delivered</button>
+                        </form>
                         &nbsp;&nbsp;&nbsp;
                         <a 
-                        {{-- href="{{route('product.create')}}"  --}}
+                        href="{{url('admin/order/'.$orders->id.'/cancel')}}"  method="get"
                         class="btn btn-danger btn-sm text-white float-right">Delete Order</a>
                     </div> 
                         <br>

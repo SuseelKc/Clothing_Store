@@ -7,6 +7,7 @@ use App\Models\OrderMaster;
 use Illuminate\Http\Request;
 use App\Enums\DeliveryStatus;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class AdminOrderController extends Controller
 {
@@ -18,9 +19,9 @@ class AdminOrderController extends Controller
     public function viewProducts($id){
        
         $products=Order::where('order_master_id',$id)->get();
-        // dd($products);
+        $orders=OrderMaster::findOrFail($id);
 
-        return view('admin.order.order',compact('products'));
+        return view('admin.order.order',compact('products','orders'));
     }
 
     public function orderDelivered($id){
@@ -30,7 +31,7 @@ class AdminOrderController extends Controller
         $order->save();
         
         toast('Order Delivered!','success');
-        return redirect('admin/order');
+        return redirect()->back();
     }
 
     public function orderCancelled($id){
@@ -41,7 +42,7 @@ class AdminOrderController extends Controller
         $order->save();
         
         toast('Order cancelled!','success');
-        return redirect('admin/order');
+        return redirect()->back();
     }
 
 }
