@@ -58,39 +58,43 @@
                     
                 <div class="card-body table-responsive p-2">    
                     
-                    <table class="datatable table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th>Rate</th>
-                                <th>Total Amount</th>
-                                
-                              
-                            </tr>   
-                        </thead>
-                        <tbody>
-                            @foreach($products as $order)
+                <table class="datatable table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Rate</th>
+                            <th>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $grandTotal = 0; // Initialize the grand total
+                        @endphp
 
-                            
+                        @foreach($products as $order)
+                            @php
+                                $totalAmount = $order->quantity * $order->rate;
+                                $grandTotal += $totalAmount; // Add the total amount to the grand total
+                            @endphp
+
                             <tr>
                                 <td>{{$order->id}}</td>
                                 <td>{{$order->product->name}}</td>
                                 <td>{{$order->quantity}}</td>
                                 <td>{{$order->rate}}</td>
-                                <td>{{$order->amount}}</td>
-                                
+                                <td>{{$totalAmount}}</td>
                             </tr>
-                            @endforeach
-                            
-                            
+                        @endforeach
 
-                        </tbody>
-                    
+                        <tr>
+                            <td colspan="4" align="right"><strong>Grand Total:</strong></td>
+                            <td>{{$grandTotal}}</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-
-                    </table>
 
                 
                 </div>

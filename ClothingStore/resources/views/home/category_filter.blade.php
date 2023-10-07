@@ -1,3 +1,4 @@
+@include('home.header')
 <section class="product spad">
     <style>
 /* CSS to hide the "Details" button by default */
@@ -26,37 +27,8 @@
     text-decoration: none;
     color: inherit;
 }
-
-
-
     </style>
     <div class="container">
-        <div class="row">
-            <!-- <div class="col-lg-4 col-md-4">
-                <div class="section-title">
-                    <h4>All products</h4>
-                </div>
-            </div> -->
-            <!-- <div class="col-lg-8 col-md-8">
-                <ul class="filter__controls">
-                    <li class="active" data-filter="*">All</li>
-                    <li data-filter=".T-Shirt">T-Shirts</li>
-                    <li data-filter=".Tentop">Tentop</li>
-                    <li data-filter=".Bags">Bags</li>
-                    <li data-filter=".Headbands">Headbands</li>
-                    <li data-filter=".Hats">Hats</li>
-                </ul>
-            </div> -->
-            <div class="col-lg-8 col-md-8">
-            <ul class="filter__controls">
-                <li class="{{ $selectedCategory === 'All' ? 'active' : '' }}" data-filter="*">All</li>
-                @foreach($categories as $category)
-                    <li class="{{ $selectedCategory === $category->name ? 'active' : '' }}" data-filter=".{{ $category->name }}">{{ $category->name }}</li>
-                @endforeach
-            </ul>
-
-            </div>
-        </div>
         
         <div class="row property__gallery">
             @foreach($product as $products)   
@@ -64,11 +36,8 @@
                 <div class="product__item">
              
                     <div class="product__item__pic set-bg" data-setbg="uploads/products/{{$products->image}}">
-                        <!-- <div class="label stockout">out of stock</div> -->
-                        <!-- <div class="label">Sale</div> -->
-                        <!-- <div class="label new">New</div> -->
                         <ul class="product__hover">
-                            <li><a href="uploads/products/{{$products->image}}" class="image-popup"><span class="arrow_expand"></span></a></li>
+                            <img src="uploads/products/{{$products->image}}" alt="{{$products->name}}">
                             
                             <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                             <li><a href="#"><span class="icon_bag_alt"></span></a></li>
@@ -101,3 +70,4 @@
     </div>
 
 </section>
+@include('home.footer')

@@ -40,13 +40,14 @@
                         <ul>
                             <li class="{{ Request::is('/') ? 'active' : '' }}"><a  style="font-size: 20px;" href="{{url('/')}}">Home</a></li>
                             <li class="{{ Request::is('products*') ? 'active' : '' }}" ><a style="font-size: 20px;"  href="{{route('view_product')}}">Products</a></li>
-                            <li><a style="font-size: 20px;" href="#">Category</a> 
+                            <li class="{{ Request::is('category_filter*') ? 'active' : '' }}" ><a style="font-size: 20px;" >Category</a> 
                                 <ul class="dropdown">
                                     @foreach($categories as $category)
-                                        <li><a href="">{{$category->name}}</a></li>
+                                        <li><a href="{{ route('category_filter', ['category' => $category->name]) }}">{{ $category->name }}</a></li>
                                     @endforeach
                                 </ul>
                             </li>
+
                             <!-- <li class="{{ Request::is('orders*') ? 'active' : '' }}"><a style="font-size: 20px;" href="{{route('orders')}}">Orders</a></li> -->
                             <li class="{{ Request::is('aboutus*') ? 'active' : '' }}"><a  style="font-size: 20px;" href="{{route('aboutus')}}">About Us</a></li>
                             
