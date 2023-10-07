@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
+@php
+    use App\Enums\DeliveryStatus;
+@endphp
 
 <div class="row">
 
@@ -66,22 +69,45 @@
                                 <td>{{\App\Enums\DeliveryStatus::getDescription($order->delivery_status) }}</td>
                                 <td>{{\App\Enums\PaymentType::getDescription($order->payment_type)}}</td>
                                 <td>
-                                    <a href="{{url('admin/order/'.$order->id.'/view')}}" class="btn btn-primary btn-sm text-white" >Details</a>
-                                    <a 
-                                    href="{{url('admin/order/'.$order->id.'/deliver')}}" 
-                                    class="btn btn-success btn-sm text-white open-deliver-modal"
-                                    data-toggle="modal" 
-                                    data-target="#deliverModal"
-                                    data-order-id="{{$order->id}}"
-                                    >Delivered</a>
                                     
-                                    <a 
-                                    href="{{url('admin/order/'.$order->id.'/cancel')}}"
-                                    class="btn btn-danger btn-sm text-white open-cancel-modal"
-                                    data-toggle="modal" 
-                                    data-target="#cancelModal"
-                                    data-cancel-id="{{$order->id}}"
-                                    >Cancel Order</a>
+                                    @if($order->delivery_status == DeliveryStatus::Delivered)
+                                         <a href="{{url('admin/order/'.$order->id.'/view')}}" class="btn btn-primary btn-sm text-white" >Details</a>
+                                         <a 
+                                        href="{{url('admin/order/'.$order->id.'/cancel')}}"
+                                        class="btn btn-danger btn-sm text-white open-cancel-modal"
+                                        data-toggle="modal" 
+                                        data-target="#cancelModal"
+                                        data-cancel-id="{{$order->id}}"
+                                        >Cancel Order</a>
+
+                                    @elseif($order->delivery_status==DeliveryStatus::Cancelled)
+                                        <a href="{{url('admin/order/'.$order->id.'/view')}}" class="btn btn-primary btn-sm text-white" >Details</a>
+                                        <a 
+                                        href="{{url('admin/order/'.$order->id.'/deliver')}}" 
+                                        class="btn btn-success btn-sm text-white open-deliver-modal"
+                                        data-toggle="modal" 
+                                        data-target="#deliverModal"
+                                        data-order-id="{{$order->id}}"
+                                        >Delivered</a>
+
+                                    @else
+                                        <a href="{{url('admin/order/'.$order->id.'/view')}}" class="btn btn-primary btn-sm text-white" >Details</a>
+                                        <a 
+                                        href="{{url('admin/order/'.$order->id.'/deliver')}}" 
+                                        class="btn btn-success btn-sm text-white open-deliver-modal"
+                                        data-toggle="modal" 
+                                        data-target="#deliverModal"
+                                        data-order-id="{{$order->id}}"
+                                        >Delivered</a>
+                                        
+                                        <a 
+                                        href="{{url('admin/order/'.$order->id.'/cancel')}}"
+                                        class="btn btn-danger btn-sm text-white open-cancel-modal"
+                                        data-toggle="modal" 
+                                        data-target="#cancelModal"
+                                        data-cancel-id="{{$order->id}}"
+                                        >Cancel Order</a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
