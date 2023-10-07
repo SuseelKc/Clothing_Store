@@ -37,7 +37,7 @@
              
                     <div class="product__item__pic set-bg" data-setbg="uploads/products/{{$products->image}}">
                         <ul class="product__hover">
-                            <li><a href="uploads/products/{{$products->image}}" class="image-popup"><span class="arrow_expand"></span></a></li>
+                            <img src="uploads/products/{{$products->image}}" alt="{{$products->name}}">
                             
                             <li><a href="#"><span class="icon_heart_alt"></span></a></li>
                             <li><a href="#"><span class="icon_bag_alt"></span></a></li>
