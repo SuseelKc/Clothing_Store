@@ -110,13 +110,45 @@ class ProductController extends Controller
         return view('home.details',compact('product','countcart','countorder','categories'));
     }
     
-    public function view_product(){
+    // public function view_product(){
+    //     $categories = Category::all();
+    //     $product=Products::paginate(8);
+    //     $countcart = Cart::where('user_id', auth()->id())->count();
+    //     $countorder = OrderMaster::where('user_id', auth()->id())->count();
+    //     return view('home.product_page',compact('product','countcart','countorder','categories'));
+    // }
+    public function view_product(Request $request)
+    {
+        // Fetch all categories
         $categories = Category::all();
-        $product=Products::paginate(8);
         $countcart = Cart::where('user_id', auth()->id())->count();
         $countorder = OrderMaster::where('user_id', auth()->id())->count();
-        return view('home.product_page',compact('product','countcart','countorder','categories'));
+        // Fetch products based on the selected category (default is "All")
+        $selectedCategory = $request->query('category', 'All');
+
+        if ($selectedCategory === 'All') {
+            $product = Products::paginate(12);
+        } else {
+            $category = Category::where('name', $selectedCategory)->firstOrFail();
+            $product = Products::where('category_id', $category->id)->paginate(12);
+        }
+
+        return view('home.product_page', compact('product', 'categories', 'selectedCategory','countcart','countorder'));
     }
-    
+    public function category_filter(Request $request)
+    {
+        // Fetch all categories
+        $categories = Category::all();
+        $countcart = Cart::where('user_id', auth()->id())->count();
+        $countorder = OrderMaster::where('user_id', auth()->id())->count();
+        // Fetch products based on the selected category (default is "All")
+        $selectedCategory = $request->query('category', 'All');
+        $category = Category::where('name', $selectedCategory)->firstOrFail();
+        $product = Products::where('category_id', $category->id)->paginate(12);
+
+        return view('home.category_filter', compact('product', 'categories', 'selectedCategory','countcart','countorder'));
+    }
+
+
   
 }
