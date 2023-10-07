@@ -44,5 +44,19 @@ class AdminOrderController extends Controller
         toast('Order cancelled!','success');
         return redirect()->back();
     }
+    public function orderdelete($id){
+        $ordermaster=OrderMaster::findOrFail($id);
+        $order=Order::where('order_master_id',$id)->get();
+
+        foreach ($order as $order) {
+            $order->delete();
+        }
+        $ordermaster->delete();
+        
+
+        toast('Order deleted!','success');
+        return redirect('admin/order');;
+
+    }
 
 }

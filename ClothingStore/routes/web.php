@@ -70,6 +70,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::get('/order/{id}/view',[AdminOrderController::class,'viewProducts']);
     Route::post('/order/{id}/deliver',[AdminOrderController::class,'orderDelivered']);
     Route::get('/order/{id}/cancel',[AdminOrderController::class,'orderCancelled']);
+    Route::get('/order/{id}/delete',[AdminOrderController::class,'orderdelete']);
 });
 
  // cart

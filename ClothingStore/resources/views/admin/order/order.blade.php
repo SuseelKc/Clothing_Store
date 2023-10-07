@@ -2,6 +2,10 @@
 
 @section('content')
 
+@php
+    use App\Enums\DeliveryStatus;
+@endphp
+
 <div class="row">
 
     <style>
@@ -43,16 +47,48 @@
                 </h3>
             </div>
                 <div class="card-body">
+                    <div class="row float-left">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div>
+                            Status: 
+                            {{\App\Enums\DeliveryStatus::getDescription($orders->delivery_status)}}
+                        </div>    
+                    </div>   
+
                     <div class="row float-right">
-                        
-                        <form action="{{ url('admin/order/'.$orders->id.'/deliver') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-success btn-sm text-white float-right">Delivered</button>
-                        </form>
-                        &nbsp;&nbsp;&nbsp;
-                        <a 
-                        href="{{url('admin/order/'.$orders->id.'/cancel')}}"  method="get"
-                        class="btn btn-danger btn-sm text-white float-right">Delete Order</a>
+                        @if($orders->delivery_status == DeliveryStatus::Delivered)
+                            <a 
+                            href="{{url('admin/order/'.$orders->id.'/cancel')}}"  method="get"
+                            class="btn btn-danger btn-sm text-white float-right">Cancel Order</a>
+                            &nbsp;&nbsp;&nbsp;
+                            <a 
+                            href="{{url('admin/order/'.$orders->id.'/delete')}}"  method="get"
+                            class="btn btn-danger btn-sm text-white float-right">Delete Order</a>
+
+                        @elseif($orders->delivery_status == DeliveryStatus::Cancelled)
+                            <form action="{{ url('admin/order/'.$orders->id.'/deliver') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-success btn-sm text-white float-right">Delivered</button>
+                            </form>
+                            &nbsp;&nbsp;&nbsp;
+                            <a 
+                            href="{{url('admin/order/'.$orders->id.'/delete')}}"  method="get"
+                            class="btn btn-danger btn-sm text-white float-right">Delete Order</a>
+
+                        @else
+                            <form action="{{ url('admin/order/'.$orders->id.'/deliver') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-success btn-sm text-white float-right">Delivered</button>
+                            </form>
+                            &nbsp;&nbsp;&nbsp;
+                            <a 
+                            href="{{url('admin/order/'.$orders->id.'/cancel')}}"  method="get"
+                            class="btn btn-danger btn-sm text-white float-right">Cancel Order</a>
+                            &nbsp;&nbsp;&nbsp;
+                            <a 
+                            href="{{url('admin/order/'.$orders->id.'/delete')}}"  method="get"
+                            class="btn btn-danger btn-sm text-white float-right">Delete Order</a>
+                        @endif
                     </div> 
                         <br>
                     

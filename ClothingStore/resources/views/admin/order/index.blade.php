@@ -79,6 +79,13 @@
                                         data-target="#cancelModal"
                                         data-cancel-id="{{$order->id}}"
                                         >Cancel Order</a>
+                                        <a 
+                                        href="{{url('admin/order/'.$order->id.'/cancel')}}"
+                                        class="btn btn-danger btn-sm text-white open-delete-modal"
+                                        data-toggle="modal" 
+                                        data-target="#deleteModal"
+                                        data-delete-id="{{$order->id}}"
+                                        >Delete Order</a>
 
                                     @elseif($order->delivery_status==DeliveryStatus::Cancelled)
                                         <a href="{{url('admin/order/'.$order->id.'/view')}}" class="btn btn-primary btn-sm text-white" >Details</a>
@@ -89,6 +96,13 @@
                                         data-target="#deliverModal"
                                         data-order-id="{{$order->id}}"
                                         >Delivered</a>
+                                        <a 
+                                        href="{{url('admin/order/'.$order->id.'/cancel')}}"
+                                        class="btn btn-danger btn-sm text-white open-delete-modal"
+                                        data-toggle="modal" 
+                                        data-target="#deleteModal"
+                                        data-delete-id="{{$order->id}}"
+                                        >Delete Order</a>
 
                                     @else
                                         <a href="{{url('admin/order/'.$order->id.'/view')}}" class="btn btn-primary btn-sm text-white" >Details</a>
@@ -99,7 +113,6 @@
                                         data-target="#deliverModal"
                                         data-order-id="{{$order->id}}"
                                         >Delivered</a>
-                                        
                                         <a 
                                         href="{{url('admin/order/'.$order->id.'/cancel')}}"
                                         class="btn btn-danger btn-sm text-white open-cancel-modal"
@@ -107,6 +120,13 @@
                                         data-target="#cancelModal"
                                         data-cancel-id="{{$order->id}}"
                                         >Cancel Order</a>
+                                        <a 
+                                        href="{{url('admin/order/'.$order->id.'/cancel')}}"
+                                        class="btn btn-danger btn-sm text-white open-delete-modal"
+                                        data-toggle="modal" 
+                                        data-target="#deleteModal"
+                                        data-delete-id="{{$order->id}}"
+                                        >Delete Order</a>
                                     @endif
                                 </td>
                             </tr>
@@ -187,6 +207,30 @@
     </div>
 </div>
 
+{{-- delete modal --}}
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="deleteModalLabel">Delete Order</h1>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+            </div>
+            <form action="#" method="GET" id="deleteForm"> <!-- Give your form an ID -->
+            @csrf    
+                <div class="modal-body">
+                    <h6> Delete Order No. <span id="deleteNumber"></span>?</h6>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+            </form>           
+        </div>
+    </div>
+</div>
 
 
 
@@ -205,6 +249,7 @@
         });
     });
 </script>
+{{-- delete script --}}
 <script>
     $(document).ready(function () {
         $(".open-cancel-modal").on("click", function (event) {
@@ -213,6 +258,18 @@
             $("#cancelNumber").text(orderId); // Set order ID in the modal
             $("#cancelForm").attr("action", "/admin/order/" + orderId + "/cancel"); // Set form action
             $("#cancelModal").modal("show");
+        });
+    });
+</script>
+{{-- delete script --}}
+<script>
+    $(document).ready(function () {
+        $(".open-delete-modal").on("click", function (event) {
+            event.preventDefault();
+            var orderId = $(this).data("delete-id");
+            $("#deleteNumber").text(orderId); // Set order ID in the modal
+            $("#deleteForm").attr("action", "/admin/order/" + orderId + "/delete"); // Set form action
+            $("#deleteModal").modal("show");
         });
     });
 </script>
