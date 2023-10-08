@@ -3,107 +3,109 @@
 @section('content')
  
 <style>
-    .box {
-        padding: 5px;
-        text-align: center;
-        cursor: pointer;
-        background-color: #f4f4f4;
-        transition: background-color 0.3s;
-        border-radius: 10px;
-        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    .box-link {
+        text-decoration: none !important; /* Remove underline from anchor links */
+        color: white; /* Inherit text color from parent */
     }
-
-    .box h2 {
-        margin: 0;
-        font-size: 28px;
-    }
-
-    .box p {
-        margin: 0;
-        font-size: 15px;
-    }
-
-    .box:hover {
-        background-color: #564949;
-    }
-
-    .box-order {
-        background-color: #3498db;
-        color: white;
-    } 
-    .box-product {
-        background-color: #9e37a2;
-        color: white;
-    } 
-
 
     .box-bg {
-        margin-bottom: 20px;
+        background-color: #fff;
+        border-radius: 10px; /* Smaller border-radius for a more square shape */
+        padding: 5px; /* Reduced padding */
+        text-align: center;
+        transition: background-color 0.3s ease-in-out;
+        width: 100%; /* Adjust the width to 100% to fill the column */
+        height: 100%; /* Adjust the height to 100% to fill the column */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        
     }
 
-    .box-icon {
+    .box-content {
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .orders-box {
+        background-color: #f0ad4e; /* Yellowish color for Orders box */
+    }
+
+    .products-box {
+        background-color: #5bc0de; /* Blueish color for Products box */
+    }
+
+    .category-box {
+        background-color: #58cc58; /* Blueish color for Products box */
+    }
+
+    .box-bg:hover {
+        background-color: #e0a7a7; /* Red color on hover */
+    }
+
+    .menu-icon {
         font-size: 36px;
         margin-bottom: 10px;
     }
- 
-    /* request */
-    .box-request{
-        background-color: #6C747C;
-        color: white;
-    }
-    .box-return{
-        background-color: #39a74d;
-        color: white;
-    }
-    .box-reject{
-        background-color: #DC3545;
-        color: white;
-    }
-    .box-approve{
-        background-color: #17A3B9;
-        color: white;
-    }
-    .box-confirm{
-        background-color: #0069D9;
-        color: white;
-    }
-    .box-cancel{
-        background-color: #c94c59;
-        color: white;
+
+    h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
     }
 
-    /* Remove box borders */
-    .box {
-        border: none;
+    p {
+        font-size: 18px;
+    }
+    .col-md-4{
+        width: 50px;
     }
 </style>
+
 <div>
     @if(session('message'))
         <h2 class="alert alert-success">{{session('message')}}</h2>    
     @endif
 </div>
-    <div class="row">
-        
-        
-        <div class="col-md-4 box-bg">
-            <a href="{{ url('admin/category') }}">
-                <div class="box box-order">
-                    <i class="fas fa-code-branch box-icon"></i>
-                    <h2>{{$order}}</h2>
+<div class="row">
+    <div class="col-md-4">
+        <a href="{{ url('admin/category') }}" class="box-link">
+            <div class="box-bg orders-box">
+                <div class="box-content">
+                    <i class="mdi mdi-shopping menu-icon"></i>
+                    <h2>{{ $order }}</h2>
                     <p>Orders</p>
                 </div>
-            </a>
-        </div>  
-        
-        <div class="col-md-4 box-bg">
-            <a href="{{ url('admin/product') }}">
-                <div class="box box-product">
-                    <i class="fas fa-code-branch box-icon"></i>
-                    <h2>{{$product}}</h2>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <a href="{{ url('admin/product') }}" class="box-link">
+            <div class="box-bg products-box">
+                <div class="box-content">
+                    <i class="mdi mdi-package-variant-closed menu-icon"></i>
+                    <h2>{{ $product }}</h2>
                     <p>Products</p>
                 </div>
-            </a>
-        </div>
+            </div>
+        </a>
     </div>
+    {{-- category --}}
+    <div class="col-md-4">
+        <a href="{{ url('admin/category') }}" class="box-link">
+            <div class="box-bg category-box">
+                <div class="box-content">
+                    <i class="mdi mdi-shopping menu-icon"></i>
+                    <h2>{{ $category }}</h2>
+                    <p>Category</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    {{--  --}}
+</div>
+
 @endsection
    

@@ -14,7 +14,8 @@ class DashboardController extends Controller
     public function index(){
         $order=OrderMaster::count();
         $product=Products::count();
-        return view('admin.dashboard',compact('order','product'));
+        $category=Category::count();
+        return view('admin.dashboard',compact('order','product','category'));
     }
     public function aboutus(){
         $categories = Category::all();
