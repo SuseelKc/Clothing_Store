@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Category;
+use App\Models\Products;
 use App\Models\OrderMaster;
 use Illuminate\Http\Request;
-use App\Models\Category;
 
 class DashboardController extends Controller
 {
     //
     public function index(){
-        return view('admin.dashboard');
+        $order=OrderMaster::count();
+        $product=Products::count();
+        return view('admin.dashboard',compact('order','product'));
     }
     public function aboutus(){
         $categories = Category::all();
