@@ -38,9 +38,6 @@
                     <div class="product__item__pic set-bg" data-setbg="uploads/products/{{$products->image}}">
                         <ul class="product__hover">
                             <img src="uploads/products/{{$products->image}}" alt="{{$products->name}}">
-                            
-                            <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                            <li><a href="#"><span class="icon_bag_alt"></span></a></li>
                         </ul>
                         <!-- Details button (hidden by default) -->
                         <a href="{{route('product_details',$products->id)}}" class="details-button">Details</a>
