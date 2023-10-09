@@ -48,13 +48,21 @@
                 </ul>
             </div> -->
             <div class="col-lg-8 col-md-8">
-            <ul class="filter__controls">
-                <li class="{{ $selectedCategory === 'All' ? 'active' : '' }}" data-filter="*">All</li>
-                @foreach($categories as $category)
-                    <li class="{{ $selectedCategory === $category->name ? 'active' : '' }}" data-filter=".{{ $category->name }}">{{ $category->name }}</li>
-                @endforeach
-            </ul>
-
+                <ul class="filter__controls">
+                    <li class="{{ $selectedCategory === 'All' ? 'active' : '' }}" data-filter="*">All</li>
+                    @foreach($categories as $category)
+                        <li class="{{ $selectedCategory === $category->name ? 'active' : '' }}" data-filter=".{{ $category->name }}">{{ $category->name }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <div class="search-bar">
+                    <form action="" method="GET">
+                        @csrf
+                        <input type="text" name="query" placeholder="Search products...">
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
             </div>
         </div>
         
