@@ -92,3 +92,6 @@ Route::get('/products',[ProductController::class,'view_product'])->name('view_pr
 Route::get('/aboutus',[DashboardController::class,'aboutus'])->name('aboutus');
 Route::get('/productsfilter',[ProductController::class,'category_filter'])->name('category_filter');
 
+Route::get('/search-products', [ProductController::class, 'search_products'])->name('search_products');
+
+

@@ -149,6 +149,22 @@ class ProductController extends Controller
         return view('home.category_filter', compact('product', 'categories', 'selectedCategory','countcart','countorder'));
     }
 
-
+    public function search_products(Request $request)
+    {
+        $categories = Category::all();
+        $countcart = Cart::where('user_id', auth()->id())->count();
+        $countorder = OrderMaster::where('user_id', auth()->id())->count();
+        
+        $query = $request->input('query');
+        $productQuery = Products::query();
+        
+        if ($query) {
+            $productQuery->where('name', 'LIKE', "%{$query}%");
+        }
+        
+        $product = $productQuery->paginate(12);
+        
+        return view('home.category_filter', compact('product', 'categories', 'query', 'countcart', 'countorder'));
+    }
   
 }

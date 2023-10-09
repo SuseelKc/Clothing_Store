@@ -29,8 +29,21 @@
 }
     </style>
     <div class="container">
-        
+        <div class="col-lg-4 col-md-4">
+            <div class="search-bar" style="text-align: right;">
+                <form action="{{ route('search_products') }}" method="GET">
+                    @csrf
+                    <div class="input-group" style="max-width: 300px; margin: 0 auto;">
+                        <input type="text" class="form-control" name="query" placeholder="Search products..." style="border-radius: 20px;">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit" style="border-radius: 20px; margin-left:12px;">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><br>
         <div class="row property__gallery">
+
             @foreach($product as $products)   
             <div class="col-lg-3 col-md-4 col-sm-6 mix {{ $products->category->name }}">
                 <div class="product__item">
