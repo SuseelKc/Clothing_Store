@@ -33,13 +33,27 @@ class OrderController extends Controller
         $order_master->save();
         //for order data
         $data = Cart::where('user_id','=',$user_id)->get();
+
         foreach($data as $data)
         {
+                        
             $order = new Order;
             $order->user_id = $data->user_id;
             $order->product_id = $data->product_id;
+            
             $order->order_master_id = $order_master->id;
+
+            $product=Products::findOrfail($data->product_id);
+            // dd($product);
+            if(($product->quantity)<=($data->quantity)){
+                toast('Out Of stock Ordered!','danger');
+                return redirect()->back();
+            }
+            $product->quantity=($product->quantity)-($data->quantity);
+            $product->update();
+
             $order->quantity = $data->quantity;
+           
             $order->rate = $data->rate;
             $order->amount = $data->price;
             $order->save();
@@ -68,19 +82,14 @@ class OrderController extends Controller
     }
     public function ordered()
     {
+        // dd("here");
         $categories = Category::all();
         $purchase_code = session('purchase_code'); 
         $countcart = Cart::where('user_id', auth()->id())->count();
         $countorder = OrderMaster::where('user_id', auth()->id())->count();
         return view('home.thankyou',compact('purchase_code','countcart','countorder','categories'));
     }
-    // public function showOrders()
-    // {
-    //     $user_id = auth()->user()->id;
-    //     $order = OrderMaster::where('user_id', $user_id)->get();
-
-    //     return view('home.vieworders', compact('order'));
-    // }
+ 
     public function showOrders()
     {
         $categories = Category::all();
@@ -94,10 +103,25 @@ class OrderController extends Controller
 
    
     public function cancel_order($id)
-    {
-        $order=OrderMaster::findOrFail($id);
-        $order->delivery_status = DeliveryStatus::Cancelled;
-        $order->save();
+    { 
+       
+        $Order=OrderMaster::findOrFail($id);
+       
+        $orderID=Order::where('order_master_id',$id)->get()->toArray();
+       
+       
+        foreach ($orderID as $orderID){
+            $userId=Auth::user()->id;
+            $prodID=Order::where('id','=',$orderID)->value('product_id');
+            $product=Products::findOrFail($prodID);
+            $addQty=$orderID['quantity'];
+            $productqty=$product->quantity;
+            $product->quantity= $addQty+ $productqty;
+            $product->update();
+        }
+
+        $Order->delivery_status = DeliveryStatus::Cancelled;
+        $Order->update();
         return redirect()->back();
     }
 

@@ -109,14 +109,7 @@ class ProductController extends Controller
         $countorder = OrderMaster::where('user_id', auth()->id())->count();
         return view('home.details',compact('product','countcart','countorder','categories'));
     }
-    
-    // public function view_product(){
-    //     $categories = Category::all();
-    //     $product=Products::paginate(8);
-    //     $countcart = Cart::where('user_id', auth()->id())->count();
-    //     $countorder = OrderMaster::where('user_id', auth()->id())->count();
-    //     return view('home.product_page',compact('product','countcart','countorder','categories'));
-    // }
+
     public function view_product(Request $request)
     {
         // Fetch all categories
