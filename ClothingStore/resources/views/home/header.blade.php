@@ -15,14 +15,14 @@
     rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="home/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="home/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="home/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/style.css" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/bootstrap.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/font-awesome.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/elegant-icons.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/jquery-ui.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/magnific-popup.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/owl.carousel.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/slicknav.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/style.css')}}" type="text/css">
 </head>
 
 <body>

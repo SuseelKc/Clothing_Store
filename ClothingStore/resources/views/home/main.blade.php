@@ -15,14 +15,14 @@
     rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="home/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="home/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="home/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="home/css/style.css" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/bootstrap.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/font-awesome.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/elegant-icons.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/jquery-ui.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/magnific-popup.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/owl.carousel.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/slicknav.min.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('home/css/style.css')}}" type="text/css">
 </head>
 
 <body>
@@ -95,16 +95,16 @@
 </div>
 <!-- Search End -->
 <!-- Js Plugins -->
-<script src="home/js/jquery-3.3.1.min.js"></script>
-<script src="home/js/bootstrap.min.js"></script>
-<script src="home/js/jquery.magnific-popup.min.js"></script>
-<script src="home/js/jquery-ui.min.js"></script>
-<script src="home/js/mixitup.min.js"></script>
-<script src="home/js/jquery.countdown.min.js"></script>
-<script src="home/js/jquery.slicknav.js"></script>
-<script src="home/js/owl.carousel.min.js"></script>
-<script src="home/js/jquery.nicescroll.min.js"></script>
-<script src="home/js/main.js"></script>
+<script src="{{asset('home/js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{asset('home/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('home/js/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{asset('home/js/jquery-ui.min.js')}}"></script>
+<script src="{{asset('home/js/mixitup.min.js')}}"></script>
+<script src="{{asset('home/js/jquery.countdown.min.js')}}"></script>
+<script src="{{asset('home/js/jquery.slicknav.js')}}"></script>
+<script src="{{asset('home/js/owl.carousel.min.js')}}"></script>
+<script src="{{asset('home/js/jquery.nicescroll.min.js')}}"></script>
+<script src="{{asset('home/js/main.js')}}"></script>
 
 </body>
 
