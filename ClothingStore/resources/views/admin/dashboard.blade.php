@@ -70,7 +70,7 @@
 </div>
 <div class="row">
     <div class="col-md-4">
-        <a href="{{ url('admin/category') }}" class="box-link">
+        <a href="{{ url('admin/order') }}" class="box-link">
             <div class="box-bg orders-box">
                 <div class="box-content">
                     <i class="mdi mdi-shopping menu-icon"></i>
