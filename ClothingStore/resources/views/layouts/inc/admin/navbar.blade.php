@@ -126,9 +126,9 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                 
-                <a class="dropdown-item">
-                  <i class="mdi mdi-settings text-primary"></i>
-                  Settings
+                <a class="dropdown-item" href="{{ url('/') }}">
+                  <i class="mdi mdi-store text-primary"></i>
+                  Store Page
                 </a>
 
                 <a class="dropdown-item" href="{{ route('logout') }}"
