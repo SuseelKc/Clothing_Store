@@ -97,7 +97,7 @@
         <a href="{{ url('admin/category') }}" class="box-link">
             <div class="box-bg category-box">
                 <div class="box-content">
-                    <i class="mdi mdi-shopping menu-icon"></i>
+                    <i class="mdi mdi-view-list menu-icon"></i>
                     <h2>{{ $category }}</h2>
                     <p>Category</p>
                 </div>
