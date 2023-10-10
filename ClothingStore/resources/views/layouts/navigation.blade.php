@@ -33,7 +33,15 @@
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
+                            
                         </form>
+
+                        @if(Auth::user()->usertype=='1')
+                        <x-dropdown-link :href="url('admin/dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-dropdown-link>
+                        @endif
+
                     </x-slot>
                 </x-dropdown>
             </div>
