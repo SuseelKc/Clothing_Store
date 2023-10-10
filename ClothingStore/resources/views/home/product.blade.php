@@ -55,16 +55,20 @@
                     @endforeach
                 </ul>
             </div>
-            <div class="col-lg-4 col-md-4">
-                <div class="search-bar">
-                    <form action="" method="GET">
-                        @csrf
-                        <input type="text" name="query" placeholder="Search products...">
-                        <button type="submit">Search</button>
-                    </form>
-                </div>
-            </div>
         </div>
+        <div class="col-lg-4 col-md-4">
+            <div class="search-bar" style="text-align: right;">
+                <form action="{{ route('search_products') }}" method="GET">
+                    @csrf
+                    <div class="input-group" style="max-width: 300px; margin: 0 auto;">
+                        <input type="text" class="form-control" name="query" placeholder="Search products..." style="border-radius: 20px;">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit" style="border-radius: 20px; margin-left:12px;">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><br>
         
         <div class="row property__gallery">
             @foreach($product as $products)   

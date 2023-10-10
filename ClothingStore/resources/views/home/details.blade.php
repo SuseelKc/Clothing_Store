@@ -163,6 +163,12 @@
                                 <div class="product-quantity">
                                     Available Quantity: {{$product->quantity}}
                                 </div>
+                                @if(session()->has('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
+
                             
                                 &nbsp;
                                     <div class="row">
