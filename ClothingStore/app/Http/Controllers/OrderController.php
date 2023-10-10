@@ -45,7 +45,7 @@ class OrderController extends Controller
 
             $product=Products::findOrfail($data->product_id);
             // dd($product);
-            if(($product->quantity)<=($data->quantity)){
+            if(($product->quantity)<=($data->quantity)||($product->quantity)<=0){
                 toast('Out Of stock Ordered!','danger');
                 return redirect()->back();
             }
