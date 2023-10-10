@@ -27,9 +27,26 @@
     color: inherit;
 }
 
-
+ /* Default button styles */
+.btn-primary {
+            background-color: transparent;
+            border: 2px solid #007bff; /* Blue border color */
+            color: #000; /* Black text color */
+            border-radius: 20px;
+            margin-left: 12px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+    
+/* Button styles on hover */
+.btn-primary:hover {
+    background-color: #007bff; /* Blue background color */
+    color: #fff; /* White text color */
+}
 
     </style>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
+
     <div class="container">
         <div class="row">
             <!-- <div class="col-lg-4 col-md-4">
@@ -62,8 +79,11 @@
                     @csrf
                     <div class="input-group" style="max-width: 300px; margin: 0 auto;">
                         <input type="text" class="form-control" name="query" placeholder="Search products..." style="border-radius: 20px;">
+                       
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit" style="border-radius: 20px; margin-left:12px;">Search</button>
+                            <button class="btn btn-primary" type="submit" style="border-radius: 20px; margin-left:12px;">
+                                <i class="mdi mdi-magnify menu-icon"></i>
+                            </button>
                         </div>
                     </div>
                 </form>
