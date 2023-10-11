@@ -83,6 +83,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::get('/cart/{id}/delete', [CartController::class, 'delete'])->name('deleteCart');
     Route::get('/orders', [OrderController::class, 'showOrders'])->name('orders');
     Route::get('/cash_order',[OrderController::class,'cash_order'])->name('cash_order');
+
+    Route::get('/getaddress',[OrderController::class,'address'])->name('address');
+    Route::post('/store-address', [OrderController::class, 'storeaddress'])->name('store_address');
+
     Route::get('/ordered',[OrderController::class,'ordered'])->name('ordered');
     Route::get('/cancelorder/{id}',[OrderController::class,'cancel_order'])->name('cancel_order');
 });

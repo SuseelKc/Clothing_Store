@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Products;
 use App\Models\Order;
+use App\Models\Address;
 use App\Models\OrderMaster;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -17,11 +18,11 @@ class OrderController extends Controller
 {
     public function cash_order(Request $request)
     {
-        
         $user_id = Auth::user()->id;
         //order_master
         $order_master = new OrderMaster;
-        $order_master->user_id = $user_id;
+        $user = Auth::user();
+        $order_master->user_id = $user->id;
         //for purchase code
         $order_master->purchasecode = $this->PurchaseCode(); 
         // storing purchase code in a variable to show in welcome blade
@@ -29,7 +30,10 @@ class OrderController extends Controller
         session(['purchase_code' => $purchase_code]);
 
         $order_master->payment_type = PaymentType::CashOnDelivery;
-        $order_master->totalamount = $request->input('totalAmount');
+        // $order_master->totalamount = $request->input('totalAmount');
+        $totalAmount = $user->cart->sum('price');
+    
+        $order_master->totalamount = $totalAmount;
         $order_master->save();
         //for order data
         $data = Cart::where('user_id','=',$user_id)->get();
@@ -124,5 +128,42 @@ class OrderController extends Controller
         $Order->update();
         return redirect()->back();
     }
+    public function address()
+    {
+        $cart = Cart::where('user_id', auth()->id())->get();
+        $totalAmount = $cart->sum('price'); 
+        $categories = Category::all();
+        $countcart = Cart::where('user_id', auth()->id())->count();
+        $countorder = OrderMaster::where('user_id', auth()->id())->count();
+        return view('home.cart.address',compact('countcart','countorder','categories','totalAmount','cart'));
+    }
+    public function storeaddress(Request $request)
+    {
+        // Validate the incoming request data
+        $request->validate([
+            'street' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'contact_name' => 'required',
+            'contact_number' => 'required',
+            'address_name' => 'required',
+        ]);
 
+        // Create a new Address record
+        Address::create([
+            'user_id' => auth()->id(), // Assuming you're using user authentication
+            'street' => $request->input('street'),
+            'state' => $request->input('state'),
+            'city' => $request->input('city'),
+            'country' => $request->input('country'),
+            'contact_name' => $request->input('contact_name'),
+            'contact_no' => $request->input('contact_number'),
+            'address_name' => $request->input('address_name'),
+            'type' => $request->input('payment_type'),
+        ]);
+
+        // Redirect back to the address form or any other page
+        return redirect()->route('cash_order');
+    }
 }
