@@ -28,6 +28,12 @@ class ProductController extends Controller
 
         $validatedData=$request->validated();
 
+        $name=$validatedData['name'];
+        $existingName=Products::where('name',$name)->first();
+        if($existingName){
+            toast('Product exists!','error');  
+            return redirect('admin/product/create');
+        }
 
         $product= new Products;
         $product->name=$validatedData['name'];
@@ -72,6 +78,15 @@ class ProductController extends Controller
         $validatedData= $request->validated();
 
         $product = Products::findOrFail($id);
+
+        // 
+        if(($product->name !== $validatedData['name']) && Products::where('name', $validatedData['name'])->exists()){
+            toast('Product exists!','error');  
+            return back();
+        }
+        // 
+
+
         $product->name=$validatedData['name'];
         $product->quantity=$validatedData['quantity'];
         $product->price=$validatedData['price'];
