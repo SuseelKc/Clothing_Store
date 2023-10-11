@@ -25,6 +25,12 @@ class CategoryController extends Controller
 
         $validatedData=$request->validated();
 
+        if(Category::where('name',$validatedData['name'])->exists()){
+            toast('Category exists!','error');  
+            return back();
+
+        }
+
         $category = new Category;
         $category->name=$validatedData['name'];
         $category->slug=$validatedData['slug'];
@@ -53,6 +59,14 @@ class CategoryController extends Controller
         $validatedData=$request->validated();
 
         $category= Category::findOrFail($id);
+
+        
+        if($category->name !== $validatedData['name'] &&Category::where('name',$validatedData['name'])->exists()){
+            toast('Category exists!','error');  
+            return back();
+
+        }
+
         $category->name=$validatedData['name'];
         $category->slug=$validatedData['slug'];
         $category->description=$validatedData['description'];
