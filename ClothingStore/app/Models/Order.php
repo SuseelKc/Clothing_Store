@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Address;
 use App\Models\Products;
 use App\Models\OrderMaster;
 use Illuminate\Database\Eloquent\Model;
@@ -33,5 +34,6 @@ class Order extends Model
     {
         return $this->belongsTo(OrderMaster::class);
     }
+
     
 }

@@ -18,6 +18,7 @@ class OrderController extends Controller
 {
     public function cash_order(Request $request)
     {
+        dd("here");
         $user_id = Auth::user()->id;
         //order_master
         $order_master = new OrderMaster;
@@ -86,7 +87,7 @@ class OrderController extends Controller
     }
     public function ordered()
     {
-        // dd("here");
+        dd("here");
         $categories = Category::all();
         $purchase_code = session('purchase_code'); 
         $countcart = Cart::where('user_id', auth()->id())->count();
@@ -130,6 +131,7 @@ class OrderController extends Controller
     }
     public function address()
     {
+        // dd("Her");
         $cart = Cart::where('user_id', auth()->id())->get();
         $totalAmount = $cart->sum('price'); 
         $categories = Category::all();
@@ -137,6 +139,7 @@ class OrderController extends Controller
         $countorder = OrderMaster::where('user_id', auth()->id())->count();
         return view('home.cart.address',compact('countcart','countorder','categories','totalAmount','cart'));
     }
+    
     public function storeaddress(Request $request)
     {
         // Validate the incoming request data
