@@ -53,10 +53,15 @@ class AdminOrderController extends Controller
     public function orderdelete($id){
         $ordermaster=OrderMaster::findOrFail($id);
         $order=Order::where('order_master_id',$id)->get();
+       
 
         foreach ($order as $order) {
             $order->delete();
         }
+       
+        $address=Address::where('order_master_id',$ordermaster->id)->first();
+        // dd($address);
+        $address->delete();
         $ordermaster->delete();
         
 
