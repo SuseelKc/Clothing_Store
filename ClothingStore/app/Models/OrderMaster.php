@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Address;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class OrderMaster extends Model
 {
@@ -24,5 +25,9 @@ class OrderMaster extends Model
     public function order()
     {
         return $this->belongsTo(Order::class);
+    }
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
     }
 }

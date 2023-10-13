@@ -70,7 +70,7 @@
                                 <td>{{$order->totalamount}}</td>
                                 <td>{{\App\Enums\DeliveryStatus::getDescription($order->delivery_status) }}</td>
                                 <td>{{\App\Enums\PaymentType::getDescription($order->payment_type)}}</td>
-                                {{-- <td>{{$address->state}}</td> --}}
+                                {{-- <td>{{$order->address->state}}</td> --}}
                                 {{-- <td></td> --}}
                                 <td>
                                     

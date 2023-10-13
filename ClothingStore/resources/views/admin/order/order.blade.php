@@ -54,6 +54,36 @@
                             {{\App\Enums\DeliveryStatus::getDescription($orders->delivery_status)}}
                         </div>    
                     </div>   
+                    <br>   <br>
+                    <div class="row ">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div>
+                            Delivery Address: 
+                            {{$address->city}},{{$address->state}},{{$address->country}}
+                        </div>    
+                    </div> 
+                    <br>
+                    @if($address->contact_name)
+                    <div class="row ">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div>
+                            Contact Name.: 
+                            {{$address->contact_name}}
+                        </div>    
+                    </div> 
+                    @else
+                    @endif
+                    <br>
+                    @if($address->contact_no)
+                        <div class="row ">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div>
+                                Contact No.: 
+                                {{$address->contact_no}}
+                            </div>    
+                        </div> 
+                    @else
+                    @endif
 
                     <div class="row float-right">
                         @if($orders->delivery_status == DeliveryStatus::Delivered)

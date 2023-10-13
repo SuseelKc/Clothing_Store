@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Order;
+use App\Models\Address;
 use App\Models\OrderMaster;
 use Illuminate\Http\Request;
 use App\Enums\DeliveryStatus;
@@ -13,7 +14,9 @@ class AdminOrderController extends Controller
 {
     public function index(){
         $orders=OrderMaster::orderBy('created_at', 'desc')->get();
-        
+        // $order=$orders->id;
+       
+        // $address=  Address::which()    
         return view('admin.order.index',compact('orders'));
     }
 
@@ -21,8 +24,10 @@ class AdminOrderController extends Controller
        
         $products=Order::where('order_master_id',$id)->get();
         $orders=OrderMaster::findOrFail($id);
-
-        return view('admin.order.order',compact('products','orders'));
+       
+        $address=Address::where('order_master_id','=',$orders->id)->first();
+        // dd($address->id);
+        return view('admin.order.order',compact('products','orders','address'));
     }
 
     public function orderDelivered($id){
