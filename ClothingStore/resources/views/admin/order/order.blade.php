@@ -59,7 +59,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <div>
                             Delivery Address: 
-                            {{$address->city}},{{$address->state}},{{$address->country}}
+                            {{$address->street}},{{$address->city}},{{$address->state}},{{$address->country}}
                         </div>    
                     </div> 
                     <br>
@@ -84,6 +84,19 @@
                         </div> 
                     @else
                     @endif
+                    <br>
+                   
+                        <div class="row ">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <div>
+                               Delivery Type: 
+                                @if($address->type ==1)
+                                 Cash on delivery
+                                @else
+                                @endif
+                            </div>    
+                        </div> 
+                    
 
                     <div class="row float-right">
                         @if($orders->delivery_status == DeliveryStatus::Delivered)

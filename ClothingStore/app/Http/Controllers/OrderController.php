@@ -229,7 +229,7 @@ class OrderController extends Controller
         $address->contact_name=$request->input('contact_name');
         $address->contact_no=$request->input('contact_no');
         $address->address_name=$request->input('address_name');
-        $address->type=$request->input('type');
+        $address->type=$request->input('payment_type');
         $address->order_master_id=$order_master->id;
         // $address->order_id=$order->id;
         $address->save();
