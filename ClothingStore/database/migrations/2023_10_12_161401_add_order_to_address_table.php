@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('address', function (Blueprint $table) {
-            //
-            $table->foreignId('order_id')->constrained('order', 'id')->nullable();
-            $table->foreignId('order_master_id')->constrained('order_master', 'id')->nullable();
+            $table->foreignId('order_id')->nullable()->constrained('order', 'id');
+            $table->foreignId('order_master_id')->nullable()->constrained('order_master', 'id');
         });
     }
 

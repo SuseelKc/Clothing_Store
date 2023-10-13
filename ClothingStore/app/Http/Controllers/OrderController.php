@@ -18,7 +18,7 @@ class OrderController extends Controller
 {
     public function cash_order(Request $request)
     {
-        dd("here");
+        
         $user_id = Auth::user()->id;
         //order_master
         $order_master = new OrderMaster;
@@ -87,7 +87,6 @@ class OrderController extends Controller
     }
     public function ordered()
     {
-        dd("here");
         $categories = Category::all();
         $purchase_code = session('purchase_code'); 
         $countcart = Cart::where('user_id', auth()->id())->count();
@@ -131,7 +130,6 @@ class OrderController extends Controller
     }
     public function address()
     {
-        // dd("Her");
         $cart = Cart::where('user_id', auth()->id())->get();
         $totalAmount = $cart->sum('price'); 
         $categories = Category::all();
@@ -142,6 +140,60 @@ class OrderController extends Controller
     
     public function storeaddress(Request $request)
     {
+
+        // ordered
+        $user_id = Auth::user()->id;
+        //order_master
+        $order_master = new OrderMaster;
+        $user = Auth::user();
+        $order_master->user_id = $user->id;
+        //for purchase code
+        $order_master->purchasecode = $this->PurchaseCode(); 
+        // storing purchase code in a variable to show in welcome blade
+        $purchase_code = $this->PurchaseCode(); 
+        session(['purchase_code' => $purchase_code]);
+
+        $order_master->payment_type = PaymentType::CashOnDelivery;
+        // $order_master->totalamount = $request->input('totalAmount');
+        $totalAmount = $user->cart->sum('price');
+    
+        $order_master->totalamount = $totalAmount;
+        $order_master->save();
+        //for order data
+        $data = Cart::where('user_id','=',$user_id)->get();
+
+        foreach($data as $data)
+        {
+                        
+            $order = new Order;
+            $order->user_id = $data->user_id;
+            $order->product_id = $data->product_id;
+            
+            $order->order_master_id = $order_master->id;
+
+            $product=Products::findOrfail($data->product_id);
+            // dd($product);
+            if(($product->quantity)<=($data->quantity)||($product->quantity)<=0){
+                toast('Out Of stock Ordered!','danger');
+                return redirect()->back();
+            }
+            $product->quantity=($product->quantity)-($data->quantity);
+            $product->update();
+
+            $order->quantity = $data->quantity;
+           
+            $order->rate = $data->rate;
+            $order->amount = $data->price;
+            $order->save();
+
+            //for deleting same data in cart
+            $cart_id = $data->id;
+            $cart = Cart::find($cart_id);
+            $cart->delete();
+        }
+
+        //    
+
         // Validate the incoming request data
         $request->validate([
             'street' => 'required',
@@ -154,19 +206,36 @@ class OrderController extends Controller
         ]);
 
         // Create a new Address record
-        Address::create([
-            'user_id' => auth()->id(), // Assuming you're using user authentication
-            'street' => $request->input('street'),
-            'state' => $request->input('state'),
-            'city' => $request->input('city'),
-            'country' => $request->input('country'),
-            'contact_name' => $request->input('contact_name'),
-            'contact_no' => $request->input('contact_number'),
-            'address_name' => $request->input('address_name'),
-            'type' => $request->input('payment_type'),
-        ]);
+    //    $address= Address::create([
+    //         'user_id' => auth()->id(), // Assuming you're using user authentication
+    //         'street' => $request->input('street'),
+    //         'state' => $request->input('state'),
+    //         'city' => $request->input('city'),
+    //         'country' => $request->input('country'),
+    //         'contact_name' => $request->input('contact_name'),
+    //         'contact_no' => $request->input('contact_number'),
+    //         'address_name' => $request->input('address_name'),
+    //         'type' => $request->input('payment_type'),
+    //     ]);
+        
+        $address = new Address;
+        $user_id = Auth::user()->id;
+        $address->user_id=$user_id;
+        $address->street=$request->input('street');
+        // dd($address->street);
+        $address->state=$request->input('state');
+        $address->city=$request->input('city');
+        $address->country=$request->input('country');
+        $address->contact_name=$request->input('contact_name');
+        $address->contact_no=$request->input('contact_no');
+        $address->address_name=$request->input('address_name');
+        $address->type=$request->input('type');
+        $address->order_master_id=$order_master->id;
+        // $address->order_id=$order->id;
+        $address->save();
 
+        return Redirect::route('ordered');
         // Redirect back to the address form or any other page
-        return redirect()->route('cash_order');
+        // return redirect()->route('cash_order');
     }
 }

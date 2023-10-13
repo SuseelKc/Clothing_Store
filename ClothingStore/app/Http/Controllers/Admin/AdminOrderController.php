@@ -13,6 +13,7 @@ class AdminOrderController extends Controller
 {
     public function index(){
         $orders=OrderMaster::orderBy('created_at', 'desc')->get();
+        
         return view('admin.order.index',compact('orders'));
     }
 
