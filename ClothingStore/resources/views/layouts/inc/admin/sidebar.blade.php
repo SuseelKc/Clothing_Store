@@ -43,21 +43,13 @@
           <span class="menu-title">Orders</span>
         </a>
       </li>
-      
-      {{-- <li class="nav-item">
-        <a class="nav-link" data-toggle="collapse" href="#product" aria-expanded="false" aria-controls="auth">
-          <i class="mdi mdi-chart-pie menu-icon"></i>
-          <span class="menu-title">Products</span>
-          <i class="menu-arrow"></i>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{url('admin/userview')}}">
+          <i class="mdi mdi-account-multiple menu-icon"></i>
+          <span class="menu-title">Users</span>
         </a>
-        <div class="collapse" id="product">
-          <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{route('product')}}"> View Product </a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{route('product.create')}}"> Add Product </a></li>
-         
-          </ul>
-        </div>
-      </li> --}}
-     
+      </li>
+   
     </ul>
   </nav>

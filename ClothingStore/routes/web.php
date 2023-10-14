@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdminOrderController;
@@ -74,6 +75,9 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::post('/order/{id}/deliver',[AdminOrderController::class,'orderDelivered']);
     Route::get('/order/{id}/cancel',[AdminOrderController::class,'orderCancelled']);
     Route::get('/order/{id}/delete',[AdminOrderController::class,'orderdelete']);
+
+    //users
+    Route::get('/userview',[UserController::class,'index']);
 });
 
  // cart
