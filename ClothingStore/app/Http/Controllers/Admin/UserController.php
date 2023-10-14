@@ -13,4 +13,11 @@ class UserController extends Controller
         $user=User::all();
         return view('admin.user.index',compact('user'));
     }
+
+    public function edit($id){
+        
+        $user=User::findOrFail($id);
+        // dd($user);
+        return view('admin.user.edit',compact('user'));
+    }
 }

@@ -70,7 +70,9 @@
                                 <td>Customer</td>
                                 @endif
                                 <td>
-                                    <a href="" class="btn btn-success btn-sm text-white">Edit</a>
+                                    <a
+                                    href="{{url('admin/user/'.$user->id.'/edit')}}" 
+                                    class="btn btn-success btn-sm text-white">Edit</a>
                                     &nbsp;
                                         <a 
                                         href="" 
