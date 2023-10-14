@@ -5,8 +5,8 @@
     <div class="row">
         <div class="col-md-12 ">
             <div class="card-header">
-                <h4> Edit Product / {{$user->name}}
-                    <a href="{{route('product')}}" class="btn btn-primary btn-sm float-right">Back</a>
+                <h4> Edit User / {{$user->name}}
+                    <a href="{{url('/admin/userview')}}" class="btn btn-primary btn-sm float-right">Back</a>
 
                 </h4>
             </div>
@@ -20,7 +20,7 @@
             </style>
             <div class="card-body">
                 <form 
-                {{-- action="{{url('admin/product/'.$product->id.'/update')}}"  --}}
+                action="{{url('admin/user/'.$user->id.'/update')}}" 
                      method="POST" enctype="multipart/form-data"> 
                     @csrf
                    <div class="row">
@@ -53,10 +53,10 @@
                         </div>
 
                         <div class="col-md mb-3">
-                            <label>Address
+                            <label>Contact No.
                             </label>
-                            <input type="number" name="address" class="form-control" value="{{$user->contact}}"/>
-                            @error('address') 
+                            <input type="number" name="contact" class="form-control" value="{{$user->contact}}"/>
+                            @error('contact') 
                             <small class="text-danger">{{$message}}</small>
                             @enderror
                         </div>

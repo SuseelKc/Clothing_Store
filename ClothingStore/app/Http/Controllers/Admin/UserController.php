@@ -17,7 +17,21 @@ class UserController extends Controller
     public function edit($id){
         
         $user=User::findOrFail($id);
-        // dd($user);
+     
         return view('admin.user.edit',compact('user'));
     }
+
+    public function update(Request $request,$id){
+
+        $user=User::findOrFail($id);
+        $user->name=$request->input('name');
+        $user->email=$request->input('email');
+        $user->address=$request->input('address');
+        $user->contact=$request->input('contact');
+        $user->save();
+        toast('User Updated!','success');  
+        return redirect('/admin/userview');
+
+    }
+    
 }

@@ -79,6 +79,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     //users
     Route::get('/userview',[UserController::class,'index']);
     Route::get('/user/{id}/edit',[UserController::class,'edit']);
+    Route::post('/user/{id}/update',[UserController::class,'update']);
 });
 
  // cart
