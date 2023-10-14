@@ -120,9 +120,11 @@ class ProductController extends Controller
     public function product_details($id){
         $categories = Category::all();
         $product = Products::find($id);
+        $relatedProducts = Products::where('category_id', $product->category_id)->where('id', '!=', $id)->take(4)->get();
+
         $countcart = Cart::where('user_id', auth()->id())->count();
         $countorder = OrderMaster::where('user_id', auth()->id())->count();
-        return view('home.details',compact('product','countcart','countorder','categories'));
+        return view('home.details',compact('product','countcart','countorder','categories','relatedProducts'));
     }
 
     public function view_product(Request $request)

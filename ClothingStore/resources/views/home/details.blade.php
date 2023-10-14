@@ -80,6 +80,44 @@
         .add-to-cart-btn {
             margin-top: 20px;
         }
+        .product {
+    position: relative;
+}
+
+.product-hover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.product-image:hover .product-hover {
+    display: block;
+}
+
+.details-button {
+    background: #ff5722;
+    color: #fff;
+    padding: 5px 10px;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    
+}
+.similar-products-heading {
+    font-size: 28px; /* Adjust the font size as needed */
+    color: #333; /* Change the color to your preference */
+    text-align: center; /* Center the text */
+    margin-top: 20px; /* Add some top margin for spacing */
+    font-weight: bold; /* Make the text bold if desired */
+}
+
+
 
     </style>
 </head>
@@ -97,95 +135,130 @@
     <div class="hero_area">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-md-4 col-lg-4 mx-auto">
+                <div class="col-md-6">
+                    <div class="product-image">
+                        {{-- Product Image --}}
+                        <img src="/uploads/products/{{$product->image}}" alt="Product Image">
+                    </div>
+                </div>
+                <div class="col-md-6">
                     <div class="product-details">
                         <form 
                             action="{{url('product/'.$product->id.'/cart')}}"
-                             method="get" enctype="multipart/form-data">
+                            method="get" enctype="multipart/form-data">
                             @csrf
-
-                            {{-- user --}}
+                            {{-- User --}}
                             @auth
-                            <input name="user_id" value="{{auth()->user()->id}}" style="display: none;"/>
+                            <input name="user_id" value="{{auth()->user()->id}}" style="display: none;">
                             @endauth
-                               {{--  Image--}}
-                                <div class="product-image">
-                                    {{--  --}}
-                                    <input type="file" name="image" class="form-control" value="{{$product->image}}"  style="display: none;"/>
-                                    {{--  --}}
-                                    <img src="/uploads/products/{{$product->image}}" alt="Product Image">
-                                </div>
 
-                                {{-- product title --}}
-                                <div class="product-title">
-                                    <input type="text" name="name" class="form-control" value="{{$product->name}}" style="display: none;"/>
-                                    {{$product->name}}
-                                </div>
+                            {{-- Product title --}}
+                            <div class="product-title">
+                                <input type="text" name="name" class="form-control" value="{{$product->name}}" style="display: none;">
+                                {{$product->name}}
+                            </div>
 
-                                {{-- product id --}}
-                                <div class="product_id">
-                                    <input type="number" name="product_id" value="{{$product->id}}" style="display: none;" />
-                                </div>
-                                {{--  --}}
+                            {{-- Product ID --}}
+                            <div class="product_id">
+                                <input type="number" name="product_id" value="{{$product->id}}" style="display: none;">
+                            </div>
 
-                                {{--  --}}
-                                <div class="product-price">
-                                    @if($product->discounted_price != null)
-                                    {{--  --}}
-                                    <input type="number" name="price" class="form-control" value="{{$product->discounted_price}}" style="display: none;"/>
-                                    {{--  --}}
-                                    Discounted Price: Rs. {{$product->discounted_price}}
-                                    @else
-                                    {{--  --}}
-                                    <input type="number" name="price" class="form-control" value="{{$product->price}}" style="display: none;"/>
-                                    {{--  --}}
-                                        Price: Rs. {{$product->price}}
-                                    @endif
-                                </div>
-
+                            {{-- Product Price --}}
+                            <div class="product-price">
                                 @if($product->discounted_price != null)
-                                    <div class="original-price">
-                                        Original Price: Rs. {{$product->price}}
-                                    </div>
+                                {{-- Discounted Price --}}
+                                <input type="number" name="price" class="form-control" value="{{$product->discounted_price}}" style="display: none;">
+                                {{-- Display Discounted Price --}}
+                                Discounted Price: Rs. {{$product->discounted_price}}
+                                @else
+                                {{-- Original Price --}}
+                                <input type="number" name="price" class="form-control" value="{{$product->price}}" style="display: none;">
+                                {{-- Display Original Price --}}
+                                Price: Rs. {{$product->price}}
                                 @endif
-                                <div class="product-category">
-                                    Category: {{$product->category->name}}
-                                    {{-- <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>
-                                        {{$product->category->name}}
-                                    </option> --}}
-                                </div>
-                                <div class="product-description">
-                                    Description: {{$product->description}}
-                                    {{--  --}}
-                                    <input type="text" name="description" class="form-control" value="{{$product->description}}" style="display: none;"/>
-                                    {{--  --}}
-                                </div>
-                                <div class="product-quantity">
-                                    Available Quantity: {{$product->quantity}}
-                                </div>
-                                @if(session()->has('error'))
-                                    <div class="alert alert-danger">
-                                        {{ session('error') }}
-                                    </div>
-                                @endif
+                            </div>
 
-                            
-                                &nbsp;
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                        <input type="number" name="quantity" value="1" min="1" value="{{$product->quantity}}"  style="width: 100px;">
-                                        </div>
-                                        &nbsp;
-                                        <div class="col-md-4">
-                                        <input type="submit" class="btn btn-danger" style="background-color:red;" value="Add To Cart">
-                                        </div>
-                                    </div> 
+                            @if($product->discounted_price != null)
+                                <div class="original-price">
+                                    Original Price: Rs. {{$product->price}}
+                                </div>
+                            @endif
+
+                            {{-- Product Category --}}
+                            <div class="product-category">
+                                Category: {{$product->category->name}}
+                            </div>
+
+                            {{-- Product Description --}}
+                            <div class="product-description">
+                                Description: {{$product->description}}
+                                {{-- Description as a hidden input for form submission --}}
+                                <input type="text" name="description" class="form-control" value="{{$product->description}}" style="display: none;">
+                            </div>
+
+                            {{-- Product Quantity and Add to Cart Button --}}
+                            <div class="product-quantity" style="padding-bottom:20px;">
+                                Available Quantity: {{$product->quantity}}
+                            </div>
+                            @if(session()->has('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
+                            <div class="row">
+                                <div class="col-md-6" style="padding-left:150px;">
+                                    <input type="number" name="quantity" value="1" min="1" value="{{$product->quantity}}" style="width: 100px;" required>
+                                </div>
+                                <div class="col-md-6" style="padding-right:200px;">
+                                    <input type="submit" class="btn btn-danger" style="background-color: red;" value="Add To Cart">
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+<!-- Other Products Section -->
+<div class="container">
+    <div class="row">
+        @if(count($relatedProducts) > 0)
+        <div class="col-md-12">
+            <h2 class="similar-products-heading">Similar Products</h2>
+        </div>
+        @endif
+    </div>
+    <div class="row">
+        @foreach($relatedProducts as $relatedProduct)
+            <div class="col-md-3">
+                <div class="product">
+                    <a href="{{ route('product_details', ['id' => $relatedProduct->id]) }}">
+                        <div class="product-image">
+                            <img src="/uploads/products/{{ $relatedProduct->image }}" alt="Product Image">
+                            <div class="product-hover">
+                                <a href="{{ route('product_details', ['id' => $relatedProduct->id]) }}" class="details-button">Details</a>
+                            </div>
+                        </div>
+                        <div class="product-title">
+                            {{ $relatedProduct->name }}
+                        </div>
+                        <div class="product-price">
+                            @if($relatedProduct->discounted_price != null)
+                                Discounted Price: Rs. {{ $relatedProduct->discounted_price }}
+                            @else
+                                Price: Rs. {{ $relatedProduct->price }}
+                            @endif
+                        </div>
+                    </a>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</div>
+
+
+
 
 <!-- Footer Section Begin -->
 @include('home.footer')
