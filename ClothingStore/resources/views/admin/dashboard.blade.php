@@ -61,6 +61,10 @@
     .col-md-4{
         width: 50px;
     }
+    .new-light-red {
+        background-color: #FF5733;
+}
+
 </style>
 
 <div>
@@ -103,6 +107,21 @@
                 </div>
             </div>
         </a>
+    </div>
+    {{--  --}}
+    {{-- users --}}
+    <div class="col-md-4" style="padding-top:20px;">
+        <a href="{{url('admin/userview')}}" class="box-link">
+            <div class="box-bg new-light-red">
+                <div class="box-content">
+                    <i class="mdi mdi-view-list menu-icon"></i>
+                    <h2>{{ $user }}</h2>
+                    <p>Users</p>
+                </div>
+            </div>
+        </a>
+    </div>
+
     </div>
     {{--  --}}
 </div>
