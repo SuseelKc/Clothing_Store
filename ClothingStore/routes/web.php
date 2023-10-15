@@ -80,6 +80,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::get('/userview',[UserController::class,'index']);
     Route::get('/user/{id}/edit',[UserController::class,'edit']);
     Route::post('/user/{id}/update',[UserController::class,'update']);
+    Route::get('/user/{id}/delete',[UserController::class,'delete']);
 });
 
  // cart

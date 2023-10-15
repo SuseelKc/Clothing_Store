@@ -75,8 +75,12 @@
                                     class="btn btn-success btn-sm text-white">Edit</a>
                                     &nbsp;
                                         <a 
-                                        href="" 
-                                            class="btn btn-danger btn-sm text-white">Delete</a>
+                                            class="btn btn-danger btn-sm text-white open-delete-modal"
+                                            data-toggle="modal"
+                                            data-target="#deleteModal"
+                                            data-delete-id="{{$user->id}}"
+                                            
+                                            >Delete</a>
                                 </td>
                             </tr>
                             @endif
@@ -103,5 +107,44 @@
 
     </div>
 </div>
+{{-- del modal --}}
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deliverModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="deliverModalLabel">Delete User</h1>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+            </div>
+            <form action="#" method="GET" id="deleteForm"> <!-- Give your form an ID -->
+            @csrf    
+                <div class="modal-body">
+                    <h6>Delete User No. <span id="deleteNumber"></span>?</h6>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+            </form>           
+        </div>
+    </div>
+</div>
 
+{{--  --}}
+{{-- Delivered model js --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".open-delete-modal").on("click", function (event) {
+            event.preventDefault();
+            var delId = $(this).data("delete-id");
+            $("#deleteNumber").text(delId); // Set order ID in the modal
+            $("#deleteForm").attr("action", "/admin/user/" + delId + "/delete"); // Set form action
+            $("#deleteModal").modal("show");
+        });
+    });
+</script>
+{{--  --}}
 @endsection

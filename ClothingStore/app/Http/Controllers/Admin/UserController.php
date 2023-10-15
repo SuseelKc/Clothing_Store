@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Cart;
 use App\Models\User;
+use App\Models\Order;
+use App\Models\Address;
+use App\Models\OrderMaster;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -31,6 +35,25 @@ class UserController extends Controller
         $user->save();
         toast('User Updated!','success');  
         return redirect('/admin/userview');
+
+    }
+    public function delete($id){
+       $user=User::findOrFail($id);
+       // Delete associated addresses
+        Address::where('user_id', $id)->delete();
+        
+        // Delete associated carts
+        Cart::where('user_id', $id)->delete();
+
+        // Delete associated orders
+        Order::where('user_id', $id)->delete();
+
+        // Delete associated ordermasters
+        OrderMaster::where('user_id', $id)->delete();
+
+       $user->delete();
+       toast('User Deleted!','success');   
+       return redirect('/admin/userview');
 
     }
     
