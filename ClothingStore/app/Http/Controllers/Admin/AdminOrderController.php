@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Order;
 use App\Models\Address;
+use App\Models\Products;
 use App\Models\OrderMaster;
 use Illuminate\Http\Request;
 use App\Enums\DeliveryStatus;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class AdminOrderController extends Controller
@@ -42,10 +44,26 @@ class AdminOrderController extends Controller
 
     public function orderCancelled($id){
         $order=OrderMaster::findOrFail($id);
+        
+        // 
+        $orderID=Order::where('order_master_id',$id)->get()->toArray();
+       
+       
+        foreach ($orderID as $orderID){
+            $userId=Auth::user()->id;
+            $prodID=Order::where('id','=',$orderID)->value('product_id');
+            $product=Products::findOrFail($prodID);
+            $addQty=$orderID['quantity'];
+            $productqty=$product->quantity;
+            $product->quantity= $addQty+ $productqty;
+            $product->update();
+        }
+        // 
+
       
         $order->delivery_status= DeliveryStatus::Cancelled; 
 
-        $order->save();
+        $order->update();
         
         toast('Order cancelled!','success');
         return redirect()->back();

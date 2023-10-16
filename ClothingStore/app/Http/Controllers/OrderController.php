@@ -205,19 +205,6 @@ class OrderController extends Controller
             'address_name' => 'required',
         ]);
 
-        // Create a new Address record
-    //    $address= Address::create([
-    //         'user_id' => auth()->id(), // Assuming you're using user authentication
-    //         'street' => $request->input('street'),
-    //         'state' => $request->input('state'),
-    //         'city' => $request->input('city'),
-    //         'country' => $request->input('country'),
-    //         'contact_name' => $request->input('contact_name'),
-    //         'contact_no' => $request->input('contact_number'),
-    //         'address_name' => $request->input('address_name'),
-    //         'type' => $request->input('payment_type'),
-    //     ]);
-        
         $address = new Address;
         $user_id = Auth::user()->id;
         $address->user_id=$user_id;
