@@ -64,6 +64,12 @@
     .user-box {
         background-color: #b959a4;
 }
+    .processing-box{
+        background-color: #FF5733;
+    }
+    .delivered-box{
+        background-color: #D2B48C;
+    }
 
 </style>
 
@@ -121,9 +127,31 @@
             </div>
         </a>
     </div>
-
+    {{-- processing orders --}}
+    <div class="col-md-4" style="padding-top:20px;">
+        <a href="" class="box-link">
+            <div class="box-bg processing-box">
+                <div class="box-content">
+                    <i class="mdi  mdi-account-multiple menu-icon"></i>
+                    <h2>{{ $processing }}</h2>
+                    <p>Processing orders</p>
+                </div>
+            </div>
+        </a>
     </div>
-    {{--  --}}
+    {{-- Delivered --}}
+    <div class="col-md-4" style="padding-top:20px;">
+        <a href="" class="box-link">
+            <div class="box-bg delivered-box">
+                <div class="box-content">
+                    <i class="mdi  mdi-account-multiple menu-icon"></i>
+                    <h2>{{ $delivered }}</h2>
+                    <p>Delivered</p>
+                </div>
+            </div>
+        </a>
+    </div>
+
 </div>
 
 @endsection

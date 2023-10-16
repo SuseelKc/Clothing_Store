@@ -15,9 +15,11 @@ class DashboardController extends Controller
     public function index(){
         $order=OrderMaster::count();
         $user = User::where('usertype', 0)->count();
+        $processing = OrderMaster::where('delivery_status', 1)->count();
+        $delivered = OrderMaster::where('delivery_status', 2)->count();
         $product=Products::count();
         $category=Category::count();
-        return view('admin.dashboard',compact('order','product','category','user'));
+        return view('admin.dashboard',compact('order','product','category','user','processing','delivered'));
     }
     public function aboutus(){
         $categories = Category::all();
