@@ -89,6 +89,9 @@ h6.bold-and-big {
                                             Shop Items
                                         </a>                                      
                                         @else
+                                        <a href="{{url('/products')}}" class="hover-button float-left">
+                                            Continue Shopping
+                                        </a>  
                                         <div class="text-right" style="padding-right:250px;">
                                             <strong>Total Amount:</strong> Rs. {{$totalAmount}} 
                                         </div>
@@ -100,10 +103,15 @@ h6.bold-and-big {
                     </div>
                 </div>
                 @if ($totalAmount > 0)
-                <div class="text-left mt-4">
+                <div class="row text-left mt-4">
+                    <div>
                     <h6 class="bold-and-big">Proceed To Order</h6>
-                     {{-- <a href="{{route('cash_order', ['totalAmount' => $totalAmount])}}" class="btn btn-primary">Cash on Delivery</a> --}}
-                    <a href="{{route('address', ['totalAmount' => $totalAmount])}}" class="btn btn-primary">Proceed</a>
+                    </div>
+                    
+                    <div style="margin-left: 40px; margin-top:8px">
+                    <a href="{{route('address', ['totalAmount' => $totalAmount])}}" class="btn btn-primary" style="height: 40px;">Proceed</a>
+                    </div>    
+                    
                 </div>
                 @endif
             </div>
