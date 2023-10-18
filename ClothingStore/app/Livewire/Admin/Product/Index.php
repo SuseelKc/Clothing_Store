@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Product;
 
+use App\Models\Cart;
 use Livewire\Component;
 use App\Models\Products;
 use Illuminate\Support\Facades\File;
@@ -29,11 +30,13 @@ class Index extends Component
             $path='uploads/products/'.$product->image;
                 if(File::exists($path)){
                     File::delete($path);
-                }
+                }   
+            Cart::where('product_id',$this->prod_id)->delete();
+                
             $product->delete();
             toast('Product Deleted!','info');
         }catch (QueryException $e){
-            toast('cannot delete it is used in order!','error');
+            toast("can't delete used in order or added to cart!",'error');
         }
 
         return redirect('admin/product');
