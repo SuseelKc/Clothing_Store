@@ -73,6 +73,9 @@
     .cancelled-box{
         background-color: #a0B68C;
     }
+    .totalrevenue-box{
+        background-color: #aAC01C;
+    }
 
 </style>
 
@@ -162,6 +165,18 @@
                     <i class="mdi  mdi-account-multiple menu-icon"></i>
                     <h2>{{ $cancelled }}</h2>
                     <p>Cancelled</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    {{-- totalrevenue --}}
+    <div class="col-md-4" style="padding-top:20px;">
+        <a href="" class="box-link">
+            <div class="box-bg totalrevenue-box">
+                <div class="box-content">
+                    <i class="mdi mdi-cash-usd menu-icon"></i>
+                    <h2>Rs. {{ $totalrevenue }}</h2>
+                    <p>Total Revenue</p>
                 </div>
             </div>
         </a>
