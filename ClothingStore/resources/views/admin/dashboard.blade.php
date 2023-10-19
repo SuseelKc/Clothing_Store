@@ -38,7 +38,7 @@
     }
 
     .category-box {
-        background-color: #58cc58; /* Blueish color for Products box */
+        background-color: #489a68; /* Blueish color for Products box */
     }
 
     .box-bg:hover {
@@ -65,16 +65,16 @@
         background-color: #b959a4;
 }
     .processing-box{
-        background-color: #FF5733;
+        background-color: #3b5ca9;
     }
     .delivered-box{
-        background-color: #D2B48C;
+        background-color: #3dc436;
     }
     .cancelled-box{
-        background-color: #a9A68C;
+        background-color: #ec482b;
     }
     .totalrevenue-box{
-        background-color: #aAC01C;
+        background-color: #9daf22;
     }
 
 </style>
@@ -138,7 +138,7 @@
         <a href="" class="box-link">
             <div class="box-bg processing-box">
                 <div class="box-content">
-                    <i class="mdi  mdi-account-multiple menu-icon"></i>
+                    <i class="mdi  mdi-clock menu-icon"></i>
                     <h2>{{ $processing }}</h2>
                     <p>Processing orders</p>
                 </div>
@@ -150,7 +150,7 @@
         <a href="" class="box-link">
             <div class="box-bg delivered-box">
                 <div class="box-content">
-                    <i class="mdi  mdi-account-multiple menu-icon"></i>
+                    <i class="mdi  mdi-account-check menu-icon"></i>
                     <h2>{{ $delivered }}</h2>
                     <p>Delivered</p>
                 </div>
@@ -162,7 +162,7 @@
         <a href="" class="box-link">
             <div class="box-bg cancelled-box">
                 <div class="box-content">
-                    <i class="mdi  mdi-account-multiple menu-icon"></i>
+                    <i class="mdi mdi-account-remove menu-icon"></i>
                     <h2>{{ $cancelled }}</h2>
                     <p>Cancelled</p>
                 </div>
