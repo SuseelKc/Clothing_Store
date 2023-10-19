@@ -71,7 +71,7 @@
         background-color: #D2B48C;
     }
     .cancelled-box{
-        background-color: #a0B68C;
+        background-color: #a9A68C;
     }
     .totalrevenue-box{
         background-color: #aAC01C;
