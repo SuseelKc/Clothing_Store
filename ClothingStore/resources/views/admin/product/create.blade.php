@@ -105,7 +105,7 @@
 
                     <div class="col-md-6 mb-3">
                         <label>Image</label>
-                        <input type="file" name="image"  class="form-control"/>
+                        <input type="file" name="image[]" multiple class="form-control"/>
                         @error('image') 
                         <small class="text-danger">{{$message}}</small>
                         @enderror

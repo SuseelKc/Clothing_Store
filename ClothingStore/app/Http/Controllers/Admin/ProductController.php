@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Products;
 use App\Models\OrderMaster;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
@@ -45,17 +46,36 @@ class ProductController extends Controller
         $product->tags=$validatedData['tags'];
 
         $product->category_id=$request->category;
+        $product->save();
 
         if($request->hasFile('image')){
-            $file = $request->file('image');
-            $ext=$file->getClientOriginalExtension();
-            $filename=time().'.'.$ext;
 
-            $file->move('uploads/products/',$filename);
-            $product->image= $filename;
+            // $file = $request->file('image');
+            // $ext=$file->getClientOriginalExtension();
+            // $filename=time().'.'.$ext;
+
+            // $file->move('uploads/products/',$filename);
+            // $product->image= $filename;
+            
+
+            $i=1;
+            foreach($request->file('image') as $image){
+                // $file=$image->file('image');
+                $extension=$image->getClientOriginalExtension();
+                $filename=time().$i++.'.'.$extension;
+                $image->move('uploads/products/',$filename);
+                $filepath='uploads/products/'.$filename;
+
+                $prodImage= new ProductImage;
+                $prodImage->image=$filepath;
+                $prodImage->product_id=$product->id;
+                $prodImage->save();
+
+            }
+
             
         }
-        $product->save();
+        
 
         toast('Product created sucessfully!','success');
 
