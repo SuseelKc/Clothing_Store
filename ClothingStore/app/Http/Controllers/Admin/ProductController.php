@@ -109,12 +109,6 @@ class ProductController extends Controller
         
         if($request->hasfile('image')){
 
-            $prodImg=ProductImage::where('product_id',$id)->get();
-
-            foreach($prodImg as $prodImg){
-                $imagepath=$prodImg->image;
-                File::delete($imagepath); 
-            }
 
             $i=1;
             foreach($request->file('image') as $image){
@@ -131,27 +125,10 @@ class ProductController extends Controller
 
             }
 
-        }
-       
-        // if($request->hasFile('image')){
-
-        //     $path='uploads/products/'.$product->image;
-        //     if(File::exists($path)){
-        //         File::delete($path);
-        //     }
-            
-        //     $file = $request->file('image');
-        //     $ext=$file->getClientOriginalExtension();
-        //     $filename=time().'.'.$ext;
-
-        //     $file->move('uploads/products/',$filename);
-        //     $product->image= $filename;
-            
-        // }
-        // $product->update();
+        }    
  
         toast('Product updated sucessfully!','success');
-        return redirect('admin/product');
+        return back();
         // ->with('message','Product Updated sucessfully!');
     }
     public function product_details($id){
@@ -213,5 +190,18 @@ class ProductController extends Controller
         
         return view('home.category_filter', compact('product', 'categories', 'query', 'countcart', 'countorder'));
     }
+    public function delImg($id){
+
+        $prodImage=ProductImage::findOrFail($id);
+        $ImagePath=$prodImage->image;
+        File::delete($ImagePath); 
+        $prodImage->delete();
+        toast('Image Deleted!','success');
+        return back();
+
+      
+
+    }
+  
   
 }

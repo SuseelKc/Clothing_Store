@@ -120,12 +120,17 @@
                 <div class="col-md-6 mb-3">
                     <label>Image</label>
                     <input type="file" name="image[]" multiple class="form-control" /><br>
-                    <div>
+                    <div class="row">
                         @if($prodImage)
                             @foreach($prodImage as $image)
+                        
+                             <div class="col-md-2">
                                <img src="{{asset($image->image)}}" style="width:80px; height:80px;"
-                               class="me-4" alt="Image"
+                               class="me-4 border" alt="Image"
                                >
+                               <a href="{{url('admin/productimage/'.$image->id.'/delete')}}" class="d-block">Remove</a>
+                            </div>   
+                         
                             @endforeach
                         @else
                         <h5>No Image Added</h5>

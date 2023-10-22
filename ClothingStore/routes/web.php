@@ -68,6 +68,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::post('product/store',[ProductController::class,'store'])->name('product.store');
     Route::get('/product/{id}/edit',[ProductController::class,'edit'])->name('product.edit');
     Route::post('/product/{id}/update',[ProductController::class,'update'])->name('product.update');
+    Route::get('/productimage/{id}/delete',[ProductController::class,'delImg']);
     
     // orders
     Route::get('/order',[AdminOrderController::class,'index'])->name('order.index');
