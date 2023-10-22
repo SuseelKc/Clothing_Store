@@ -120,8 +120,19 @@
                 <div class="col-md-6 mb-3">
                     <label>Image</label>
                     <input type="file" name="image[]" multiple class="form-control" /><br>
-                    <img src="{{asset('uploads/products/'.$product->image)}}"  style="height:90px; width:90px"
-                    alt="No images"/> 
+                    <div>
+                        @if($prodImage)
+                            @foreach($prodImage as $image)
+                               <img src="{{asset($image->image)}}" style="width:80px; height:80px;"
+                               class="me-4" alt="Image"
+                               >
+                            @endforeach
+                        @else
+                        <h5>No Image Added</h5>
+                        @endif
+                    </div>
+                    {{-- <img src="{{asset('uploads/products/'.$product->image)}}"  style="height:90px; width:90px"
+                    alt="No images"/>  --}}
                     @error('image') 
                     <small class="text-danger">{{$message}}</small>
                     @enderror

@@ -63,12 +63,8 @@ class ProductController extends Controller
                 $prodImage->product_id=$product->id;
                 $prodImage->save();
 
-            }
-
-            
-        }
-        
-
+            }           
+        }       
         toast('Product created sucessfully!','success');
 
         return redirect('admin/product');
@@ -77,11 +73,13 @@ class ProductController extends Controller
 
     public function edit($id){
 
-        // dd($id);
-
         $product= Products::findOrFail($id);
         $category=Category::all();
-        return view('admin.product.edit',compact('product','category'));
+
+        $prodImage=ProductImage::where('product_id',$id)->get();
+        
+
+        return view('admin.product.edit',compact('product','category','prodImage'));
        
     }
 
