@@ -60,7 +60,7 @@ class ProductController extends Controller
 
             $i=1;
             foreach($request->file('image') as $image){
-                // $file=$image->file('image');
+              
                 $extension=$image->getClientOriginalExtension();
                 $filename=time().$i++.'.'.$extension;
                 $image->move('uploads/products/',$filename);
