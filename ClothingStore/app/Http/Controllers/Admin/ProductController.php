@@ -50,14 +50,6 @@ class ProductController extends Controller
 
         if($request->hasFile('image')){
 
-            // $file = $request->file('image');
-            // $ext=$file->getClientOriginalExtension();
-            // $filename=time().'.'.$ext;
-
-            // $file->move('uploads/products/',$filename);
-            // $product->image= $filename;
-            
-
             $i=1;
             foreach($request->file('image') as $image){
               
@@ -106,7 +98,6 @@ class ProductController extends Controller
         }
         // 
 
-
         $product->name=$validatedData['name'];
         $product->quantity=$validatedData['quantity'];
         $product->price=$validatedData['price'];
@@ -115,23 +106,51 @@ class ProductController extends Controller
         $product->color=$validatedData['color'];
         $product->tags=$validatedData['tags'];
         $product->category_id=$request->category;
-        
-        if($request->hasFile('image')){
-
-            $path='uploads/products/'.$product->image;
-            if(File::exists($path)){
-                File::delete($path);
-            }
-            
-            $file = $request->file('image');
-            $ext=$file->getClientOriginalExtension();
-            $filename=time().'.'.$ext;
-
-            $file->move('uploads/products/',$filename);
-            $product->image= $filename;
-            
-        }
         $product->update();
+
+        
+        if($request->hasfile('image')){
+
+            $prodImg=ProductImage::where('product_id',$id)->get();
+
+            foreach($prodImg as $prodImg){
+                $imagepath=$prodImg->image;
+                File::delete($imagepath); 
+            }
+
+            $i=1;
+            foreach($request->file('image') as $image){
+              
+                $extension=$image->getClientOriginalExtension();
+                $filename=time().$i++.'.'.$extension;
+                $image->move('uploads/products/',$filename);
+                $filepath='uploads/products/'.$filename;
+
+                $prodImage= new ProductImage;
+                $prodImage->image=$filepath;
+                $prodImage->product_id=$product->id;
+                $prodImage->save();
+
+            }
+
+        }
+       
+        // if($request->hasFile('image')){
+
+        //     $path='uploads/products/'.$product->image;
+        //     if(File::exists($path)){
+        //         File::delete($path);
+        //     }
+            
+        //     $file = $request->file('image');
+        //     $ext=$file->getClientOriginalExtension();
+        //     $filename=time().'.'.$ext;
+
+        //     $file->move('uploads/products/',$filename);
+        //     $product->image= $filename;
+            
+        // }
+        // $product->update();
  
         toast('Product updated sucessfully!','success');
         return redirect('admin/product');
