@@ -77,6 +77,7 @@ class ProductController extends Controller
         $category=Category::all();
 
         $prodImage=ProductImage::where('product_id',$id)->get();
+       
         
 
         return view('admin.product.edit',compact('product','category','prodImage'));

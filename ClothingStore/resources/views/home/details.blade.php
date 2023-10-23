@@ -138,7 +138,11 @@
                 <div class="col-md-6">
                     <div class="product-image">
                         {{-- Product Image --}}
-                        <img src="/uploads/products/{{$product->image}}" alt="Product Image">
+                        @if($product->productImage)
+                        <img src="{{asset($product->productImage[0]->image)}}"  alt="Product Image">
+                        @else
+                        No Image Added
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-6">
