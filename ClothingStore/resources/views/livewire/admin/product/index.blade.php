@@ -72,8 +72,8 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if($product->image)
-                                                <img src="{{ asset('/uploads/products/'.$product->image) }}"
+                                            @if($product->productImage[0]->image)
+                                                <img src="{{ asset($product->productImage[0]->image) }}"
                                                     style="width: 80px; height: 80px;" alt="No image"/>
                                             @else
                                                 <h5>No Image</h5>

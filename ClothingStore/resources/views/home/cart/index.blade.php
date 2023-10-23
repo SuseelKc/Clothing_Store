@@ -59,7 +59,10 @@ h6.bold-and-big {
                                 <tr>
                                     <td>{{ $counter }}</td>
                                     <td>
-                                        <img src="{{asset('uploads/products/'.$cart->product->image)}}" style="height:90px; width:90px"
+                                        <img 
+                                        src="{{ asset($cart->productImage[0]->image) }}"
+                                        {{-- src="{{asset('uploads/products/'.$cart->product->image)}}"  --}}
+                                        style="height:90px; width:90px"
                                             alt="No images" />
                                     </td>
                                     <td>{{$cart->product->name}}</td>
