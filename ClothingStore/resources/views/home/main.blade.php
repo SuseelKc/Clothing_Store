@@ -103,8 +103,10 @@
 <script src="{{asset('home/js/jquery.countdown.min.js')}}"></script>
 <script src="{{asset('home/js/jquery.slicknav.js')}}"></script>
 <script src="{{asset('home/js/owl.carousel.min.js')}}"></script>
+
 <script src="{{asset('home/js/jquery.nicescroll.min.js')}}"></script>
 <script src="{{asset('home/js/main.js')}}"></script>
+
 
 </body>
 

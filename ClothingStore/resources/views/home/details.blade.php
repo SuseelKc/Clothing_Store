@@ -12,8 +12,7 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="{{asset('home/css/bootstrap.min.css')}}" type="text/css">
@@ -24,6 +23,10 @@
     <link rel="stylesheet" href="{{asset('home/css/owl.carousel.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('home/css/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('home/css/style.css')}}" type="text/css">
+    <!-- ExZoom CSS -->
+    <link href="{{asset('assets/exzoom/jquery.exzoom.css')}}" rel="stylesheet">
+    
+
     <style>
         /* Styles for the product details section */
         .hero_area {
@@ -132,6 +135,8 @@
     @include('home.header')
     <!-- Header Section End --> 
 
+
+
     <div class="hero_area">
         <div class="container">
             <div class="row">
@@ -139,9 +144,28 @@
                     <div class="product-image">
                         {{-- Product Image --}}
                         @if($product->productImage)
-                        <img src="{{asset($product->productImage[0]->image)}}"  alt="Product Image">
+                        {{-- <img src="{{asset($product->productImage[0]->image)}}"  alt="Product Image"> --}}
+                        <div class="exzoom" id="exzoom">
+                            <!-- Images -->
+                            <div class="exzoom_img_box">
+                              <ul class='exzoom_img_ul'>
+                                @foreach ($product->productImage as $images)
+                                    <li><img src="{{asset($images->image)}}"/></li>
+                                @endforeach
+                                
+                              </ul>
+                            </div>
+                            <!-- <a href="https://www.jqueryscript.net/tags.php?/Thumbnail/">Thumbnail</a> Nav-->
+                            <div class="exzoom_nav"></div>
+                            <!-- Nav Buttons -->
+                            <p class="exzoom_btn">
+                                <a href="javascript:void(0);" class="exzoom_prev_btn"> < </a>
+                                <a href="javascript:void(0);" class="exzoom_next_btn"> > </a>
+                            </p>
+                        </div>
+
                         @else
-                        No Image Added
+                            No Image Added
                         @endif
                     </div>
                 </div>
@@ -239,14 +263,14 @@
                 <div class="product">
                     <a href="{{ route('product_details', ['id' => $relatedProduct->id]) }}">
                         <div class="product-image">
-                            <img src="/uploads/products/{{ $relatedProduct->image }}" alt="Product Image">
+                            <img src="{{ asset($relatedProduct->productImage[0]->image) }}" alt="Product Image">
                             <div class="product-hover">
                                 <a href="{{ route('product_details', ['id' => $relatedProduct->id]) }}" class="details-button">Details</a>
                             </div>
                         </div>
                         <div class="product-title">
                             {{ $relatedProduct->name }}
-                        </div>
+                        </div> 
                         <div class="product-price">
                             @if($relatedProduct->discounted_price != null)
                                 Discounted Price: Rs. {{ $relatedProduct->discounted_price }}
@@ -277,19 +301,49 @@
         </form>
     </div>
 </div>
-<!-- Search End -->
-<!-- Js Plugins -->
-<script src="{{asset('home/js/jquery-3.3.1.min.js')}}"></script>
-<script src="{{asset('home/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('home/js/jquery.magnific-popup.min.js')}}"></script>
-<script src="{{asset('home/js/jquery-ui.min.js')}}"></script>
-<script src="{{asset('home/js/mixitup.min.js')}}"></script>
-<script src="{{asset('home/js/jquery.countdown.min.js')}}"></script>
-<script src="{{asset('home/js/jquery.slicknav.js')}}"></script>
-<script src="{{asset('home/js/owl.carousel.min.js')}}"></script>
-<script src="{{asset('home/js/jquery.nicescroll.min.js')}}"></script>
-<script src="{{asset('home/js/main.js')}}"></script>
+ <!-- Scripts -->
+ <script src="{{asset('home/js/jquery-3.3.1.min.js')}}"></script>
+ <script src="{{asset('home/js/bootstrap.min.js')}}"></script>
+ <script src="{{asset('home/js/jquery.magnific-popup.min.js')}}"></script>
+ <script src="{{asset('home/js/jquery-ui.min.js')}}"></script>
+ <script src="{{asset('home/js/mixitup.min.js')}}"></script>
+ <script src="{{asset('home/js/jquery.countdown.min.js')}}"></script>
+ <script src="{{asset('home/js/jquery.slicknav.js')}}"></script>
+ <script src="{{asset('home/js/owl.carousel.min.js')}}"></script>
+ <script src="{{asset('home/js/jquery.nicescroll.min.js')}}"></script>
+ <!-- ExZoom JavaScript -->
+ <script src="{{asset('assets/exzoom/jquery.exzoom.js')}}"></script>
 
+   
+<script>
+    $(function(){
+  
+              $("#exzoom").exzoom({
+  
+              "navWidth": 60,
+              "navHeight": 60,
+              "navItemNum": 5,
+              "navItemMargin": 7,
+              "navBorder": 1,
+  
+              // autoplay
+              "autoPlay": false,
+  
+              // autoplay interval in milliseconds
+              "autoPlayTimeout": 2000
+              
+              });
+  
+            });
+
+            $(window).on('load', function() {
+                // Hide the loader when everything on the page has finished loading
+                $('#preloder').fadeOut();
+            });    
+  </script>
+  
 </body>
+
+
 
 </html>
