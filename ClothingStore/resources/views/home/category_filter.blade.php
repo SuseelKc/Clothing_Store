@@ -69,7 +69,10 @@
              
                     <div class="product__item__pic set-bg" data-setbg="uploads/products/{{$products->image}}">
                         <ul class="product__hover">
-                            <img src="uploads/products/{{$products->image}}" alt="{{$products->name}}">
+                            <img 
+                            src="{{ asset($products->productImage[0]->image) }}"
+                            {{-- src="uploads/products/{{$products->productImage[0]->image}}" --}}
+                             alt="{{$products->name}}">
                         </ul>
                         <!-- Details button (hidden by default) -->
                         <a href="{{route('product_details',$products->id)}}" class="details-button">Details</a>
