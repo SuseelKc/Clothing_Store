@@ -17,7 +17,7 @@ return new class extends Migration
             $table->decimal('rate', 10, 2); //
             $table->string('color')->nullable();;
             $table->decimal('price', 10, 2)->nullable();
-            $table->string('image')->nullable();
+            
             $table->integer('quantity')->nullable();
             $table->foreignId('user_id')->constrained('users', 'id')->nullable();
             $table->timestamps();

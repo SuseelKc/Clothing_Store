@@ -17,7 +17,7 @@ class Cart extends Model
         'rate',
         'color',
         'price',
-        'image',
+    
         'quantity',
         'user_id'
     ];
