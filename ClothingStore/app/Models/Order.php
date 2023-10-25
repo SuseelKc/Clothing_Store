@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Address;
 use App\Models\Products;
 use App\Models\OrderMaster;
+use App\Models\ProductImage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -34,6 +35,8 @@ class Order extends Model
     {
         return $this->belongsTo(OrderMaster::class);
     }
-
+    public function productImage(){
+        return $this->hasMany(ProductImage::class,'product_id','product_id');
+    }
     
 }

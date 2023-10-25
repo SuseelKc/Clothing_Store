@@ -134,7 +134,10 @@
                 @foreach($orderMaster->orders as $order)
                 <tr>
                     <td>
-                        <img src="{{asset('uploads/products/'.$order->product->image)}}" alt="Product Image" />
+                        <img 
+                        src="{{ asset($order->productImage[0]->image) }}"
+                        {{-- src="{{asset('uploads/products/'.$order->productImage[0]->image)}}"  --}}
+                        alt="Product Image" />
                     </td>
                     <td>{{ $order->product->name }}</td>
                     <td>{{ $order->quantity }}</td>
