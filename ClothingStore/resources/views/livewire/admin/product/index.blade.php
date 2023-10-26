@@ -72,7 +72,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if($product->productImage[0]->image)
+                                            @if($product->productImage->isNotEmpty())
                                                 <img src="{{ asset($product->productImage[0]->image) }}"
                                                     style="width: 80px; height: 80px;" alt="No image"/>
                                             @else

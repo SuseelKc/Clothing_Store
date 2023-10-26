@@ -27,8 +27,12 @@ class Index extends Component
 
     public function destroyProduct(){
         try{
+        
 
             $product=Products::findOrFail($this->prod_id);
+
+            $product->delete();
+            
             $prodImg=ProductImage::where('product_id',$this->prod_id)->get();
             
             foreach ($prodImg as $prodImg) {
@@ -38,8 +42,6 @@ class Index extends Component
             }                        
             ProductImage::where('product_id',$this->prod_id)->delete();              
             Cart::where('product_id',$this->prod_id)->delete();
-                
-            $product->delete();
             toast('Product Deleted!','info');
 
         }catch (QueryException $e){
