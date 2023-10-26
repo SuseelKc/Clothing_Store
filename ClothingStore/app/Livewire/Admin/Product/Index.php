@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Product;
 
 use App\Models\Cart;
+use App\Models\Order;
 use Livewire\Component;
 use App\Models\Products;
 use App\Models\ProductImage;
@@ -27,22 +28,26 @@ class Index extends Component
 
     public function destroyProduct(){
         try{
-        
-
-            $product=Products::findOrFail($this->prod_id);
-
-            $product->delete();
-            
-            $prodImg=ProductImage::where('product_id',$this->prod_id)->get();
-            
-            foreach ($prodImg as $prodImg) {
-                $imagepath = $prodImg->image;
-                File::delete($imagepath);
-               
-            }                        
-            ProductImage::where('product_id',$this->prod_id)->delete();              
-            Cart::where('product_id',$this->prod_id)->delete();
-            toast('Product Deleted!','info');
+            // dd("Here");
+            if(Order::where('product_id',$this->prod_id)->exists()){
+                toast("Can't delete used in order!",'error');
+                
+                    
+            }
+            else{
+                   $product=Products::findOrFail($this->prod_id);
+                   $prodImg=ProductImage::where('product_id',$this->prod_id)->get();
+                    
+                    foreach ($prodImg as $prodImg) {
+                        $imagepath = $prodImg->image;
+                        File::delete($imagepath);
+                    
+                    }                        
+                    ProductImage::where('product_id',$this->prod_id)->delete();              
+                    Cart::where('product_id',$this->prod_id)->delete();
+                    $product->delete();
+                    toast('Product Deleted!','info');
+                }
 
         }catch (QueryException $e){
             toast("can't delete used in order or added to cart!",'error');
