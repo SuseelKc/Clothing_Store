@@ -52,6 +52,7 @@
         }
 
         .product-title {
+            color: black;
             font-size: 24px;
             margin-bottom: 10px;
         }
@@ -268,12 +269,15 @@
                                 <a href="{{ route('product_details', ['id' => $relatedProduct->id]) }}" class="details-button">Details</a>
                             </div>
                         </div>
-                        <div class="product-title">
+                        <a href="{{ route('product_details', ['id' => $relatedProduct->id]) }}" class="product-title">
                             {{ $relatedProduct->name }}
-                        </div> 
+                        </a> 
                         <div class="product-price">
                             @if($relatedProduct->discounted_price != null)
-                                Discounted Price: Rs. {{ $relatedProduct->discounted_price }}
+                                <div class="original-price">
+                                Original Price: Rs. {{$relatedProduct->price}}
+                                </div>
+                                Offer Price: Rs. {{ $relatedProduct->discounted_price }}
                             @else
                                 Price: Rs. {{ $relatedProduct->price }}
                             @endif
