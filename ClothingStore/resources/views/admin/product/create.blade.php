@@ -120,6 +120,21 @@
                         <small class="text-danger">{{$message}}</small>
                         @enderror
                     </div>
+
+                    <div class="col-md mb-3">
+                        <label>Available Sizes
+                        </label><br><br>
+                         <label>Small :</label>  
+                         <input type="checkbox" name="size[]" value="small" />&emsp;
+                         <label>Medium :</label>  
+                         <input type="checkbox" name="size[]" value="medium"/>&emsp; 
+                         <label>Large :</label>  
+                         <input type="checkbox" name="size[]" value="large"/>&emsp; 
+                         <label>XL :</label>  
+                         <input type="checkbox" name="size[]" value="XL" />&emsp; 
+                         <label>XXL :</label>  
+                         <input type="checkbox" name="size[]" value="XXL" />    
+                    </div>    
                 </div>
 
                         <!-- <div class="col-md-6 mb-3">

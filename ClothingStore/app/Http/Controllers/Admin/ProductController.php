@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Cart;
+use App\Models\Sizes;
 use App\Models\Category;
 use App\Models\Products;
 use App\Models\OrderMaster;
@@ -47,6 +48,21 @@ class ProductController extends Controller
 
         $product->category_id=$request->category;
         $product->save();
+        // size
+       
+        
+        $selectedSizes = $request->input('size');
+        if($selectedSizes){
+        foreach($selectedSizes as $selectedSize){
+
+            $size =new Sizes;
+            $size->size=$selectedSize;
+            $size->product_id=$product->id;
+            $size->save();
+
+        }
+        }
+        // 
 
         if($request->hasFile('image')){
 

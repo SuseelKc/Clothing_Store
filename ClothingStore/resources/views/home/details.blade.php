@@ -264,7 +264,11 @@
                 <div class="product">
                     <a href="{{ route('product_details', ['id' => $relatedProduct->id]) }}">
                         <div class="product-image">
+                            @if($relatedProduct->image)
                             <img src="{{ asset($relatedProduct->productImage[0]->image) }}" alt="Product Image">
+                            @else
+                            <img src="img/NoImage.jpg" alt="Alternative Text" >
+                            @endif
                             <div class="product-hover">
                                 <a href="{{ route('product_details', ['id' => $relatedProduct->id]) }}" class="details-button">Details</a>
                             </div>
