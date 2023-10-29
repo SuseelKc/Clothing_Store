@@ -235,6 +235,18 @@
                                 </div>
                             @endif
 
+                            {{-- size --}}
+                            <div class="size">
+                                @if($product->sizes)
+                                Available Sizes:
+                                    @foreach ($product->sizes as $size)
+                                        <button>{{$size->size}}</button>
+                                    @endforeach
+                                @else    
+                                @endif
+                            </div>    
+
+
                             <div class="row">
                                 <div class="col-md-6" style="padding-left:150px;">
                                     <input type="number" name="quantity" value="1" min="1" value="{{$product->quantity}}" style="width: 100px;" required>
