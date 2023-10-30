@@ -59,11 +59,14 @@ h6.bold-and-big {
                                 <tr>
                                     <td>{{ $counter }}</td>
                                     <td>
+                                        @if($cart->productImage->isNotEmpty())
                                         <img 
                                         src="{{ asset($cart->productImage[0]->image) }}"
-                                        {{-- src="{{asset('uploads/products/'.$cart->product->image)}}"  --}}
                                         style="height:90px; width:90px"
                                             alt="No images" />
+                                        @else
+                                         No Image
+                                        @endif    
                                     </td>
                                     <td>{{$cart->product->name}}</td>
                                     <td>{{$cart->rate}}</td>

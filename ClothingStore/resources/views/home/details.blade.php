@@ -236,15 +236,30 @@
                             @endif
 
                             {{-- size --}}
-                            <div class="size">
-                                @if($product->sizes)
+                            {{-- <div class="size">
+                                @if($product->sizes->isNotEmpty())
                                 Available Sizes:
                                     @foreach ($product->sizes as $size)
-                                        <button>{{$size->size}}</button>
+                                        <button type="checkbox">{{$size->size}}</button><br>
                                     @endforeach
                                 @else    
                                 @endif
-                            </div>    
+                            </div>     --}}
+                            <div class="size">
+                                @if($product->sizes->isNotEmpty())
+                                    <select id="sizeDropdown">
+                                        <label>Size Available:</label>
+                                        <option value="" >Select Size</option>
+                                            @if($product->sizes)
+                                                @foreach ($product->sizes as $size)
+                                                    <option value="{{$size->id}}">{{$size->size}}</option>
+                                                @endforeach
+                                            @endif
+                                    </select>
+                                @else
+                                @endif
+                            </div><br>
+                            
 
 
                             <div class="row">
@@ -276,7 +291,7 @@
                 <div class="product">
                     <a href="{{ route('product_details', ['id' => $relatedProduct->id]) }}">
                         <div class="product-image">
-                            @if($relatedProduct->image)
+                            @if($relatedProduct->productImage->isNotEmpty())
                             <img src="{{ asset($relatedProduct->productImage[0]->image) }}" alt="Product Image">
                             @else
                             <img src="img/NoImage.jpg" alt="Alternative Text" >

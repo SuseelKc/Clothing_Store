@@ -69,10 +69,14 @@
              
                     <div class="product__item__pic set-bg" data-setbg="uploads/products/{{$products->image}}">
                         <ul class="product__hover">
+                            @if($products->productImage->isNotEmpty())
                             <img 
                             src="{{ asset($products->productImage[0]->image) }}"
                             {{-- src="uploads/products/{{$products->productImage[0]->image}}" --}}
                              alt="{{$products->name}}">
+                            @else
+                             <img src="img/NoImage.jpg">
+                            @endif 
                         </ul>
                         <!-- Details button (hidden by default) -->
                         <a href="{{route('product_details',$products->id)}}" class="details-button">Details</a>
