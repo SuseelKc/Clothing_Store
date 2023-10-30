@@ -46,7 +46,7 @@
 
         .product-image img {
             max-width: 100%; /* Ensure the image does not exceed the container's width */
-            max-height: 300px; /* Set a maximum height for the image */
+            max-height: 100%; /* Set a maximum height for the image */
             display: block; /* Remove extra space below inline images */
             margin: 0 auto; /* Center the image horizontally */
         }
