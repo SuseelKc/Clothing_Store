@@ -252,7 +252,7 @@
                                         <option value="" disabled selected >Select Size</option>
                                             @if($product->sizes)
                                                 @foreach ($product->sizes as $size)
-                                                    <option value="{{$size->id}}">{{$size->size}}</option>
+                                                    <option value="{{$size->id}}">{{$size->size}}</option required>
                                                 @endforeach
                                             @endif
                                     </select>
