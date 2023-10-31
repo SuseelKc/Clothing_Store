@@ -135,6 +135,7 @@ button[type="submit"]:hover {
                 <label for="payment_type">Payment Type:</label>
                 <select id="payment_type" name="payment_type">
                     <option value="1" selected>Cash on Delivery</option>
+                    <option value="2">Paypal</option>
                     <!-- Add other payment options here if needed -->
                 </select>
             </div>

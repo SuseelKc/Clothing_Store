@@ -14,7 +14,6 @@ class CartController extends Controller
     //
     public function addtocart(Request $request, $id)
     {
-        dd($size->id);
         $product = Products::findOrFail($id);
         $user_id = Auth::user()->id;
     
