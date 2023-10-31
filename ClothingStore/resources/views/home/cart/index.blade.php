@@ -43,8 +43,9 @@ h6.bold-and-big {
                                         <th>S.No</th>
                                         <th>Image</th>
                                         <th>Product</th>
+                                        <th>Size</th>
                                         <th>Rate</th>
-                                        <th>Quantity</th>
+                                        <th>Quantity</th>                                                                            
                                         <th>Price</th>
                                         <th>Action</th>
                                     </tr>
@@ -69,9 +70,20 @@ h6.bold-and-big {
                                         @endif    
                                     </td>
                                     <td>{{$cart->product->name}}</td>
+                                    <td>                                
+                                        @if ($cart->sizes)
+                                            {{ $cart->sizes->size }}
+                                        @else
+                                            No size available
+                                        @endif
+                                    </td>
+                                    
                                     <td>{{$cart->rate}}</td>
                                     <td>{{$cart->quantity}}</td>
                                     <td>{{$cart->price}}</td>
+                                   
+                                    
+                                  
                                     <td>
                                         <a
                                         href="{{url('cart/'.$cart->id.'/delete')}}" 
@@ -98,7 +110,7 @@ h6.bold-and-big {
                                         <a href="{{url('/products')}}" class="hover-button float-left">
                                             Continue Shopping
                                         </a>  
-                                        <div class="text-right" style="padding-right:250px;">
+                                        <div class="text-right" style="padding-right:70px;">
                                             <strong>Total Amount:</strong> Rs. {{$totalAmount}} 
                                         </div>
                                         @endif
