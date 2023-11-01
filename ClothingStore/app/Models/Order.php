@@ -38,5 +38,9 @@ class Order extends Model
     public function productImage(){
         return $this->hasMany(ProductImage::class,'product_id','product_id');
     }
+    public function sizes()
+    {
+        return $this->belongsTo(Sizes::class, 'size_id','id');
+    }
     
 }

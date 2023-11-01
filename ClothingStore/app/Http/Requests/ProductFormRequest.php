@@ -32,6 +32,13 @@ class ProductFormRequest extends FormRequest
             'tags' => ['nullable', 'string'],
             // 'image' => ['nullable', 'mimes:jpg,jpeg,png,webp'],
             'category' => ['required', 'numeric'], // Change 'category_id' to 'category'
+            // 
+            // 'size'=>['required', 'numeric'],
+            // 'medium'=>['required', 'numeric'],
+            // 'large'=>['required', 'numeric'],
+            // 'xl'=>['required', 'numeric'],
+            // 'xxl'=>['required', 'numeric'],
+
         ];
     }
 }

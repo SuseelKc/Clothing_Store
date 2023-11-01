@@ -46,6 +46,20 @@ class ProductController extends Controller
         $product->color=$validatedData['color'];
         $product->tags=$validatedData['tags'];
 
+        // sizes 
+        $product->small=$request->input('small');
+        $product->medium=$request->input('medium');
+        $product->large=$request->input('large');
+        $product->xl=$request->input('xl');
+        $product->xxl=$request->input('xxl');
+
+        // $product->small=$validatedData['small'];
+        // $product->medium=$validatedData['medium'];
+        // $product->large=$validatedData['large'];
+        // $product->xl=$validatedData['xl'];
+        // $product->xxl=$validatedData['xxl'];
+        // 
+
         $product->category_id=$request->category;
         $product->save();
         // size
@@ -121,6 +135,14 @@ class ProductController extends Controller
         $product->color=$validatedData['color'];
         $product->tags=$validatedData['tags'];
         $product->category_id=$request->category;
+        // size
+        $product->small=$request->input('small');
+        $product->medium=$request->input('medium');
+        $product->large=$request->input('large');
+        $product->xl=$request->input('xl');
+        $product->xxl=$request->input('xxl');
+        // 
+
         $product->update();
 
         
