@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Sizes;
 use App\Models\Products;
 use App\Models\ProductImage;
 use Illuminate\Database\Eloquent\Model;
@@ -16,10 +17,10 @@ class Cart extends Model
         'product_id',
         'rate',
         'color',
-        'price',
-    
+        'price',   
         'quantity',
-        'user_id'
+        'user_id',
+        'size_id'
     ];
 
     public function product()
@@ -29,5 +30,8 @@ class Cart extends Model
     public function productImage(){
         return $this->hasmany(ProductImage::class,'product_id','product_id');
     }
-
+    public function sizes()
+    {
+        return $this->belongsTo(Sizes::class, 'size_id','id');
+    }
 }

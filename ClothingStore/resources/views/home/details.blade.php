@@ -247,9 +247,9 @@
                             </div>     --}}
                             <div class="size">
                                 @if($product->sizes->isNotEmpty())
-                                    <select id="sizeDropdown">
+                                    <select id="sizeDropdown" name="selectedSize" required>
                                         <label>Size Available:</label>
-                                        <option value="" >Select Size</option>
+                                        <option value="" disabled selected >Select Size</option>
                                             @if($product->sizes)
                                                 @foreach ($product->sizes as $size)
                                                     <option value="{{$size->id}}">{{$size->size}}</option required>
@@ -258,7 +258,8 @@
                                     </select>
                                 @else
                                 @endif
-                            </div><br>
+                            </div>
+                            <br>
                             
 
 

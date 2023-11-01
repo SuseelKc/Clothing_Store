@@ -3,21 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Sizes;
+use App\Models\Category;
 use App\Models\Products;
 use App\Models\OrderMaster;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Category;
 
 class CartController extends Controller
 {
     //
     public function addtocart(Request $request, $id)
     {
+<<<<<<< HEAD
+       
+=======
+>>>>>>> 2239ba68f232f2837c569c3046fc36e233c63c72
         $product = Products::findOrFail($id);
         $user_id = Auth::user()->id;
+
+        // $size_id=Sizes::where('product_id',$id)-->id();
+        // dd($size_id);
+
+        if($request->input('selectedSize')){
+        $selectedSize = $request->input('selectedSize');
+        $cartItem = Cart::where('product_id', $id)->where('user_id', $user_id)->where('size_id', $selectedSize)->first();
+        }    
+        else{
+            $cartItem = Cart::where('product_id', $id)->where('user_id', $user_id)->first();
+        }
     
-        $cartItem = Cart::where('product_id', $id)->where('user_id', $user_id)->first();
+        // $cartItem = Cart::where('product_id', $id)->where('user_id', $user_id)->first();
     
         if ($cartItem) {
             $quantityInCart = $cartItem->quantity;
@@ -47,6 +63,16 @@ class CartController extends Controller
                 $cart->user_id = $user_id;
                 $cart->quantity = $request->quantity;
                 $cart->price = $cart->rate * $cart->quantity;
+
+                // size
+                if($request->input('selectedSize')){
+                    $selectedSize = $request->input('selectedSize');
+                    // dd($selectedSize);
+                    $cart->size_id = $selectedSize;
+                    // dd($cart->size);                    
+                }
+                // 
+
                 $cart->save();
                 return redirect('/cart');
                 toast('Product added to cart!', 'success');
