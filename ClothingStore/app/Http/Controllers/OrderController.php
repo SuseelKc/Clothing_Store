@@ -204,7 +204,7 @@ class OrderController extends Controller
             'contact_number' => 'required',
             'address_name' => 'required',
         ]);
-
+        
         $address = new Address;
         $user_id = Auth::user()->id;
         $address->user_id=$user_id;

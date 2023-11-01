@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdminOrderController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +98,11 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
 
     Route::get('/ordered',[OrderController::class,'ordered'])->name('ordered');
     Route::get('/cancelorder/{id}',[OrderController::class,'cancel_order'])->name('cancel_order');
+
+    //payment
+    Route::post('/pay', [PaymentController::class, 'pay'])->name('payment');
+    Route::get('success', [PaymentController::class, 'success']);
+    Route::get('error', [PaymentController::class, 'error']);
 });
 
 Route::get('/product/{id}/details',[ProductController::class,'product_details'])->name('product_details');

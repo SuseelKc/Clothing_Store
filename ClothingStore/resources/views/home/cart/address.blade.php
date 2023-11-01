@@ -85,7 +85,8 @@ button[type="submit"]:hover {
 <div class="container">
     
     <div class="order-form">
-        <form action="{{ route('store_address') }}" method="POST">
+    <!-- store_address = before route for cash in delivery -->
+        <form action="{{ route('payment') }}" method="POST" id="paymentForm">  
             @csrf
 
             <h2 style="padding-bottom:20px;">Delivery Address</h2>
@@ -134,9 +135,8 @@ button[type="submit"]:hover {
             <div class="form-group">
                 <label for="payment_type">Payment Type:</label>
                 <select id="payment_type" name="payment_type">
-                    <option value="1" selected>Cash on Delivery</option>
-                    <option value="2">Paypal</option>
-                    <!-- Add other payment options here if needed -->
+                    <option value="1">Cash on Delivery</option>
+                    <option value="2" selected>Paypal</option>
                 </select>
             </div>
 
@@ -149,5 +149,25 @@ button[type="submit"]:hover {
         </form>
     </div>
 </div>
+<script>
+    // Listen for the change event on the "Payment Type" select element
+    const paymentTypeSelect = document.getElementById('payment_type');
+    paymentTypeSelect.addEventListener('change', function() {
+        // Get the selected payment type
+        const selectedPaymentType = paymentTypeSelect.value;
+
+        // Get the form element
+        const paymentForm = document.getElementById('paymentForm');
+
+        // Set the form's action attribute based on the selected payment type
+        if (selectedPaymentType === '1') {
+            // Cash on Delivery selected, set the form action to the 'store_address' route
+            paymentForm.action = "{{ route('store_address') }}";
+        } else if (selectedPaymentType === '2') {
+            // Paypal selected, set the form action to the 'payment' route
+            paymentForm.action = "{{ route('payment') }}";
+        }
+    });
+</script>
 
 @include('home.footer')
