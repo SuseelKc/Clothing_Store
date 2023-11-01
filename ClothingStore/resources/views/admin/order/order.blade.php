@@ -93,6 +93,7 @@
                                 @if($address->type ==1)
                                  Cash on delivery
                                 @else
+                                 Paypal
                                 @endif
                             </div>    
                         </div> 
