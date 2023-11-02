@@ -307,11 +307,11 @@
                         <div class="product-price">
                             @if($relatedProduct->discounted_price != null)
                                 <div class="original-price">
-                                Original Price: Rs. {{$relatedProduct->price}}
+                                Original Price: $ {{$relatedProduct->price}}
                                 </div>
-                                Offer Price: Rs. {{ $relatedProduct->discounted_price }}
+                                Offer Price: $ {{ $relatedProduct->discounted_price }}
                             @else
-                                Price: Rs. {{ $relatedProduct->price }}
+                                Price: $ {{ $relatedProduct->price }}
                             @endif
                         </div>
                     </a>

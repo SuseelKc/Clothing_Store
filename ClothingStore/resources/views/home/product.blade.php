@@ -137,9 +137,9 @@
                         </div>
 
                         @if($products->discounted_price)
-                            <div class="product__price">Rs. {{$products->discounted_price}}</div>
+                            <div class="product__price">$ {{$products->discounted_price}}</div>
                         @else
-                            <div class="product__price">Rs. {{$products->price}}</div>
+                            <div class="product__price">$ {{$products->price}}</div>
                         @endif
                         
                     </div>

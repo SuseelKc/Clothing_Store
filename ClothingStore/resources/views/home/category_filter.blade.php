@@ -92,7 +92,7 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <div class="product__price">Rs. {{$products->price}}</div>
+                        <div class="product__price">$ {{$products->price}}</div>
                         
                     </div>
                 </div>

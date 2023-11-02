@@ -15,25 +15,15 @@ class CartController extends Controller
     //
     public function addtocart(Request $request, $id)
     {
-<<<<<<< HEAD
-       
-=======
->>>>>>> 03fc33983850e781de42113c8eeaec29834484d6
         $product = Products::findOrFail($id);
         $user_id = Auth::user()->id;
-
-        // $size_id=Sizes::where('product_id',$id)-->id();
-        // dd($size_id);
-
-        if($request->input('selectedSize')){
-        $selectedSize = $request->input('selectedSize');
-        $cartItem = Cart::where('product_id', $id)->where('user_id', $user_id)->where('size_id', $selectedSize)->first();
-        }    
-        else{
+    
+        if ($request->input('selectedSize')) {
+            $selectedSize = $request->input('selectedSize');
+            $cartItem = Cart::where('product_id', $id)->where('user_id', $user_id)->where('size_id', $selectedSize)->first();
+        } else {
             $cartItem = Cart::where('product_id', $id)->where('user_id', $user_id)->first();
         }
-    
-        // $cartItem = Cart::where('product_id', $id)->where('user_id', $user_id)->first();
     
         if ($cartItem) {
             $quantityInCart = $cartItem->quantity;
@@ -43,48 +33,39 @@ class CartController extends Controller
     
             if ($request->quantity <= $remainingQuantity) {
                 $cartItem->quantity += $request->quantity;
+                $cartItem->rate = $product->discounted_price ?: $product->price; // Use discounted price if available, otherwise use regular price
                 $cartItem->price = $cartItem->rate * $cartItem->quantity;
                 $cartItem->save();
                 toast('Product added to cart!', 'success');
                 return redirect('/cart');
             } else {
-                $errorMessage = "You can add at most {$product->quantity} of this product.";
+                $errorMessage = "You can add at most {$remainingQuantity} more of this product.";
                 return redirect()->back()->with('error', $errorMessage);
-                // toast("You can add at most {$remainingQuantity} more of this product.", 'error');
             }
-    
-            // return redirect('/cart');
         } else {
-            // New item in the cart
             if ($request->quantity <= $product->quantity) {
                 $cart = new Cart;
                 $cart->product_id = $id;
-                $cart->rate = $product->price; // Assuming the product price is used
+                $cart->rate = $product->discounted_price ?: $product->price; // Use discounted price if available, otherwise use regular price
                 $cart->user_id = $user_id;
                 $cart->quantity = $request->quantity;
                 $cart->price = $cart->rate * $cart->quantity;
-
-                // size
-                if($request->input('selectedSize')){
+    
+                if ($request->input('selectedSize')) {
                     $selectedSize = $request->input('selectedSize');
-                    // dd($selectedSize);
                     $cart->size_id = $selectedSize;
-                    // dd($cart->size);                    
                 }
-                // 
-
+    
                 $cart->save();
-                return redirect('/cart');
                 toast('Product added to cart!', 'success');
+                return redirect('/cart');
             } else {
                 $errorMessage = "You can add at most {$product->quantity} of this product.";
                 return redirect()->back()->with('error', $errorMessage);
-                // toast("You can add at most {$product->quantity} of this product.", 'error');
             }
-    
-            // return redirect('/cart');
         }
     }
+    
     
 
     public function showCart(){
