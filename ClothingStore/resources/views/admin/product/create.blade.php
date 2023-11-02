@@ -25,28 +25,36 @@
                         <div class="col-md mb-3">
                             <label>Name
                             </label>
-                            <input type="text" name="name" class="form-control"/>
+                            <input type="text" name="name" style="width: 780px;" class="form-control"/>
                             @error('name') 
                             <small class="text-danger">{{$message}}</small>
                             @enderror
                         </div>
 
-                        <div class="col-md mb-3">
+                        {{-- <div class="col-md mb-3">
                             <label>Quantity
                             </label>
                             <input type="number" name="quantity" id="quantity" class="form-control" min="1" step="1"/>
                             @error('quantity') 
                             <small class="text-danger">{{$message}}</small>
                             @enderror  
-                        </div>
+                        </div> --}}
                     </div>
                     <br>
+                    <div class="row" style="float: left; margin-left: 8px;" >
+                        <label>Quantity
+                        </label><br>
+                        <input style="width: 200px; float: right; margin-left: 10px;" type="number" name="quantity" id="quantity" class="form-control" min="1" step="1"/>
+                        @error('quantity') 
+                        <small class="text-danger">{{$message}}</small>
+                        @enderror  
+                    </div>  <br>  <br> <br> 
 
                     <div class="row">
                            <div class="col-md mb-3">
                             <div class="row">
 
-                                <div class="col" style="float: right; margin-left: 790px;">
+                                <div class="row" style="float: right; margin-left: 10px;">
                                     {{-- <label for="enableInput">Enable Size:</label>&nbsp;<input type="checkbox" id="enableInput" onchange="toggleInputFields()" /> --}}
                                     <div>
                                         <label>Available Sizes
@@ -64,35 +72,38 @@
                                     </div>  
                                     <br>
                                 </div>&nbsp;&nbsp;&nbsp;
-                                <br><br>
-                                <div class="row" style="float: right; width: 900px; margin-left: 800px;" >
-                                    
-                                                <label for="small">Small:</label><br>
-                                                <input type="number" name="small" id="small" class="form-control" style="width: 100px;" oninput="validateTotal()"  min="1" step="1" readonly />
-                                                <br>
-                                                <label for="medium">Medium:</label><br>
-                                                <input type="number" name="medium" id="medium" class="form-control" style="width: 100px;" oninput="validateTotal()" min="1" step="1" readonly />
-                                                <br>
-                                                <label for="large">Large:</label><br>
-                                                <input type="number" name="large" id="large" class="form-control"  style="width: 100px;" oninput="validateTotal()" min="1" step="1" readonly />
-                                                <br>
-                                                <label for="xl">XL:</label><br>
-                                                <input type="number" name="xl" id="xl" class="form-control"  style="width: 100px;"oninput="validateTotal()" min="1" step="1" readonly />
-                                                <br>
-                                                <label for="xxl">XXL:</label><br>
-                                                <input type="number" name="xxl" id="xxl" class="form-control" style="width: 100px;" oninput="validateTotal()" min="1" step="1" readonly />
+                                <br><br><br>
 
-
-                                                <div id="error-message" style="color: red;"></div>
-                                                <br>
-                                                <br><br>
-                                </div>
                              </div>
                             </div>
                     </div> 
-                    <br>
+                  
+                    <div class="row" style="float: left; width: 900px; margin-left: 1px;" >
+                                    
+                        <label for="small">Small:</label><br>
+                        <input type="number" name="small" id="small" class="form-control" style="width: 100px;" oninput="validateTotal()"  min="1" step="1" readonly />
+                        <br>
+                        <label for="medium">Medium:</label><br>
+                        <input type="number" name="medium" id="medium" class="form-control" style="width: 100px;" oninput="validateTotal()" min="1" step="1" readonly />
+                        <br>
+                        <label for="large">Large:</label><br>
+                        <input type="number" name="large" id="large" class="form-control"  style="width: 100px;" oninput="validateTotal()" min="1" step="1" readonly />
+                        <br>
+                        <label for="xl">XL:</label><br>
+                        <input type="number" name="xl" id="xl" class="form-control"  style="width: 100px;"oninput="validateTotal()" min="1" step="1" readonly />
+                        <br>
+                        <label for="xxl">XXL:</label><br>
+                        <input type="number" name="xxl" id="xxl" class="form-control" style="width: 100px;" oninput="validateTotal()" min="1" step="1" readonly />
 
-                      
+
+                        <div id="error-message" style="color: red;"></div>
+                        <br>
+                        <br><br>
+            </div>
+            <br><br><br><br><br>
+            <div>
+            </div>
+            <br>          
                     <div class="row">
                         <div class="col-md mb-3">
                             <label>Price
