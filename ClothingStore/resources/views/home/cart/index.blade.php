@@ -121,16 +121,16 @@ h6.bold-and-big {
                     </div>
                 </div>
                 @if ($totalAmount > 0)
-                <div class="row text-left mt-4">
-                    <div>
-                    <h6 class="bold-and-big">Proceed To Order</h6>
+                    <div class="row text-left mt-4">
+                        <div>
+                        <h6 class="bold-and-big">Proceed To Order</h6>
+                        </div>
+                        
+                        <div style="margin-left: 40px; margin-top:8px">
+                        <a href="{{route('address', ['totalAmount' => $totalAmount])}}" class="btn btn-primary" style="height: 40px;">Proceed</a>
+                        </div>    
+                        
                     </div>
-                    
-                    <div style="margin-left: 40px; margin-top:8px">
-                    <a href="{{route('address', ['totalAmount' => $totalAmount])}}" class="btn btn-primary" style="height: 40px;">Proceed</a>
-                    </div>    
-                    
-                </div>
                 @endif
             </div>
         </div>

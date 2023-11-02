@@ -178,7 +178,7 @@
                             @csrf
                             {{-- User --}}
                             @auth
-                            <input name="user_id" value="{{auth()->user()->id}}" style="display: none;">
+                                <input name="user_id" value="{{auth()->user()->id}}" style="display: none;">
                             @endauth
 
                             {{-- Product title --}}
@@ -261,8 +261,6 @@
                             </div>
                             <br>
                             
-
-
                             <div class="row">
                                 <div class="col-md-6" style="padding-left:150px;">
                                     <input type="number" name="quantity" value="1" min="1" value="{{$product->quantity}}" style="width: 100px;" required>

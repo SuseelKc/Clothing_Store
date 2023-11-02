@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Cart;
-use App\Models\Products;
 use App\Models\Order;
+use App\Models\Sizes;
 use App\Models\Address;
+use App\Models\Category;
+use App\Models\Products;
+use App\Enums\PaymentType;
 use App\Models\OrderMaster;
+use Illuminate\Http\Request;
+use App\Enums\DeliveryStatus;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use App\Enums\PaymentType;
-use App\Enums\DeliveryStatus;
-use App\Models\Category;
 
 class OrderController extends Controller
 {
     public function cash_order(Request $request)
     {
-        
+       
         $user_id = Auth::user()->id;
         //order_master
         $order_master = new OrderMaster;
@@ -40,8 +41,7 @@ class OrderController extends Controller
         $data = Cart::where('user_id','=',$user_id)->get();
 
         foreach($data as $data)
-        {
-                        
+        {                       
             $order = new Order;
             $order->user_id = $data->user_id;
             $order->product_id = $data->product_id;
@@ -55,6 +55,19 @@ class OrderController extends Controller
                 return redirect()->back();
             }
             $product->quantity=($product->quantity)-($data->quantity);
+            
+            // // reduce the quantity of the certain sizes
+            
+            
+            
+            
+            // $product->small
+            // $product->medium
+            // $product->large
+            // $product->xl
+            // $product->xxl
+            // 
+
             $product->update();
 
             $order->quantity = $data->quantity;
@@ -121,6 +134,12 @@ class OrderController extends Controller
             $addQty=$orderID['quantity'];
             $productqty=$product->quantity;
             $product->quantity= $addQty+ $productqty;
+            // sizes
+           
+                $size=Sizes::findOrFail($orderID['size_id']);
+                $sizeName=$size->size;
+                $product->$sizeName=$product->$sizeName+($addQty); 
+            // 
             $product->update();
         }
 
@@ -141,6 +160,7 @@ class OrderController extends Controller
     public function storeaddress(Request $request)
     {
 
+        // dd("here");
         // ordered
         $user_id = Auth::user()->id;
         //order_master
@@ -168,6 +188,7 @@ class OrderController extends Controller
             $order = new Order;
             $order->user_id = $data->user_id;
             $order->product_id = $data->product_id;
+            $order->size_id=$data->size_id;
             
             $order->order_master_id = $order_master->id;
 
@@ -178,6 +199,19 @@ class OrderController extends Controller
                 return redirect()->back();
             }
             $product->quantity=($product->quantity)-($data->quantity);
+
+        //  size 
+            if($data->size_id){
+               
+                $size=Sizes::findOrFail($data->size_id);
+                $sizeName=$size->size;
+
+                $product->$sizeName=$product->$sizeName-($data->quantity);
+
+            }
+        // 
+
+
             $product->update();
 
             $order->quantity = $data->quantity;

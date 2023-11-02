@@ -66,9 +66,9 @@
                                             <label>Large :</label>  
                                             <input type="checkbox" name="size[]" value="large" id="enablelarge" onchange="toggleInputFieldslarge()"/>&emsp;&emsp;&emsp;&emsp;&emsp;  
                                             <label>XL :</label>  
-                                            <input type="checkbox" name="size[]" value="XL"  id="enableXL" onchange="toggleInputFieldsXL()"/>&emsp;&emsp;&emsp;&emsp;    
+                                            <input type="checkbox" name="size[]" value="xl"  id="enableXL" onchange="toggleInputFieldsXL()"/>&emsp;&emsp;&emsp;&emsp;    
                                             <label>XXL :</label>  
-                                            <input type="checkbox" name="size[]" value="XXL" id="enableXXL" onchange="toggleInputFieldsXXL()"/>    
+                                            <input type="checkbox" name="size[]" value="xxl" id="enableXXL" onchange="toggleInputFieldsXXL()"/>    
                                     </div>  
                                     <br>
                                 </div>&nbsp;&nbsp;&nbsp;
