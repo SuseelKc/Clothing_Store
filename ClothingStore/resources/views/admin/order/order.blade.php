@@ -143,9 +143,11 @@
                         <tr>
                             <th>ID</th>
                             <th>Product</th>
+                            
                             <th>Quantity</th>
-                            <th>Rate</th>
                             <th>Size</th>
+                            <th>Rate</th>
+                         
                             <th>Total Amount</th>
                         </tr>
                     </thead>
@@ -171,7 +173,7 @@
                         @endforeach
 
                         <tr>
-                            <td colspan="4" align="right"><strong>Grand Total:</strong></td>
+                            <td colspan="5" align="right"><strong>Grand Total:</strong></td>
                             <td>{{$grandTotal}}</td>
                         </tr>
                     </tbody>
