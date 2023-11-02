@@ -125,6 +125,7 @@
                 <tr>
                     <th>Image</th>
                     <th>Product Name</th>
+                    <th>Size</th>
                     <th>Quantity</th>
                     <th>Rate</th>
                     <th>Total Price</th>
@@ -140,6 +141,7 @@
                         alt="Product Image" />
                     </td>
                     <td>{{ $order->product->name }}</td>
+                    <td>{{ $order->sizes->size }}</td>
                     <td>{{ $order->quantity }}</td>
                     <td>Rs. {{ $order->rate }}</td>
                     <td>Rs. {{ $order->amount }}</td>
