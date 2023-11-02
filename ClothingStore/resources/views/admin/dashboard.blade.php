@@ -175,7 +175,7 @@
             <div class="box-bg totalrevenue-box">
                 <div class="box-content">
                     <i class="mdi mdi-cash-usd menu-icon"></i>
-                    <h2>Rs. {{ $totalrevenue }}</h2>
+                    <h2>$ {{ $totalrevenue }}</h2>
                     <p>Total Revenue</p>
                 </div>
             </div>

@@ -111,7 +111,7 @@ h6.bold-and-big {
                                             Continue Shopping
                                         </a>  
                                         <div class="text-right" style="padding-right:70px;">
-                                            <strong>Total Amount:</strong> Rs. {{$totalAmount}} 
+                                            <strong>Total Amount:</strong> $ {{$totalAmount}} 
                                         </div>
                                         @endif
                                     </td>
