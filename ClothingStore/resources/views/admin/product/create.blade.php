@@ -34,12 +34,63 @@
                         <div class="col-md mb-3">
                             <label>Quantity
                             </label>
-                            <input type="number" name="quantity" class="form-control"/>
+                            <input type="number" name="quantity" id="quantity" class="form-control" min="1" step="1"/>
                             @error('quantity') 
                             <small class="text-danger">{{$message}}</small>
-                            @enderror
+                            @enderror  
                         </div>
                     </div>
+                    <br>
+
+                    <div class="row">
+                           <div class="col-md mb-3">
+                            <div class="row">
+
+                                <div class="col" style="float: right; margin-left: 790px;">
+                                    {{-- <label for="enableInput">Enable Size:</label>&nbsp;<input type="checkbox" id="enableInput" onchange="toggleInputFields()" /> --}}
+                                    <div>
+                                        <label>Available Sizes
+                                        </label><br><br>
+                                            <label>Small :</label>  
+                                            <input type="checkbox" name="size[]" value="small" id="enableInput"  onchange="toggleInputFields()" />&emsp;&emsp;&emsp;&emsp;  
+                                            <label>Medium :</label>  
+                                            <input type="checkbox" name="size[]" value="medium" id="enablemedium" onchange="toggleInputFieldsmedium()" />&emsp;&emsp;&emsp;&emsp;&emsp;  
+                                            <label>Large :</label>  
+                                            <input type="checkbox" name="size[]" value="large" id="enablelarge" onchange="toggleInputFieldslarge()"/>&emsp;&emsp;&emsp;&emsp;&emsp;  
+                                            <label>XL :</label>  
+                                            <input type="checkbox" name="size[]" value="XL"  id="enableXL" onchange="toggleInputFieldsXL()"/>&emsp;&emsp;&emsp;&emsp;    
+                                            <label>XXL :</label>  
+                                            <input type="checkbox" name="size[]" value="XXL" id="enableXXL" onchange="toggleInputFieldsXXL()"/>    
+                                    </div>  
+                                    <br>
+                                </div>&nbsp;&nbsp;&nbsp;
+                                <br><br>
+                                <div class="row" style="float: right; width: 900px; margin-left: 800px;" >
+                                    
+                                                <label for="small">Small:</label><br>
+                                                <input type="number" name="small" id="small" class="form-control" style="width: 100px;" oninput="validateTotal()"  min="1" step="1" readonly />
+                                                <br>
+                                                <label for="medium">Medium:</label><br>
+                                                <input type="number" name="medium" id="medium" class="form-control" style="width: 100px;" oninput="validateTotal()" min="1" step="1" readonly />
+                                                <br>
+                                                <label for="large">Large:</label><br>
+                                                <input type="number" name="large" id="large" class="form-control"  style="width: 100px;" oninput="validateTotal()" min="1" step="1" readonly />
+                                                <br>
+                                                <label for="xl">XL:</label><br>
+                                                <input type="number" name="xl" id="xl" class="form-control"  style="width: 100px;"oninput="validateTotal()" min="1" step="1" readonly />
+                                                <br>
+                                                <label for="xxl">XXL:</label><br>
+                                                <input type="number" name="xxl" id="xxl" class="form-control" style="width: 100px;" oninput="validateTotal()" min="1" step="1" readonly />
+
+
+                                                <div id="error-message" style="color: red;"></div>
+                                                <br>
+                                                <br><br>
+                                </div>
+                             </div>
+                            </div>
+                    </div> 
+                    <br>
 
                       
                     <div class="row">
@@ -120,21 +171,7 @@
                         <small class="text-danger">{{$message}}</small>
                         @enderror
                     </div>
-
-                    <div class="col-md mb-3">
-                        <label>Available Sizes
-                        </label><br><br>
-                         <label>Small :</label>  
-                         <input type="checkbox" name="size[]" value="small" />&emsp;
-                         <label>Medium :</label>  
-                         <input type="checkbox" name="size[]" value="medium"/>&emsp; 
-                         <label>Large :</label>  
-                         <input type="checkbox" name="size[]" value="large"/>&emsp; 
-                         <label>XL :</label>  
-                         <input type="checkbox" name="size[]" value="XL" />&emsp; 
-                         <label>XXL :</label>  
-                         <input type="checkbox" name="size[]" value="XXL" />    
-                    </div>    
+                  
                 </div>
 
                         <!-- <div class="col-md-6 mb-3">
@@ -151,6 +188,69 @@
             </div>
 
         </div>
-    </div>   
+    </div>
+    <script>
+        function toggleInputFields() {
+            var enableInputCheckbox = document.getElementById("enableInput");
+            var inputFields = document.querySelectorAll("#small");
+    
+            for (var i = 0; i < inputFields.length; i++) {
+                inputFields[i].readOnly = !enableInputCheckbox.checked;
+            }
+        }
+
+        function toggleInputFieldsmedium(){
+            var enableInputCheckbox = document.getElementById("enablemedium");
+            var inputFields = document.querySelectorAll("#medium");
+    
+            for (var i = 0; i < inputFields.length; i++) {
+                inputFields[i].readOnly = !enableInputCheckbox.checked;
+            }
+
+        }
+        function toggleInputFieldslarge(){
+            var enableInputCheckbox = document.getElementById("enablelarge");
+            var inputFields = document.querySelectorAll("#large");
+    
+            for (var i = 0; i < inputFields.length; i++) {
+                inputFields[i].readOnly = !enableInputCheckbox.checked;
+            }
+
+        }
+        function toggleInputFieldsXL(){
+            var enableInputCheckbox = document.getElementById("enableXL");
+            var inputFields = document.querySelectorAll("#xl");
+    
+            for (var i = 0; i < inputFields.length; i++) {
+                inputFields[i].readOnly = !enableInputCheckbox.checked;
+            }
+
+        }
+        function toggleInputFieldsXXL(){
+            var enableInputCheckbox = document.getElementById("enableXXL");
+            var inputFields = document.querySelectorAll("#xxl");
+    
+            for (var i = 0; i < inputFields.length; i++) {
+                inputFields[i].readOnly = !enableInputCheckbox.checked;
+            }
+
+        }
+    </script>  
+    <script>
+        function validateTotal() {
+            const input1 = parseInt(document.getElementById("small").value) || 0;
+            const input2 = parseInt(document.getElementById("medium").value) || 0;
+            const input3 = parseInt(document.getElementById("large").value) || 0;
+            const input4 = parseInt(document.getElementById("xl").value) || 0;
+            const input5 = parseInt(document.getElementById("xxl").value) || 0;
+            const total = parseInt(document.getElementById("quantity").value) || 0;
+
+            if (input1 + input2 + input3 + input4 + input5 !== total) {
+                document.getElementById("error-message").textContent = "Error: Please verify the quantity!";
+            } else {
+                document.getElementById("error-message").textContent = "";
+            }
+        }
+    </script> 
 
 @endsection

@@ -34,12 +34,51 @@
                         <div class="col-md mb-3">
                             <label>Quantity
                             </label>
-                            <input type="number" name="quantity" class="form-control" value="{{$product->quantity}}"/>
+                            <input type="number" name="quantity" id="quantity" class="form-control" value="{{$product->quantity}}"/>
                             @error('quantity') 
                             <small class="text-danger">{{$message}}</small>
                             @enderror
                         </div>
                     </div>
+                    <br>
+
+                    <div class="row">
+                        <div class="col-md mb-3">
+                         <div class="row" 
+                         {{-- style="float: right; width: 980px;" --}}
+                         >
+
+                             {{-- <div class="col" style="float: right; margin-left: 790px;">
+                                 <label for="enableInput">Enable Size:</label>&nbsp;<input type="checkbox" id="enableInput" onchange="toggleInputFields()" />
+                                 
+                             </div>&nbsp;&nbsp;&nbsp; --}}
+                             <br><br>
+                             <div class="row" style="float: right; width: 900px; margin-left: 800px;" >
+                                 
+                                    <label for="small">Small:</label><br>
+                                    <input type="number" name="small" id="small" class="form-control" style="width: 100px;" oninput="validateTotal()"  min="1" step="1" value="{{$product->small}}" />
+                                    <br>
+                                    <label for="medium">Medium:</label><br>
+                                    <input type="number" name="medium" id="medium" class="form-control" style="width: 100px;" oninput="validateTotal()" min="1" step="1" value="{{$product->medium}}" />
+                                    <br>
+                                    <label for="large">Large:</label><br>
+                                    <input type="number" name="large" id="large" class="form-control"  style="width: 100px;" oninput="validateTotal()" min="1" step="1" value="{{$product->large}}" />
+                                    <br>
+                                    <label for="xl">XL:</label><br>
+                                    <input type="number" name="xl" id="xl" class="form-control"  style="width: 100px;"oninput="validateTotal()" min="1" step="1" value="{{$product->xl}}" />
+                                    <br>
+                                    <label for="xxl">XXL:</label><br>
+                                    <input type="number" name="xxl" id="xxl" class="form-control" style="width: 100px;" oninput="validateTotal()" min="1" step="1" value="{{$product->xxl}}" />
+
+
+                                    <div id="error-message" style="color: red;"></div>
+                                    <br>
+                                    <br><br>
+                             </div>
+                          </div>
+                         </div>
+                 </div> 
+                 <br>
 
                       
                     <div class="row">
@@ -158,6 +197,32 @@
             </div>
 
         </div>
-    </div>   
+    </div>
+    {{-- <script>
+        function toggleInputFields() {
+            var enableInputCheckbox = document.getElementById("enableInput");
+            var inputFields = document.querySelectorAll("#small, #medium, #large, #xl, #xxl");
+    
+            for (var i = 0; i < inputFields.length; i++) {
+                inputFields[i].readOnly = !enableInputCheckbox.checked;
+            }
+        }
+    </script>   --}}
+    <script>
+        function validateTotal() {
+            const input1 = parseInt(document.getElementById("small").value) || 0;
+            const input2 = parseInt(document.getElementById("medium").value) || 0;
+            const input3 = parseInt(document.getElementById("large").value) || 0;
+            const input4 = parseInt(document.getElementById("xl").value) || 0;
+            const input5 = parseInt(document.getElementById("xxl").value) || 0;
+            const total = parseInt(document.getElementById("quantity").value) || 0;
+
+            if (input1 + input2 + input3 + input4 + input5 !== total) {
+                document.getElementById("error-message").textContent = "Error: Please verify the quantity!";
+            } else {
+                document.getElementById("error-message").textContent = "";
+            }
+        }
+    </script>    
 
 @endsection

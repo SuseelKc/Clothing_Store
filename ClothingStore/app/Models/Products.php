@@ -22,8 +22,16 @@ class Products extends Model
         'discounted_price',
         'color',
         'tags',
-       
         'category_id',
+        // size
+        'small',
+        'medium',
+        'large',
+        'xl',
+        'xxl'
+        // 
+
+
     ];
 
     public function category()
