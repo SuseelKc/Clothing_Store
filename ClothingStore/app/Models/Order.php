@@ -21,7 +21,8 @@ class Order extends Model
         'quantity',
         'rate',
         'amount',
-        'image'
+        'image',
+        'size_id'
     ];
     public function orderMaster()
     {
@@ -42,5 +43,5 @@ class Order extends Model
     {
         return $this->belongsTo(Sizes::class, 'size_id','id');
     }
-    
+   
 }

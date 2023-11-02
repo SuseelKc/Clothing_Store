@@ -55,19 +55,6 @@ class OrderController extends Controller
                 return redirect()->back();
             }
             $product->quantity=($product->quantity)-($data->quantity);
-            
-            // // reduce the quantity of the certain sizes
-            
-            
-            
-            
-            // $product->small
-            // $product->medium
-            // $product->large
-            // $product->xl
-            // $product->xxl
-            // 
-
             $product->update();
 
             $order->quantity = $data->quantity;

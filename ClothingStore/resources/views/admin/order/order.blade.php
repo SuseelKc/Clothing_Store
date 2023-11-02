@@ -145,6 +145,7 @@
                             <th>Product</th>
                             <th>Quantity</th>
                             <th>Rate</th>
+                            <th>Size</th>
                             <th>Total Amount</th>
                         </tr>
                     </thead>
@@ -163,6 +164,7 @@
                                 <td>{{$order->id}}</td>
                                 <td>{{$order->product->name}}</td>
                                 <td>{{$order->quantity}}</td>
+                                <td>{{$order->sizes->size}}</td>
                                 <td>{{$order->rate}}</td>
                                 <td>{{$totalAmount}}</td>
                             </tr>
