@@ -28,7 +28,13 @@ h6.bold-and-big {
 }
     </style>
     <h6 class="bold-and-big">Cart</h6>
-
+{{--  --}}
+@if(session('danger'))
+    <div class="alert alert-danger">
+        {{ session('danger') }}
+    </div>
+@endif
+{{--  --}}
 
     <div class="container-fluid">
         <div class="row">
