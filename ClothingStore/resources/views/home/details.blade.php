@@ -198,12 +198,12 @@
                                 {{-- Discounted Price --}}
                                 <input type="number" name="price" class="form-control" value="{{$product->discounted_price}}" style="display: none;">
                                 {{-- Display Discounted Price --}}
-                                Discounted Price: Rs. {{$product->discounted_price}}
+                                Discounted Price: $ {{$product->discounted_price}}
                                 @else
                                 {{-- Original Price --}}
                                 <input type="number" name="price" class="form-control" value="{{$product->price}}" style="display: none;">
                                 {{-- Display Original Price --}}
-                                Price: Rs. {{$product->price}}
+                                Price: $ {{$product->price}}
                                 @endif
                             </div>
 
