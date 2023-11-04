@@ -104,7 +104,7 @@
                     <tbody>
                         <tr>
                             <td>Purchase Code: {{ $orderMaster->purchasecode }}</td>
-                            <td>Delivery Status: {{ \App\Enums\DeliveryStatus::getDescription($orderMaster->delivery_status) }}</td>
+                            <td>Delivery Status: <span style="background-color: lightblue;">{{ \App\Enums\DeliveryStatus::getDescription($orderMaster->delivery_status) }}</span></td>
                             <td>Payment Type: {{ \App\Enums\PaymentType::getDescription($orderMaster->payment_type) }}</td>
                             <td>Total Amount: Rs. {{ $orderMaster->totalamount }}</td>
                             <td>Placed order in: {{ $orderMaster->created_at }}</td>
