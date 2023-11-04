@@ -21,6 +21,7 @@ class CartController extends Controller
         if ($request->input('selectedSize')) {
             $selectedSize = $request->input('selectedSize');
             $cartItem = Cart::where('product_id', $id)->where('user_id', $user_id)->where('size_id', $selectedSize)->first();
+
         } else {
             $cartItem = Cart::where('product_id', $id)->where('user_id', $user_id)->first();
         }
@@ -29,7 +30,7 @@ class CartController extends Controller
             $quantityInCart = $cartItem->quantity;
             $availableQuantity = $product->quantity;
     
-            $remainingQuantity = $availableQuantity - $quantityInCart;
+            $remainingQuantity = $availableQuantity - $quantityInCart; 
     
             if ($request->quantity <= $remainingQuantity) {
                 $cartItem->quantity += $request->quantity;
@@ -39,6 +40,8 @@ class CartController extends Controller
                 toast('Product added to cart!', 'success');
                 return redirect('/cart');
             } else {
+                
+                
                 $errorMessage = "You can add at most {$remainingQuantity} more of this product.";
                 return redirect()->back()->with('error', $errorMessage);
             }
@@ -50,10 +53,27 @@ class CartController extends Controller
                 $cart->user_id = $user_id;
                 $cart->quantity = $request->quantity;
                 $cart->price = $cart->rate * $cart->quantity;
+
     
                 if ($request->input('selectedSize')) {
                     $selectedSize = $request->input('selectedSize');
                     $cart->size_id = $selectedSize;
+                
+                //size
+                $size = Sizes::findOrFail($selectedSize);
+                $sizeName= $size->size;
+                $productSizeQty=$product->$sizeName;
+                
+                // 
+                    if($productSizeQty<($request->quantity)){
+                        
+
+                        $errorMessage = "'{$sizeName}' Size out of stock ordered! Order less than {$productSizeQty}";
+                        return redirect()->back()->with('error', $errorMessage);
+                    }
+
+                // 
+
                 }
     
                 $cart->save();
