@@ -198,11 +198,7 @@ class OrderController extends Controller
                 if(($data->quantity)>($product->$sizeName)||($data->quantity)<=0){
                   
                     // toast('Out Of stock Ordered!','danger');
-<<<<<<< HEAD
                     return redirect('/cart')->with('danger', $sizeName.' Size Out Of stock Ordered! Order less than'.$product->$sizeName );
-=======
-                    return redirect('/cart')->with('danger', $sizeName.'Size Out Of stock Ordered! Order less than '.$product->$sizeName );
->>>>>>> 8a4bc464663f5accefff68b3a290541c4348427f
                 }
                 $product->$sizeName=$product->$sizeName-($data->quantity);
 
