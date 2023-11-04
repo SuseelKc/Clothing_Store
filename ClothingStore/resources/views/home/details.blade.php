@@ -209,7 +209,7 @@
 
                             @if($product->discounted_price != null)
                                 <div class="original-price">
-                                    Original Price: Rs. {{$product->price}}
+                                    Original Price: $ {{$product->price}}
                                 </div>
                             @endif
 

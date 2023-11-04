@@ -165,7 +165,11 @@ class OrderController extends Controller
         $totalAmount = $user->cart->sum('price');
     
         $order_master->totalamount = $totalAmount;
-        $order_master->save();
+        // 
+
+
+        // 
+        // $order_master->save();
         //for order data
         $data = Cart::where('user_id','=',$user_id)->get();
 
@@ -177,7 +181,7 @@ class OrderController extends Controller
             $order->product_id = $data->product_id;
             $order->size_id=$data->size_id;
             
-            $order->order_master_id = $order_master->id;
+            // $order->order_master_id = $order_master->id;
 
             $product=Products::findOrfail($data->product_id);
             // dd($product);
@@ -189,36 +193,38 @@ class OrderController extends Controller
             }
             $product->quantity=($product->quantity)-($data->quantity);
 
-        //  size 
-            if($data->size_id){
-               
-                $size=Sizes::findOrFail($data->size_id);
-                $sizeName=$size->size;
+            //  size 
+                if($data->size_id){
+                
+                    $size=Sizes::findOrFail($data->size_id);
+                    $sizeName=$size->size;
 
-                if(($data->quantity)>($product->$sizeName)||($data->quantity)<=0){
-                  
-                    // toast('Out Of stock Ordered!','danger');
-                    return redirect('/cart')->with('danger', $sizeName.' Size Out Of stock Ordered! Order less than'.$product->$sizeName );
+                    if(($data->quantity)>($product->$sizeName)||($data->quantity)<=0){
+                    
+                        // toast('Out Of stock Ordered!','danger');
+                        return redirect('/cart')->with('danger',$product->name.' '.$sizeName.' Size Out Of stock Ordered! Order less than'.$product->$sizeName );
+                    }
+                    $product->$sizeName=$product->$sizeName-($data->quantity);
+
+
                 }
-                $product->$sizeName=$product->$sizeName-($data->quantity);
+            // 
+            $order_master->save();
+            $order->order_master_id = $order_master->id;    
 
+            // 
+                $product->update();
 
-            }
-        // 
+                $order->quantity = $data->quantity;
+            
+                $order->rate = $data->rate;
+                $order->amount = $data->price;
+                $order->save();
 
-
-            $product->update();
-
-            $order->quantity = $data->quantity;
-           
-            $order->rate = $data->rate;
-            $order->amount = $data->price;
-            $order->save();
-
-            //for deleting same data in cart
-            $cart_id = $data->id;
-            $cart = Cart::find($cart_id);
-            $cart->delete();
+                //for deleting same data in cart
+                $cart_id = $data->id;
+                $cart = Cart::find($cart_id);
+                $cart->delete();
         }
 
         //    

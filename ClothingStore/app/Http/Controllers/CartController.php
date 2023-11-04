@@ -68,7 +68,7 @@ class CartController extends Controller
                     if($productSizeQty<($request->quantity)){
                         
 
-                        $errorMessage = "'{$sizeName}' Size out of stock ordered! Order less than {$productSizeQty}";
+                        $errorMessage = " {$product->name} product '{$sizeName}' Size out of stock ordered! Order less than {$productSizeQty}";
                         return redirect()->back()->with('error', $errorMessage);
                     }
 
