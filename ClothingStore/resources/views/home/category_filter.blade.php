@@ -1,6 +1,6 @@
 @include('home.header')
 <section class="product spad">
-    <style>
+<style>
 /* CSS to hide the "Details" button by default */
 .details-button {
     display: none;
@@ -42,7 +42,7 @@
     background-color: #007bff; /* Blue background color */
     color: #fff; /* White text color */
 }
-    </style>
+</style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
 
     <div class="container">

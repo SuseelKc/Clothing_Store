@@ -223,6 +223,22 @@
                 document.getElementById("error-message").textContent = "";
             }
         }
+    </script>
+    <script>
+        function validateTotal() {
+            // Get values from the "Small," "Medium," "Large," "XL," and "XXL" input fields
+            var smallValue = parseInt(document.getElementById("small").value) || 0;
+            var mediumValue = parseInt(document.getElementById("medium").value) || 0;
+            var largeValue = parseInt(document.getElementById("large").value) || 0;
+            var xlValue = parseInt(document.getElementById("xl").value) || 0;
+            var xxlValue = parseInt(document.getElementById("xxl").value) || 0;
+    
+            // Calculate the total
+            var total = smallValue + mediumValue + largeValue + xlValue + xxlValue;
+    
+            // Update the "quantity" input field with the total value
+            document.getElementById("quantity").value = total;
+        }
     </script>    
 
 @endsection
