@@ -169,6 +169,9 @@
                                 <td>
                                     @if($order->size)
                                     {{$order->sizes->size}}
+                                    @else
+                                        No Size Available
+                                    @endif
                                 </td>
                                 <td>{{$order->rate}}</td>
                                 <td>{{$totalAmount}}</td>

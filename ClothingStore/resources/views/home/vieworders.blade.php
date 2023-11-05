@@ -141,6 +141,7 @@
                         {{-- src="{{asset('uploads/products/'.$order->productImage[0]->image)}}"  --}}
                         alt="Product Image" />
                         @else
+                         No Image Available
                         @endif
                     </td>
                     <td>{{ $order->product->name }}</td>
@@ -148,7 +149,7 @@
                         @if ($order->sizes)
                             {{ $order->sizes->size }}
                         @else
-                            No Size
+                            No Size Available
                         @endif
                     </td>
                     <td>{{ $order->quantity }}</td>
