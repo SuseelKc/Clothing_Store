@@ -141,7 +141,13 @@
                         alt="Product Image" />
                     </td>
                     <td>{{ $order->product->name }}</td>
-                    <td>{{ $order->sizes->size }}</td>
+                    <td>
+                        @if ($order->sizes)
+                            {{ $order->sizes->size }}
+                        @else
+                            No Size
+                        @endif
+                    </td>
                     <td>{{ $order->quantity }}</td>
                     <td>Rs. {{ $order->rate }}</td>
                     <td>Rs. {{ $order->amount }}</td>
