@@ -7,21 +7,21 @@
                         <div class="banner__text">
                             <span>Nepal Store</span>
                             <h1>Summer Collection New Arrivals</h1>
-                            <a href="#">Shop now</a>
+                            <a href="{{route('view_product')}}">Shop now</a>
                         </div>
                     </div>
                     <div class="banner__item">
                         <div class="banner__text">
                             <span>Nepal Store</span>
                             <h1>The Project Jacket</h1>
-                            <a href="#">Shop now</a>
+                            <a href="{{route('view_product')}}">Shop now</a>
                         </div>
                     </div>
                     <div class="banner__item">
                         <div class="banner__text">
                             <span>The Chloe Collection</span>
                             <h1>The Project Jacket</h1>
-                            <a href="#">Shop now</a>
+                            <a href="{{route('view_product')}}">Shop now</a>
                         </div>
                     </div>
                 </div>
