@@ -40,8 +40,7 @@ class CartController extends Controller
                 toast('Product added to cart!', 'success');
                 return redirect('/cart');
             } else {
-                
-                
+                                
                 $errorMessage = "You can add at most {$remainingQuantity} more of this product.";
                 return redirect()->back()->with('error', $errorMessage);
             }

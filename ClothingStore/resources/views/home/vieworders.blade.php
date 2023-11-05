@@ -135,12 +135,16 @@
                 @foreach($orderMaster->orders as $order)
                 <tr>
                     <td>
+                        @if($order->productImage->isNotEmpty())
                         <img 
                         src="{{ asset($order->productImage[0]->image) }}"
                         {{-- src="{{asset('uploads/products/'.$order->productImage[0]->image)}}"  --}}
                         alt="Product Image" />
+                        @else
+                        @endif
                     </td>
                     <td>{{ $order->product->name }}</td>
+                    
                     <td>{{ $order->sizes->size }}</td>
                     <td>{{ $order->quantity }}</td>
                     <td>Rs. {{ $order->rate }}</td>

@@ -172,7 +172,7 @@ class OrderController extends Controller
         // $order_master->save();
         //for order data
         $data = Cart::where('user_id','=',$user_id)->get();
-
+        
         foreach($data as $data)
         {
                         
