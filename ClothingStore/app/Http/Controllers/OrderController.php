@@ -107,33 +107,34 @@ class OrderController extends Controller
 
    
     public function cancel_order($id)
-    { 
-       
-        $Order=OrderMaster::findOrFail($id);
-       
-        $orderID=Order::where('order_master_id',$id)->get()->toArray();
-       
-       
-        foreach ($orderID as $orderID){
-            $userId=Auth::user()->id;
-            $prodID=Order::where('id','=',$orderID)->value('product_id');
-            $product=Products::findOrFail($prodID);
-            $addQty=$orderID['quantity'];
-            $productqty=$product->quantity;
-            $product->quantity= $addQty+ $productqty;
-            // sizes
-           
-                $size=Sizes::findOrFail($orderID['size_id']);
-                $sizeName=$size->size;
-                $product->$sizeName=$product->$sizeName+($addQty); 
-            // 
+    {
+        $Order = OrderMaster::findOrFail($id);
+    
+        $orderIDs = Order::where('order_master_id', $id)->get();
+    
+        foreach ($orderIDs as $orderID) {
+            $userId = Auth::user()->id;
+            $prodID = $orderID->product_id;
+            $product = Products::findOrFail($prodID);
+            $addQty = $orderID->quantity;
+            $productqty = $product->quantity;
+            $product->quantity = $addQty + $productqty;
+    
+            // Check if the order has a size_id
+            if (!is_null($orderID->size_id)) {
+                $size = Sizes::findOrFail($orderID->size_id);
+                $sizeName = $size->size;
+                $product->$sizeName = $product->$sizeName + $addQty;
+            }
+    
             $product->update();
         }
-
+    
         $Order->delivery_status = DeliveryStatus::Cancelled;
         $Order->update();
         return redirect()->back();
     }
+    
     public function address()
     {
         $cart = Cart::where('user_id', auth()->id())->get();
