@@ -166,7 +166,13 @@
                                 <td>{{$order->id}}</td>
                                 <td>{{$order->product->name}}</td>
                                 <td>{{$order->quantity}}</td>
-                                <td>{{$order->sizes->size}}</td>
+                                <td>
+                                    @if ($order->sizes)
+                                        {{ $order->sizes->size }}
+                                    @else
+                                        No Size
+                                    @endif
+                                </td>
                                 <td>{{$order->rate}}</td>
                                 <td>{{$totalAmount}}</td>
                             </tr>

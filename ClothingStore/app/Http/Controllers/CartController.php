@@ -88,13 +88,30 @@ class CartController extends Controller
     
     
 
-    public function showCart(){
+    public function showCart()
+    {
+        $user = Auth::user();
         $categories = Category::all();
-        $cart=Cart::all();
-        $countcart = Cart::where('user_id', auth()->id())->count();
-        $countorder = OrderMaster::where('user_id', auth()->id())->count();
-        return view('home.cart.index',compact('cart','countcart','countorder','categories'));
+        
+        // Get the user's cart items
+        $cart = Cart::where('user_id', $user->id)->get();
+        
+        // Check if the products in the cart are still available in the required quantity
+        foreach ($cart as $cartItem) {
+            $product = Products::find($cartItem->product_id);
+            if ($product && $cartItem->quantity > $product->quantity) {
+                // Product no longer available in the required quantity, remove the cart item
+                $cartItem->delete();
+            }
+        }
+        $cart = Cart::where('user_id', $user->id)->get();
+        
+        $countcart = Cart::where('user_id', $user->id)->count();
+        $countorder = OrderMaster::where('user_id', $user->id)->count();
+        
+        return view('home.cart.index', compact('cart', 'countcart', 'countorder', 'categories'));
     }
+    
 
     public function delete($id){
 
