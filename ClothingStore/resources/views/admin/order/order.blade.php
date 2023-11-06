@@ -167,8 +167,8 @@
                                 <td>{{$order->product->name}}</td>
                                 <td>{{$order->quantity}}</td>
                                 <td>
-                                    @if($order->size)
-                                    {{$order->sizes->size}}
+                                    @if($order->sizes)
+                                        {{$order->sizes->size}}
                                     @else
                                         No Size Available
                                     @endif
