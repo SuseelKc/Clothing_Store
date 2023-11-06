@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Order;
+use App\Models\Sizes;
 use App\Models\Address;
 use App\Models\Products;
 use App\Models\OrderMaster;
@@ -56,6 +57,16 @@ class AdminOrderController extends Controller
             $addQty=$orderID['quantity'];
             $productqty=$product->quantity;
             $product->quantity= $addQty+ $productqty;
+
+             // Check if the order has a size_id
+             if (!is_null($orderID['size_id'])) {
+                // $id=$orderID['size_id'];
+                $size = Sizes::findOrFail($orderID['size_id']);
+                $sizeName = $size->size;
+                $product->$sizeName = $product->$sizeName + $addQty;
+            }
+
+
             $product->update();
         }
         // 

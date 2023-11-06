@@ -167,13 +167,8 @@
                                 <td>{{$order->product->name}}</td>
                                 <td>{{$order->quantity}}</td>
                                 <td>
-<<<<<<< HEAD
-                                    @if($order->sizes)
-                                        {{$order->sizes->size}}
-=======
                                     @if ($order->sizes)
                                         {{ $order->sizes->size }}
->>>>>>> 09af35381ca961d8916b81625ff263be53e820ad
                                     @else
                                         No Size
                                     @endif
