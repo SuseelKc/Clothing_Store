@@ -58,12 +58,12 @@ class CartController extends Controller
                     $selectedSize = $request->input('selectedSize');
                     $cart->size_id = $selectedSize;
                 
-                //size
-                $size = Sizes::findOrFail($selectedSize);
-                $sizeName= $size->size;
-                $productSizeQty=$product->$sizeName;
-                
-                // 
+                    //size
+                    $size = Sizes::findOrFail($selectedSize);
+                    $sizeName= $size->size;
+                    $productSizeQty=$product->$sizeName;
+                    
+                    // 
                     if($productSizeQty<($request->quantity)){
                         
 
@@ -89,6 +89,7 @@ class CartController extends Controller
 
     public function showCart()
     {
+       
         $user = Auth::user();
         $categories = Category::all();
         
@@ -97,10 +98,27 @@ class CartController extends Controller
         
         // Check if the products in the cart are still available in the required quantity
         foreach ($cart as $cartItem) {
+          
             $product = Products::find($cartItem->product_id);
+            // 
+            // dd( $product);
+            // dd($product->size_id);
+            $size=Sizes::where('id',$cartItem->size_id)->first();
+            // dd($size);
+            if(!is_null($size)){
+                // dd("here");
+                 $sizeName=$size->size;
+                 $productSizeQty=$product->$sizeName;
+
+                 if($product && $cartItem->quantity > $productSizeQty){
+                    $cartItem->delete();
+                } 
+            }
+                               
             if ($product && $cartItem->quantity > $product->quantity) {
                 // Product no longer available in the required quantity, remove the cart item
-                $cartItem->delete();
+                              
+                    $cartItem->delete();
             }
         }
         $cart = Cart::where('user_id', $user->id)->get();
