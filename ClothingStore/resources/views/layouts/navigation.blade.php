@@ -23,7 +23,11 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
-
+                        @if(Auth::user()->usertype=='1')
+                        <x-dropdown-link :href="url('admin/dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-dropdown-link>
+                        @endif
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -36,11 +40,7 @@
                             
                         </form>
 
-                        @if(Auth::user()->usertype=='1')
-                        <x-dropdown-link :href="url('admin/dashboard')">
-                            {{ __('Dashboard') }}
-                        </x-dropdown-link>
-                        @endif
+                        
 
                     </x-slot>
                 </x-dropdown>
