@@ -106,7 +106,7 @@
                             <td>Purchase Code: {{ $orderMaster->purchasecode }}</td>
                             <td>Delivery Status: <span style="background-color: lightblue;">{{ \App\Enums\DeliveryStatus::getDescription($orderMaster->delivery_status) }}</span></td>
                             <td>Payment Type: {{ \App\Enums\PaymentType::getDescription($orderMaster->payment_type) }}</td>
-                            <td>Total Amount: Rs. {{ $orderMaster->totalamount }}</td>
+                            <td>Total Amount: $ {{ $orderMaster->totalamount }}</td>
                             <td>Placed order in: {{ $orderMaster->created_at }}</td>
                         </tr>
                     </tbody>
@@ -153,8 +153,8 @@
                         @endif
                     </td>
                     <td>{{ $order->quantity }}</td>
-                    <td>Rs. {{ $order->rate }}</td>
-                    <td>Rs. {{ $order->amount }}</td>
+                    <td>$ {{ $order->rate }}</td>
+                    <td>$ {{ $order->amount }}</td>
                 </tr>
                 @endforeach
             </tbody>
