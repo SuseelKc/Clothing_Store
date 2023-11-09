@@ -248,6 +248,11 @@
     
             for (var i = 0; i < inputFields.length; i++) {
                 inputFields[i].readOnly = !enableInputCheckbox.checked;
+            // if not checked  clear fields
+            if (!enableInputCheckbox.checked) {
+                  inputFields[i].value = '';
+             }
+            //     
             }
         }
 
@@ -257,6 +262,11 @@
     
             for (var i = 0; i < inputFields.length; i++) {
                 inputFields[i].readOnly = !enableInputCheckbox.checked;
+            // if not checked  clear fields
+            if (!enableInputCheckbox.checked) {
+                  inputFields[i].value = '';
+             }
+            //     
             }
 
         }
@@ -266,6 +276,11 @@
     
             for (var i = 0; i < inputFields.length; i++) {
                 inputFields[i].readOnly = !enableInputCheckbox.checked;
+            // if not checked  clear fields
+            if (!enableInputCheckbox.checked) {
+                  inputFields[i].value = '';
+             }
+            //     
             }
 
         }
@@ -275,6 +290,11 @@
     
             for (var i = 0; i < inputFields.length; i++) {
                 inputFields[i].readOnly = !enableInputCheckbox.checked;
+            // if not checked  clear fields
+            if (!enableInputCheckbox.checked) {
+                  inputFields[i].value = '';
+             }
+            //     
             }
 
         }
@@ -284,6 +304,11 @@
     
             for (var i = 0; i < inputFields.length; i++) {
                 inputFields[i].readOnly = !enableInputCheckbox.checked;
+            // if not checked  clear fields
+            if (!enableInputCheckbox.checked) {
+                  inputFields[i].value = '';
+             }
+            //     
             }
 
         }

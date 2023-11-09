@@ -153,9 +153,9 @@ class ProductController extends Controller
 
                 $size = Sizes::where('product_id',$id)->where('size',$selectedSize)->first(); 
                 if($size){             
-                $size->size=$selectedSize;
-                $size->product_id=$product->id;
-                $size->update();
+                    $size->size=$selectedSize;
+                    $size->product_id=$product->id;
+                    $size->update();
                 }
                 else{
 
