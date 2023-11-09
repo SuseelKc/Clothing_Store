@@ -85,8 +85,8 @@
                                  
                              </div>&nbsp;&nbsp;&nbsp; --}}
                              <br><br>
-                             <label style="margin-left: 500px;">Sizes(If Exists):</label><br>
-                             <div class="row" style="float: right; width: 900px; margin-left: 500px;" >
+                            
+                             <div class="row" style="float: right; width: 900px; margin-left: 10px;" >
                                  
                                     <label for="small">Small:</label><br>
                                     <input type="number" name="small" id="small" class="form-control" style="width: 100px;" oninput="validateTotal()"  min="1" step="1" value="{{$product->small}}" readonly/>
