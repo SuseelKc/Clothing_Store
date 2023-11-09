@@ -92,7 +92,11 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <div class="product__price">$ {{$products->price}}</div>
+                        @if($products->discounted_price)
+                            <div class="product__price">$ <s>{{$products->price}}</s> {{$products->discounted_price}}</div>
+                        @else
+                            <div class="product__price">$ {{$products->price}}</div>
+                        @endif
                         
                     </div>
                 </div>
