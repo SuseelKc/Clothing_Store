@@ -42,6 +42,38 @@
                     </div>
                     <br>
 
+                    {{--  --}}
+                    <div class="row">
+                        <div class="col-md mb-3">
+                         <div class="row">
+
+                             <div class="row" style="float: right; margin-left: 10px;">
+                                 {{-- <label for="enableInput">Enable Size:</label>&nbsp;<input type="checkbox" id="enableInput" onchange="toggleInputFields()" /> --}}
+                                 <div>
+                                     <label>Available Sizes
+                                     </label><br><br>
+                                         <label>Small :</label>  
+                                         <input type="checkbox" name="size[]" value="small" id="enableInput"  onchange="toggleInputFields()"  {{$product->small!= Null ? 'checked': ''}} />&emsp;&emsp;&emsp;&emsp;  
+                                         <label>Medium :</label>  
+                                         <input type="checkbox" name="size[]" value="medium" id="enablemedium" onchange="toggleInputFieldsmedium()" {{$product->medium != Null ? 'checked': ''}} />&emsp;&emsp;&emsp;&emsp;&emsp;  
+                                         <label>Large :</label>  
+                                         <input type="checkbox" name="size[]" value="large" id="enablelarge" onchange="toggleInputFieldslarge()" {{$product->large != Null ? 'checked': ''}}/>&emsp;&emsp;&emsp;&emsp;&emsp;  
+                                         <label>XL :</label>  
+                                         <input type="checkbox" name="size[]" value="xl"  id="enableXL" onchange="toggleInputFieldsXL()" {{$product->xl != Null ? 'checked': ''}}/>&emsp;&emsp;&emsp; &emsp;  
+                                         <label>XXL :</label>
+                                         <input type="checkbox" name="size[]" value="xxl" id="enableXXL" onchange="toggleInputFieldsXXL()" {{$product->xxl != Null ? 'checked': ''}} /> &emsp;&emsp;&emsp; 
+
+                                         
+                                 </div>  
+                                 <br>
+                             </div>&nbsp;&nbsp;&nbsp;
+                             <br><br><br>
+
+                          </div>
+                         </div>
+                 </div> 
+
+                    {{--  --}}
                     <div class="row">
                         <div class="col-md mb-3">
                          <div class="row" 
@@ -57,19 +89,19 @@
                              <div class="row" style="float: right; width: 900px; margin-left: 500px;" >
                                  
                                     <label for="small">Small:</label><br>
-                                    <input type="number" name="small" id="small" class="form-control" style="width: 100px;" oninput="validateTotal()"  min="1" step="1" value="{{$product->small}}" />
+                                    <input type="number" name="small" id="small" class="form-control" style="width: 100px;" oninput="validateTotal()"  min="1" step="1" value="{{$product->small}}" readonly/>
                                     <br>
                                     <label for="medium">Medium:</label><br>
-                                    <input type="number" name="medium" id="medium" class="form-control" style="width: 100px;" oninput="validateTotal()" min="1" step="1" value="{{$product->medium}}" />
+                                    <input type="number" name="medium" id="medium" class="form-control" style="width: 100px;" oninput="validateTotal()" min="1" step="1" value="{{$product->medium}}" readonly/>
                                     <br>
                                     <label for="large">Large:</label><br>
-                                    <input type="number" name="large" id="large" class="form-control"  style="width: 100px;" oninput="validateTotal()" min="1" step="1" value="{{$product->large}}" />
+                                    <input type="number" name="large" id="large" class="form-control"  style="width: 100px;" oninput="validateTotal()" min="1" step="1" value="{{$product->large}}" readonly/>
                                     <br>
                                     <label for="xl">XL:</label><br>
-                                    <input type="number" name="xl" id="xl" class="form-control"  style="width: 100px;"oninput="validateTotal()" min="1" step="1" value="{{$product->xl}}" />
+                                    <input type="number" name="xl" id="xl" class="form-control"  style="width: 100px;"oninput="validateTotal()" min="1" step="1" value="{{$product->xl}}" readonly/>
                                     <br>
                                     <label for="xxl">XXL:</label><br>
-                                    <input type="number" name="xxl" id="xxl" class="form-control" style="width: 100px;" oninput="validateTotal()" min="1" step="1" value="{{$product->xxl}}" />
+                                    <input type="number" name="xxl" id="xxl" class="form-control" style="width: 100px;" oninput="validateTotal()" min="1" step="1" value="{{$product->xxl}}" readonly/>
 
 
                                     <div id="error-message" style="color: red;"></div>
@@ -209,6 +241,53 @@
             }
         }
     </script>   --}}
+    <script>
+        function toggleInputFields() {
+            var enableInputCheckbox = document.getElementById("enableInput");
+            var inputFields = document.querySelectorAll("#small");
+    
+            for (var i = 0; i < inputFields.length; i++) {
+                inputFields[i].readOnly = !enableInputCheckbox.checked;
+            }
+        }
+
+        function toggleInputFieldsmedium(){
+            var enableInputCheckbox = document.getElementById("enablemedium");
+            var inputFields = document.querySelectorAll("#medium");
+    
+            for (var i = 0; i < inputFields.length; i++) {
+                inputFields[i].readOnly = !enableInputCheckbox.checked;
+            }
+
+        }
+        function toggleInputFieldslarge(){
+            var enableInputCheckbox = document.getElementById("enablelarge");
+            var inputFields = document.querySelectorAll("#large");
+    
+            for (var i = 0; i < inputFields.length; i++) {
+                inputFields[i].readOnly = !enableInputCheckbox.checked;
+            }
+
+        }
+        function toggleInputFieldsXL(){
+            var enableInputCheckbox = document.getElementById("enableXL");
+            var inputFields = document.querySelectorAll("#xl");
+    
+            for (var i = 0; i < inputFields.length; i++) {
+                inputFields[i].readOnly = !enableInputCheckbox.checked;
+            }
+
+        }
+        function toggleInputFieldsXXL(){
+            var enableInputCheckbox = document.getElementById("enableXXL");
+            var inputFields = document.querySelectorAll("#xxl");
+    
+            for (var i = 0; i < inputFields.length; i++) {
+                inputFields[i].readOnly = !enableInputCheckbox.checked;
+            }
+
+        }
+    </script>  
     <script>
         function validateTotal() {
             const input1 = parseInt(document.getElementById("small").value) || 0;

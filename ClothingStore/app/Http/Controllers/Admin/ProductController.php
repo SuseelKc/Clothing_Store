@@ -145,6 +145,30 @@ class ProductController extends Controller
 
         $product->update();
 
+        // 
+        $selectedSizes = $request->input('size');
+        // dd($selectedSizes);
+        if($selectedSizes){
+            foreach($selectedSizes as $selectedSize){
+
+                $size = Sizes::where('product_id',$id)->where('size',$selectedSize)->first(); 
+                if($size){             
+                $size->size=$selectedSize;
+                $size->product_id=$product->id;
+                $size->update();
+                }
+                else{
+
+                    $newSize= new Sizes;
+                    $newSize->size=$selectedSize;
+                    $newSize->product_id=$product->id;
+                    $newSize->save();
+
+                }
+
+            }
+        }
+        // 
         
         if($request->hasfile('image')){
 
