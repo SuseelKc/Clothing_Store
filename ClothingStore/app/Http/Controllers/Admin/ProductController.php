@@ -53,13 +53,6 @@ class ProductController extends Controller
         $product->xl=$request->input('xl');
         $product->xxl=$request->input('xxl');
 
-        // $product->small=$validatedData['small'];
-        // $product->medium=$validatedData['medium'];
-        // $product->large=$validatedData['large'];
-        // $product->xl=$validatedData['xl'];
-        // $product->xxl=$validatedData['xxl'];
-        // 
-
         $product->category_id=$request->category;
         $product->save();
         // size
@@ -147,7 +140,6 @@ class ProductController extends Controller
 
         // 
         $selectedSizes = $request->input('size');
-        // dd($selectedSizes);
         if($selectedSizes){
             foreach($selectedSizes as $selectedSize){
 
@@ -167,6 +159,18 @@ class ProductController extends Controller
                 }
 
             }
+        }
+        //    
+        $allSizes = ['small', 'medium', 'large', 'xl','xxl'];
+        $uncheckedSizes = array_diff($allSizes, $selectedSizes);
+        if($uncheckedSizes){
+           
+            foreach($uncheckedSizes as $uncheckedSize){
+                $size = Sizes::where('product_id',$id)->where('size',$uncheckedSize)->first();
+                if($size){
+                    $size->delete();
+                }
+        }
         }
         // 
         
