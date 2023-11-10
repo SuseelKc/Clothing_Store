@@ -94,6 +94,8 @@ class PaymentController extends Controller
                 $orderMaster = new OrderMaster();
                 $orderMaster->user_id = Auth::user()->id;
                 $orderMaster->purchasecode = $this->PurchaseCode();
+                $purchase_code = $this->PurchaseCode(); 
+                session(['purchase_code' => $purchase_code]);
                 $orderMaster->payment_type = PaymentType::Paypal;
                 $orderMaster->totalamount = Auth::user()->cart->sum('price');
                 $orderMaster->save();
@@ -106,6 +108,7 @@ class PaymentController extends Controller
                     $order = new Order();
                     $order->user_id = $cartItem->user_id;
                     $order->product_id = $cartItem->product_id;
+                    $order->size_id=$cartItem->size_id;
                     $order->order_master_id = $orderMaster->id;
     
                     $product = Products::findOrFail($cartItem->product_id);
