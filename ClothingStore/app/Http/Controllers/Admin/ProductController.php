@@ -140,6 +140,7 @@ class ProductController extends Controller
 
         // 
         $selectedSizes = $request->input('size');
+    //   dd(type($selectedSizes));
         if($selectedSizes){
             foreach($selectedSizes as $selectedSize){
 
@@ -161,18 +162,29 @@ class ProductController extends Controller
             }
         }
         //    
-        $allSizes = ['small', 'medium', 'large', 'xl','xxl'];
-        $uncheckedSizes = array_diff($allSizes, $selectedSizes);
-        if($uncheckedSizes){
-           
+       $allSizes=['small','medium','large','xl','xxl'];
+
+       $uncheckedSizes=[];
+       
+       if(is_array($selectedSizes)){  
+
+            $uncheckedSizes=array_diff($allSizes,$selectedSizes); 
             foreach($uncheckedSizes as $uncheckedSize){
-                $size = Sizes::where('product_id',$id)->where('size',$uncheckedSize)->first();
-                if($size){
-                    $size->delete();
-                }
+            if(Sizes::where('product_id',$id)->where('size',$uncheckedSize)->first()){
+                Sizes::where('product_id',$id)->where('size',$uncheckedSize)->first()->delete();
+            }
+            }
         }
+       if($selectedSizes === null){
+
+        if(Sizes::where('product_id',$id)->get()){
+            Sizes::where('product_id',$id)->delete();
         }
-        // 
+        
+
+
+       }  
+       
         
         if($request->hasfile('image')){
 
