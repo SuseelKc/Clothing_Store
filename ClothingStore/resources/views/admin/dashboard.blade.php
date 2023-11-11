@@ -182,7 +182,38 @@
         </a>
     </div>
 
+</div><br><br>
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<h3><b>Chart for Order Processing, Delivered, and Cancelled</b></h3><br>
+<div class="row">
+    <div class="col-md-6">
+        <canvas id="combinedChart" width="300" height="300"></canvas>
+    </div>
 </div>
+
+
+<!-- JavaScript script for creating a combined pie chart -->
+<script>
+    // Data for pie chart
+    var processingData = {{ $processing }};
+    var deliveredData = {{ $delivered }};
+    var cancelledData = {{ $cancelled }};
+    var remainingData = {{ $order - $processing - $delivered - $cancelled }};
+
+    // Create a combined pie chart
+    var combinedChart = new Chart(document.getElementById('combinedChart'), {
+        type: 'pie',
+        data: {
+            labels: ['Processing', 'Delivered', 'Cancelled', 'Remaining'],
+            datasets: [{
+                data: [processingData, deliveredData, cancelledData, remainingData],
+                backgroundColor: ['#3b5ca9', '#3dc436', '#ec482b', '#f0f0f0'],
+            }],
+        },
+    });
+</script>
+
 
 @endsection
    
