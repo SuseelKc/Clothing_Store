@@ -177,12 +177,9 @@ class ProductController extends Controller
         }
        if($selectedSizes === null){
 
-        if(Sizes::where('product_id',$id)->get()){
-            Sizes::where('product_id',$id)->delete();
-        }
-        
-
-
+            if(Sizes::where('product_id',$id)->get()){
+                Sizes::where('product_id',$id)->delete();
+            }
        }  
        
         

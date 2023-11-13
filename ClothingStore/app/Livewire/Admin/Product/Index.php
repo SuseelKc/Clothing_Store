@@ -28,7 +28,7 @@ class Index extends Component
 
     public function destroyProduct(){
         try{
-            // dd("Here");
+            
             if(Order::where('product_id',$this->prod_id)->exists()){
                 toast("Can't delete used in order!",'error');
                 
