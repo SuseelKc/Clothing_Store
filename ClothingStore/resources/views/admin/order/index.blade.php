@@ -54,8 +54,7 @@
                                 <th>Total Amount</th>
                                 <th>Status</th>
                                 <th>Payment Type</th>
-                                {{-- <th>Address</th>
-                                <th>Contact</th> --}}
+                                
                                 <th>Action</th>
                               
                             </tr>   
@@ -70,8 +69,6 @@
                                 <td>{{$order->totalamount}}</td>
                                 <td>{{\App\Enums\DeliveryStatus::getDescription($order->delivery_status) }}</td>
                                 <td>{{\App\Enums\PaymentType::getDescription($order->payment_type)}}</td>
-                                {{-- <td>{{$order->address->state}}</td> --}}
-                                {{-- <td></td> --}}
                                 <td>
                                     
                                     @if($order->delivery_status == DeliveryStatus::Delivered)

@@ -107,12 +107,12 @@ class CategoryController extends Controller
     public function delete($id){
         try{
             $category=Category::findOrFail($id);
-
+            $category->delete();
             $path='uploads/category/'.$category->image;
             if(File::exists($path)){
                 File::delete($path);
             }
-            $category->delete();
+            
             toast('Category Deleted!','info');
         }catch(QueryException $e){
             toast('Cannot delete the category, it is used by products.', 'error');
