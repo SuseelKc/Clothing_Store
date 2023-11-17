@@ -11,6 +11,7 @@ use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Database\QueryException;
 use App\Http\Requests\ProductFormRequest;
 
 class ProductController extends Controller
@@ -108,6 +109,7 @@ class ProductController extends Controller
     }
 
     public function update(ProductFormRequest $request,$id){
+    try {
 
         $validatedData= $request->validated();
 
@@ -120,27 +122,30 @@ class ProductController extends Controller
         }
         // 
 
-        $product->name=$validatedData['name'];
-        $product->quantity=$validatedData['quantity'];
-        $product->price=$validatedData['price'];
-        $product->discounted_price=$validatedData['dis_price'];  
-        $product->description=$validatedData['description'];
-        $product->color=$validatedData['color'];
-        $product->tags=$validatedData['tags'];
-        $product->category_id=$request->category;
-        // size
-        $product->small=$request->input('small');
-        $product->medium=$request->input('medium');
-        $product->large=$request->input('large');
-        $product->xl=$request->input('xl');
-        $product->xxl=$request->input('xxl');
-        // 
+          // 
+          $selectedSizes = $request->input('size');
+          //    
+       $allSizes=['small','medium','large','xl','xxl'];
 
-        $product->update();
+       $uncheckedSizes=[];
+       
+       if(is_array($selectedSizes)){  
 
-        // 
-        $selectedSizes = $request->input('size');
-    //   dd(type($selectedSizes));
+            $uncheckedSizes=array_diff($allSizes,$selectedSizes); 
+            foreach($uncheckedSizes as $uncheckedSize){
+            if(Sizes::where('product_id',$id)->where('size',$uncheckedSize)->first()){
+                Sizes::where('product_id',$id)->where('size',$uncheckedSize)->first()->delete();
+            }
+            }
+        }
+       if($selectedSizes === null){
+
+            if(Sizes::where('product_id',$id)->get()){
+                Sizes::where('product_id',$id)->delete();
+            }
+       }         
+     // 
+    
         if($selectedSizes){
             foreach($selectedSizes as $selectedSize){
 
@@ -161,28 +166,27 @@ class ProductController extends Controller
 
             }
         }
-        //    
-       $allSizes=['small','medium','large','xl','xxl'];
+    //
 
-       $uncheckedSizes=[];
-       
-       if(is_array($selectedSizes)){  
+        $product->name=$validatedData['name'];
+        $product->quantity=$validatedData['quantity'];
+        $product->price=$validatedData['price'];
+        $product->discounted_price=$validatedData['dis_price'];  
+        $product->description=$validatedData['description'];
+        $product->color=$validatedData['color'];
+        $product->tags=$validatedData['tags'];
+        $product->category_id=$request->category;
+        // size
+        $product->small=$request->input('small');
+        $product->medium=$request->input('medium');
+        $product->large=$request->input('large');
+        $product->xl=$request->input('xl');
+        $product->xxl=$request->input('xxl');
+        // 
 
-            $uncheckedSizes=array_diff($allSizes,$selectedSizes); 
-            foreach($uncheckedSizes as $uncheckedSize){
-            if(Sizes::where('product_id',$id)->where('size',$uncheckedSize)->first()){
-                Sizes::where('product_id',$id)->where('size',$uncheckedSize)->first()->delete();
-            }
-            }
-        }
-       if($selectedSizes === null){
+        $product->update();
 
-            if(Sizes::where('product_id',$id)->get()){
-                Sizes::where('product_id',$id)->delete();
-            }
-       }  
-       
-        
+         
         if($request->hasfile('image')){
 
 
@@ -205,7 +209,12 @@ class ProductController extends Controller
  
         toast('Product updated sucessfully!','success');
         return back();
-        // ->with('message','Product Updated sucessfully!');
+    } catch (QueryException $e) {
+        // Handle database exception (e.g., foreign key constraint violation)
+        toast('Error updating product sizes in order already exists !', 'error');
+        return back();
+    } 
+       
     }
     public function product_details($id){
         $categories = Category::all();
