@@ -1,2 +1,2 @@
-Amity Store is the cloting store which is an e commerce website for clothing line. This ecommerce project is made on Laravel, Here the admin can add edit products through admin dashboard and users/buyers can see the product details size qty adn more in the webpage.
+Amity Store is the cloting store which is an e commerce website for clothing line. This ecommerce project is made on Laravel, Here the admin can add,edit products through admin dashboard and users/buyers can see the product details size,qty and more in the webpage.
 Amity Store is the site made by us to our client which is an clothing store. The webstie is still in developming stage and is beginner stage more updates will be given time to time to make it more simple and easire to users and admin.
