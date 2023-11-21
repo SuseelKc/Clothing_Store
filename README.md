@@ -29,3 +29,6 @@ Cart Preview
 
 Delivery Order Location Before Order Preview
 ![DeliveryOrder address](https://github.com/SuseelKc/Clothing_Store/assets/139630872/6839f89c-ec7a-40f4-a116-5dd19a270932)
+
+User/Buyer Order Details after purchase View
+![UserOrderdetails](https://github.com/SuseelKc/Clothing_Store/assets/139630872/6c871a2d-8359-4437-b728-2507ac489a94)
