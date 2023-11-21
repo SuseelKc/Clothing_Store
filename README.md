@@ -23,3 +23,6 @@ Each Product Detail View
 
 User/Admin LogIn 
 ![useradmin;ogin](https://github.com/SuseelKc/Clothing_Store/assets/139630872/84dfb322-4fe8-4e14-9d23-2638ff98fbe6)
+
+Cart Preview
+![userscart](https://github.com/SuseelKc/Clothing_Store/assets/139630872/2340ac3c-1150-4d01-b6bb-7b90bf157bb7)
