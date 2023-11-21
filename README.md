@@ -26,3 +26,6 @@ User/Admin LogIn
 
 Cart Preview
 ![userscart](https://github.com/SuseelKc/Clothing_Store/assets/139630872/2340ac3c-1150-4d01-b6bb-7b90bf157bb7)
+
+Delivery Order Location Before Order Preview
+![DeliveryOrder address](https://github.com/SuseelKc/Clothing_Store/assets/139630872/6839f89c-ec7a-40f4-a116-5dd19a270932)
