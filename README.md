@@ -10,6 +10,9 @@ Initial Guest View
 Product View
 ![users2](https://github.com/SuseelKc/Clothing_Store/assets/139630872/ce7477fa-201f-41f2-87cd-690ae3efa2d9)
 
+![Screenshot 2023-11-22 001637](https://github.com/SuseelKc/Clothing_Store/assets/139630872/ff38f4bc-2ae5-4697-af52-d6f570426671)
+
+
 Product Category-Wise View
 ![user3](https://github.com/SuseelKc/Clothing_Store/assets/139630872/5516828f-fe75-460d-8ee6-4d8e885b4379)
 
