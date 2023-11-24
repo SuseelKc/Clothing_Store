@@ -148,7 +148,6 @@ class OrderController extends Controller
     public function storeaddress(Request $request)
     {
 
-        // dd("here");
         // ordered
         $user_id = Auth::user()->id;
         //order_master
