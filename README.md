@@ -1,7 +1,9 @@
 Amity Store is an e-commerce platform for a clothing line, developed on the Laravel framework. Our software allows administrators to effortlessly add and edit products through the dedicated admin dashboard. Users and buyers can conveniently access product details, including size, quantity, and more, directly on the webpage. Currently in the early stages of development, Amity Store will receive regular updates to enhance simplicity and user-friendliness for both administrators and users.
 
 Payment Option
+
 1.Cash on delivery 
+
 2.Online Payment(Paypal)
 
 Screenshots
