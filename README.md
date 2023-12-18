@@ -77,3 +77,5 @@ Users who are registered their account can also be edited or deleted by admin
 ![Users](https://github.com/SuseelKc/Clothing_Store/assets/139630872/e0ab3171-c4c8-472b-9bd5-fb7ac13025c5)
 
 
+More updates will be given frequetly for more feature to be added.
+
