@@ -49,7 +49,8 @@ Payment successful
 
 
 User/Buyer Order Details after purchase View
-![UserOrderdetails](https://github.com/SuseelKc/Clothing_Store/assets/139630872/6c871a2d-8359-4437-b728-2507ac489a94)
+<img width="1347" alt="Screenshot 2023-12-28 at 09 56 44" src="https://github.com/SuseelKc/Clothing_Store/assets/52075871/bde1c86d-1970-42d5-badf-61075d1bf3c4">
+
 
 
 -----------------Admin View-------------------
