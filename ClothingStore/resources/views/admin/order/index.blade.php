@@ -67,7 +67,22 @@
                                 <td>{{$order->id}}</td>
                                 <td>{{$order->purchasecode}}</td>
                                 <td>{{$order->totalamount}}</td>
-                                <td>{{\App\Enums\DeliveryStatus::getDescription($order->delivery_status) }}</td>
+                                <td>
+                                    @if($order->delivery_status == DeliveryStatus::Delivered)
+                                        Delivered
+                                    
+                                    @elseif($order->delivery_status==DeliveryStatus::Cancelled)
+                                        Cancelled
+                                    
+                                    @elseif($order->delivery_status==DeliveryStatus::Processing)
+                                        Processing
+                                    
+                                    @else
+                                    @endif
+
+
+                                    {{-- {{\App\Enums\DeliveryStatus::getDescription($order->delivery_status) }} --}}
+                                </td>
                                 <td>{{\App\Enums\PaymentType::getDescription($order->payment_type)}}</td>
                                 <td>
                                     
