@@ -80,12 +80,12 @@ Users who are registered their account can also be edited or deleted by admin
 
 ![Users](https://github.com/SuseelKc/Clothing_Store/assets/139630872/e0ab3171-c4c8-472b-9bd5-fb7ac13025c5)
 
-Payment in Paypal
+Payment through Paypal
 
 <img width="554" alt="Screenshot 2023-12-28 at 09 32 42" src="https://github.com/SuseelKc/Clothing_Store/assets/52075871/c1194641-7960-4653-ad33-3ee44cf15fd1">
+
 <img width="836" alt="Screenshot 2023-12-28 at 09 33 09" src="https://github.com/SuseelKc/Clothing_Store/assets/52075871/62fd8393-5c3e-455b-80fd-ebbb01b0ec6d">
 
-Payment successful
-<
-More updates will be given frequetly for more feature to be added.
+
+
 
