@@ -39,11 +39,10 @@ Cart Preview
 Delivery Order Location Before Order Preview
 ![DeliveryOrder address](https://github.com/SuseelKc/Clothing_Store/assets/139630872/6839f89c-ec7a-40f4-a116-5dd19a270932)
 
-img width="1153" alt="Screenshot 2023-12-28 at 09 33 26" src="https://github.com/SuseelKc/Clothing_Store/assets/52075871/1fe55a8a-5616-46a3-ba72-5bc9124b35cd">
-
 
 User/Buyer Order Details after purchase View
-<img width="1347" alt="Screenshot 2023-12-28 at 09 56 44" src="https://github.com/SuseelKc/Clothing_Store/assets/52075871/bde1c86d-1970-42d5-badf-61075d1bf3c4">
+
+![Screenshot 2024-01-07 161407](https://github.com/SuseelKc/Clothing_Store/assets/139630872/bc8d216f-e357-4b08-9d82-d8402e9dba12)
 
 
 
