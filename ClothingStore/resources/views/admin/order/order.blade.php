@@ -51,7 +51,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <div>
                             Status: 
-                            {{\App\Enums\DeliveryStatus::getDescription($orders->delivery_status)}}
+                            {{ \App\Enums\DeliveryStatus::getDescription((int) $orders->delivery_status) }}
                         </div>    
                     </div>   
                     <br>   <br>
@@ -100,7 +100,7 @@
                     
 
                     <div class="row float-right">
-                        @if($orders->delivery_status == DeliveryStatus::Delivered)
+                        @if((int) $orders->delivery_status === \App\Enums\DeliveryStatus::Delivered)
                             <a 
                             href="{{url('admin/order/'.$orders->id.'/cancel')}}"  method="get"
                             class="btn btn-danger btn-sm text-white float-right">Cancel Order</a>
@@ -109,7 +109,7 @@
                             href="{{url('admin/order/'.$orders->id.'/delete')}}"  method="get"
                             class="btn btn-danger btn-sm text-white float-right">Delete Order</a>
 
-                        @elseif($orders->delivery_status == DeliveryStatus::Cancelled)
+                        @elseif((int) $orders->delivery_status === \App\Enums\DeliveryStatus::Cancelled)
                             <form action="{{ url('admin/order/'.$orders->id.'/deliver') }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-success btn-sm text-white float-right">Delivered</button>

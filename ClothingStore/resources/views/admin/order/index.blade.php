@@ -68,25 +68,21 @@
                                 <td>{{$order->purchasecode}}</td>
                                 <td>{{$order->totalamount}}</td>
                                 <td>
-                                    @if($order->delivery_status == DeliveryStatus::Delivered)
+                                    @if((int)$order->delivery_status === \App\Enums\DeliveryStatus::Delivered)
                                         Delivered
-                                    
-                                    @elseif($order->delivery_status==DeliveryStatus::Cancelled)
+                                    @elseif((int)$order->delivery_status === \App\Enums\DeliveryStatus::Cancelled)
                                         Cancelled
-                                    
-                                    @elseif($order->delivery_status==DeliveryStatus::Processing)
+                                    @elseif((int)$order->delivery_status === \App\Enums\DeliveryStatus::Processing)
                                         Processing
-                                    
                                     @else
+                                        
                                     @endif
-
-
-                                    {{-- {{\App\Enums\DeliveryStatus::getDescription($order->delivery_status) }} --}}
                                 </td>
-                                <td>{{\App\Enums\PaymentType::getDescription($order->payment_type)}}</td>
+                                <td>{{ \App\Enums\PaymentType::getDescription((int)$order->payment_type) }}</td>
+                                
                                 <td>
                                     
-                                    @if($order->delivery_status == DeliveryStatus::Delivered)
+                                    @if((int)$order->delivery_status === \App\Enums\DeliveryStatus::Delivered)
                                          <a href="{{url('admin/order/'.$order->id.'/view')}}" class="btn btn-primary btn-sm text-white" >Details</a>
                                          <a 
                                         href="{{url('admin/order/'.$order->id.'/cancel')}}"
@@ -103,7 +99,7 @@
                                         data-delete-id="{{$order->id}}"
                                         >Delete Order</a>
 
-                                    @elseif($order->delivery_status==DeliveryStatus::Cancelled)
+                                    @elseif((int)$order->delivery_status === \App\Enums\DeliveryStatus::Cancelled)
                                         <a href="{{url('admin/order/'.$order->id.'/view')}}" class="btn btn-primary btn-sm text-white" >Details</a>
                                         <a 
                                         href="{{url('admin/order/'.$order->id.'/deliver')}}" 
