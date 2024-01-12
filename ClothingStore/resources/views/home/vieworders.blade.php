@@ -105,7 +105,7 @@
                         <tr>
                             <td>Purchase Code: {{ $orderMaster->purchasecode }}</td>
                             <td>Delivery Status: <span style="background-color: lightblue;">{{ \App\Enums\DeliveryStatus::getDescription((int) $orderMaster->delivery_status) }}</span></td>
-                            <td>Payment Type: {{ \App\Enums\PaymentType::getDescription($orderMaster->payment_type) }}</td>
+                            <td>Payment Type: {{ \App\Enums\PaymentType::getDescription((int) $orderMaster->payment_type) }}</td>
                             <td>Total Amount: $ {{ $orderMaster->totalamount }}</td>
                             <td>Placed order in: {{ $orderMaster->created_at }}</td>
                         </tr>
