@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Enums\DeliveryStatus;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -69,6 +70,11 @@ class OrderController extends Controller
             $cart->delete();
         }
         
+        Mail::send('order_placed_gmail', [], function ($message) use ($user) {
+            $message->to($user->email)
+                    ->subject('Thank You for Your Order');
+        });
+
         return Redirect::route('ordered');
     }
     private function PurchaseCode()
@@ -256,6 +262,11 @@ class OrderController extends Controller
         // $address->order_id=$order->id;
         $address->save();
 
+        Mail::send('order_placed_gmail', [], function ($message) use ($user) {
+            $message->to($user->email)
+                    ->subject('Thank You for Your Order');
+        });
+    
         return Redirect::route('ordered');
         // Redirect back to the address form or any other page
         // return redirect()->route('cash_order');
