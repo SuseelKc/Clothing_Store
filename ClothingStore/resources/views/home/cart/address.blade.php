@@ -137,18 +137,67 @@ button[type="submit"]:hover {
                 <select id="payment_type" name="payment_type">
                     <option value="1">Cash on Delivery</option>
                     <option value="2" selected>Paypal</option>
+                    <option value="3">Khalti</option>
                 </select>
             </div>
 
             <input type="hidden" name="totalAmount" value="{{ $totalAmount }}">
 
             <div class="form-group">
-                <button type="submit">Place Order</button>
+                <button type="button" id="placeOrderButton" style="background-color: green; color: white; padding: 10px 20px; border: none; border-radius: 4px; font-size: 18px; cursor: pointer;" onclick="showKhaltiPopup({{ $khaltiAmount }})">Place Order</button>
             </div>
 
         </form>
     </div>
 </div>
+<script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
+<script>
+    // Function to show Khalti checkout popup
+    function showKhaltiPopup(khaltiAmount) {
+        var config = {
+            "publicKey": "test_public_key_dc74e0fd57cb46cd93832aee0a390234",
+            "productIdentity": "1234567890",
+            "productName": "Dragon",
+            "productUrl": "http://gameofthrones.wikia.com/wiki/Dragons",
+            "paymentPreference": [
+                "KHALTI",
+                "EBANKING",
+                "MOBILE_BANKING",
+                "CONNECT_IPS",
+                "SCT"
+            ],
+            "eventHandler": {
+                onSuccess(payload) {
+                    console.log(payload);
+                },
+                onError(error) {
+                    console.log(error);
+                },
+                onClose() {
+                    console.log('widget is closing');
+                }
+            }
+        };
+
+        var checkout = new KhaltiCheckout(config);
+        checkout.show({ amount: khaltiAmount }); // Adjust amount as needed
+        setTimeout(() => {
+            config.eventHandler.onClose();
+        }, 2000);
+    }
+
+    // Add event listener to the "Place Order" button
+    document.getElementById("placeOrderButton").addEventListener("click", function() {
+        var selectedPaymentType = document.getElementById("payment_type").value;
+        if (selectedPaymentType === "3") {
+            // If Khalti is selected, show the Khalti checkout popup
+            showKhaltiPopup();
+        } else {
+            // Otherwise, submit the form
+            document.getElementById("paymentForm").submit();
+        }
+    });
+</script>
 <script>
     // Listen for the change event on the "Payment Type" select element
     const paymentTypeSelect = document.getElementById('payment_type');

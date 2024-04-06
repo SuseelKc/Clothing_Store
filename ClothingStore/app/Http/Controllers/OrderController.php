@@ -145,10 +145,11 @@ class OrderController extends Controller
     {
         $cart = Cart::where('user_id', auth()->id())->get();
         $totalAmount = $cart->sum('price'); 
+        $khaltiAmount = $totalAmount * 100;
         $categories = Category::all();
         $countcart = Cart::where('user_id', auth()->id())->count();
         $countorder = OrderMaster::where('user_id', auth()->id())->count();
-        return view('home.cart.address',compact('countcart','countorder','categories','totalAmount','cart'));
+        return view('home.cart.address',compact('countcart','countorder','categories','totalAmount','khaltiAmount','cart'));
     }
     
     public function storeaddress(Request $request)
