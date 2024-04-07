@@ -172,105 +172,57 @@
                 </div>
                 <div class="col-md-6">
                     <div class="product-details">
-                        <form 
-                            action="{{url('product/'.$product->id.'/cart')}}"
-                            method="get" enctype="multipart/form-data">
-                            @csrf
-                            {{-- User --}}
-                            @auth
-                                <input name="user_id" value="{{auth()->user()->id}}" style="display: none;">
-                            @endauth
+                    <form action="{{url('product/'.$product->id.'/cart')}}" method="get" enctype="multipart/form-data">
+                        @csrf
+                        {{-- Product title --}}
+                        <div class="product-title">
+                            <input type="text" name="name" class="form-control" value="{{$product->name}}" style="display: none;">
+                            <h2>{{$product->name}}</h2>
+                        </div>
 
-                            {{-- Product title --}}
-                            <div class="product-title">
-                                <input type="text" name="name" class="form-control" value="{{$product->name}}" style="display: none;">
-                                {{$product->name}}
-                            </div>
-
-                            {{-- Product ID --}}
-                            <div class="product_id">
-                                <input type="number" name="product_id" value="{{$product->id}}" style="display: none;">
-                            </div>
-
-                            {{-- Product Price --}}
-                            <div class="product-price">
-                                @if($product->discounted_price != null)
-                                {{-- Discounted Price --}}
-                                <input type="number" name="price" class="form-control" value="{{$product->discounted_price}}" style="display: none;">
-                                {{-- Display Discounted Price --}}
-                                Discounted Price: $ {{$product->discounted_price}}
-                                @else
-                                {{-- Original Price --}}
-                                <input type="number" name="price" class="form-control" value="{{$product->price}}" style="display: none;">
-                                {{-- Display Original Price --}}
-                                Price: $ {{$product->price}}
-                                @endif
-                            </div>
-
+                        {{-- Product Price --}}
+                        <div class="product-price">
                             @if($product->discounted_price != null)
-                                <div class="original-price">
-                                    Original Price: $ {{$product->price}}
-                                </div>
+                                <input type="number" name="price" class="form-control" value="{{$product->discounted_price}}" style="display: none;">
+                                <p><strong>Price:</strong> ${{$product->discounted_price}}</p>
+                                <p class="original-price">Original Price: ${{$product->price}}</p>
+                            @else
+                                <input type="number" name="price" class="form-control" value="{{$product->price}}" style="display: none;">
+                                <p><strong>Price:</strong> ${{$product->price}}</p>
                             @endif
+                        </div>
 
-                            {{-- Product Category --}}
-                            <div class="product-category">
-                                Category: {{$product->category->name}}
-                            </div>
+                        {{-- Product Category --}}
+                        <div class="product-category">
+                            <p><strong>Category:</strong> {{$product->category->name}}</p>
+                        </div>
 
-                            {{-- Product Description --}}
-                            <div class="product-description">
-                                Description: {{$product->description}}
-                                {{-- Description as a hidden input for form submission --}}
-                                <input type="text" name="description" class="form-control" value="{{$product->description}}" style="display: none;">
-                            </div>
+                        {{-- Product Description --}}
+                        <div class="product-description">
+                            <p><strong>Description:</strong> {{$product->description}}</p>
+                            <input type="text" name="description" class="form-control" value="{{$product->description}}" style="display: none;">
+                        </div>
 
-                            {{-- Product Quantity and Add to Cart Button --}}
-                            <div class="product-quantity" style="padding-bottom:20px;">
-                                Available Quantity: {{$product->quantity}}
-                            </div>
+                        {{-- Product Quantity and Add to Cart Button --}}
+                        <div class="product-quantity">
+                            <p><strong>Available Quantity:</strong> {{$product->quantity}}</p>
                             @if(session()->has('error'))
                                 <div class="alert alert-danger">
                                     {{ session('error') }}
                                 </div>
                             @endif
-
-                            {{-- size --}}
-                            {{-- <div class="size">
-                                @if($product->sizes->isNotEmpty())
-                                Available Sizes:
-                                    @foreach ($product->sizes as $size)
-                                        <button type="checkbox">{{$size->size}}</button><br>
-                                    @endforeach
-                                @else    
-                                @endif
-                            </div>     --}}
-                            <div class="size">
-                                @if($product->sizes->isNotEmpty())
-                                    <select id="sizeDropdown" name="selectedSize" required>
-                                        <label>Size Available:</label>
-                                        <option value="" disabled selected >Select Size</option>
-                                            @if($product->sizes)
-                                                @foreach ($product->sizes as $size)
-                                                    <option value="{{$size->id}}">{{$size->size}}</option required>
-                                                @endforeach
-                                            @endif
-                                    </select>
-                                @else
-                                @endif
-                            </div>
-                            <br>
-                            
                             <div class="row">
-                                <div class="col-md-6" style="padding-left:150px;">
+                                <div class="col-md-6">
                                     <input type="number" name="quantity" value="1" min="1" value="{{$product->quantity}}" style="width: 100px;" required>
                                 </div>
-                                <div class="col-md-6" style="padding-right:200px;">
-                                    <input type="submit" class="btn btn-danger" style="background-color: red;" value="Add To Cart">
+                                <div class="col-md-6">
+                                    <input type="submit" class="btn btn-danger add-to-cart-btn" value="Add To Cart">
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
+                </div>
+
                 </div>
             </div>
         </div>
