@@ -144,7 +144,7 @@ button[type="submit"]:hover {
             <input type="hidden" name="totalAmount" value="{{ $totalAmount }}">
 
             <div class="form-group">
-                <button type="button" id="placeOrderButton" style="background-color: green; color: white; padding: 10px 20px; border: none; border-radius: 4px; font-size: 18px; cursor: pointer;" onclick="showKhaltiPopup({{ $khaltiAmount }})">Place Order</button>
+                <button type="button" id="placeOrderButton" style="background-color: green; color: white; padding: 10px 20px; border: none; border-radius: 4px; font-size: 18px; cursor: pointer;">Place Order</button>
             </div>
 
         </form>
@@ -153,7 +153,7 @@ button[type="submit"]:hover {
 <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
 <script>
     // Function to show Khalti checkout popup
-    function showKhaltiPopup(khaltiAmount) {
+    function showKhaltiPopup() {
         var config = {
             "publicKey": "test_public_key_dc74e0fd57cb46cd93832aee0a390234",
             "productIdentity": "1234567890",
@@ -180,7 +180,7 @@ button[type="submit"]:hover {
         };
 
         var checkout = new KhaltiCheckout(config);
-        checkout.show({ amount: khaltiAmount }); // Adjust amount as needed
+        checkout.show({ amount: 20000 }); // Adjust amount as needed
         setTimeout(() => {
             config.eventHandler.onClose();
         }, 2000);

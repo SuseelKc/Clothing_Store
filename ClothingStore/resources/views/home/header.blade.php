@@ -24,7 +24,11 @@
     <link rel="stylesheet" href="{{asset('home/css/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('home/css/style.css')}}" type="text/css">
 </head>
-
+<style>
+    .dropdown li a:hover {
+    color: blue; /* Change 'blue' to your desired hover color */
+}
+</style>
 <body>
 <header class="header">
         <div class="container-fluid">
@@ -41,15 +45,16 @@
                             <li class="{{ Request::is('/') ? 'active' : '' }}"><a  style="font-size: 20px;" href="{{url('/')}}">Home</a></li>
                             <li class="{{ Request::is('products*') ? 'active' : '' }}" ><a style="font-size: 20px;"  href="{{route('view_product')}}">Products</a></li>
                             <li class="{{ Request::is('categoryfilter*') ? 'active' : '' }}" ><a style="font-size: 20px;" >Category</a> 
-                                <ul class="dropdown" style="background-color: #7ab8e6; color: black;">
+                                <ul class="dropdown" style="background-color: white; color: black;">
                                     @foreach($categories as $category)
-                                        <li><a href="{{ route('category_filter', ['category' => $category->name]) }}">{{ $category->name }}</a></li>
+                                        <li><a href="{{ route('category_filter', ['category' => $category->name]) }}" style="color: black;">{{ $category->name }}</a></li>
                                     @endforeach
                                 </ul>
                             </li>
 
                             <!-- <li class="{{ Request::is('orders*') ? 'active' : '' }}"><a style="font-size: 20px;" href="{{route('orders')}}">Orders</a></li> -->
                             <li class="{{ Request::is('aboutus*') ? 'active' : '' }}"><a  style="font-size: 20px;" href="{{route('aboutus')}}">About Us</a></li>
+                            <li class="{{ Request::is('userdashboard') ? 'active' : '' }}"><a  style="font-size: 20px;" href="{{route('userdashboard')}}">Dashboard</a></li>
                             
                         </ul>
                     </nav>

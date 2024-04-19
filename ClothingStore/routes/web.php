@@ -95,14 +95,19 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
 
     Route::get('/getaddress',[OrderController::class,'address'])->name('address');
     Route::post('/store-address', [OrderController::class, 'storeaddress'])->name('store_address');
+    Route::get('/store-address', [OrderController::class, 'storeaddress']);
 
     Route::get('/ordered',[OrderController::class,'ordered'])->name('ordered');
     Route::get('/cancelorder/{id}',[OrderController::class,'cancel_order'])->name('cancel_order');
 
     //payment
     Route::post('/pay', [PaymentController::class, 'pay'])->name('payment');
+    Route::get('/pay', [PaymentController::class, 'pay']);
     Route::get('success', [PaymentController::class, 'success']);
     Route::get('error', [PaymentController::class, 'error']);
+
+    //user dashboard
+    Route::get('/user/dashboard',[OrderController::class,'userdashboard'])->name('userdashboard');
 });
 
 Route::get('/product/{id}/details',[ProductController::class,'product_details'])->name('product_details');

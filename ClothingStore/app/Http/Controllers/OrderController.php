@@ -111,7 +111,33 @@ class OrderController extends Controller
         return view('home.vieworders', compact('orderMasters','countcart','countorder','categories'));
     }
 
-   
+
+    public function userdashboard()
+    {
+        $userId = auth()->id();
+        
+        $categories = Category::all();
+
+        $countcart = Cart::where('user_id', $userId)->count();
+
+        $orders = OrderMaster::where('user_id', $userId);
+        
+        $countorder = $orders->count();
+        $countcash = $orders->where('payment_type', PaymentType::CashOnDelivery)->count();
+        $countPaypal = $orders->where('payment_type', PaymentType::Paypal)->count();
+
+        $countCancelledOrders = $orders->where('delivery_status', DeliveryStatus::Cancelled)->count();
+
+        $countProcessing = $orders->where('delivery_status', DeliveryStatus::Processing)->count();
+        $countDelivered = $orders->where('delivery_status', DeliveryStatus::Delivered)->count();  
+        
+        //for displaying orders
+        $user_id = auth()->user()->id;
+        $orderMasters = OrderMaster::where('user_id', $user_id)->with('orders')->get();
+
+        return view('home.userdashboard', compact('countcart', 'countorder', 'countCancelledOrders', 'categories', 'countProcessing', 'countDelivered', 'countPaypal', 'countcash', 'orderMasters'));
+    }
+
     public function cancel_order($id)
     {
         $Order = OrderMaster::findOrFail($id);
@@ -263,7 +289,7 @@ class OrderController extends Controller
         // $address->order_id=$order->id;
         $address->save();
 
-        Mail::send('order_placed_gmail', [], function ($message) use ($user) {
+        Mail::send('order_placed_gmail', ['totalAmount' => $totalAmount], function ($message) use ($user) {
             $message->to($user->email)
                     ->subject('Thank You for Your Order');
         });
