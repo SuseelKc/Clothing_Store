@@ -217,7 +217,7 @@ class ProductController extends Controller
        
     }
     public function product_details($id){
-        $categories = Category::all();
+        $categories = Category::all(); // select * from categories;
         $product = Products::find($id);
         $relatedProducts = Products::where('category_id', $product->category_id)->where('id', '!=', $id)->take(4)->get();
 
